@@ -1,3 +1,4 @@
+export const runtime = 'edge';
 import { NextResponse } from 'next/server';
 
 const client_id = process.env.SPOTIFY_CLIENT_ID;
