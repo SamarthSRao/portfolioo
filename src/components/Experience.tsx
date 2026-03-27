@@ -27,8 +27,63 @@ const experiences = [
   }
 ];
 
-export default function Experience({ onClose }: { onClose?: () => void }) {
+export default function Experience({ onClose, isMobile }: { onClose?: () => void, isMobile?: boolean }) {
   const dragControls = useDragControls();
+
+  const content = (
+    <div className={`${isMobile ? 'px-4 py-6' : 'px-6 py-8'}`}>
+          <h2 className="font-mono text-[10px] uppercase tracking-[0.2em] mb-10" style={{ color: "var(--text-faint)" }}>
+            Experience
+          </h2>
+
+          <div className="space-y-12">
+            {experiences.map((exp, i) => (
+              <div key={i} className="group border-b border-white/[0.03] pb-10 last:border-none">
+                <div className="flex flex-col md:flex-row justify-between items-start mb-4 gap-4">
+                  <div>
+                    <h3 className={`${isMobile ? 'text-xl' : 'text-lg'} font-bold text-white tracking-tight leading-tight mb-1`}>{exp.role}</h3>
+                    <div className="flex items-center gap-2 text-[11px] font-mono" style={{ color: "var(--text-faint)" }}>
+                      <span>{exp.company}</span>
+                      <span>·</span>
+                      <div className="flex items-center gap-1">
+                        <span>{exp.period}</span>
+                      </div>
+                    </div>
+                  </div>
+                  {!isMobile && (
+                    <div className="flex flex-col items-end gap-2">
+                        <div className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-white/5 border border-white/5 text-[9px] font-mono text-white/50">
+                        <IconCalendar size={10} />
+                        <span>{exp.period}</span>
+                        </div>
+                    </div>
+                  )}
+                </div>
+
+                <p className={`${isMobile ? 'text-[14px]' : 'text-[12px]'} leading-relaxed mb-6 max-w-[95%]`} style={{ color: "var(--text-secondary)" }}>
+                  {exp.description}
+                </p>
+
+                <div className="flex flex-wrap gap-2">
+                  {exp.skills.map(skill => (
+                    <span
+                      key={skill}
+                      className="px-2 py-0.5 rounded bg-white/[0.03] border border-white/[0.05] text-[10px] font-mono"
+                      style={{ color: "var(--text-faint)" }}
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+  );
+
+  if (isMobile) {
+    return <div className="w-full text-left">{content}</div>;
+  }
 
   return (
     <motion.div
@@ -73,52 +128,7 @@ export default function Experience({ onClose }: { onClose?: () => void }) {
 
       {/* Content */}
       <div className="flex-1 overflow-y-auto overflow-x-hidden scrollbar-hide">
-        <div className="px-6 py-8">
-          <h2 className="font-mono text-[10px] uppercase tracking-[0.2em] mb-10" style={{ color: "var(--text-faint)" }}>
-            Experience
-          </h2>
-
-          <div className="space-y-12">
-            {experiences.map((exp, i) => (
-              <div key={i} className="group border-b border-white/[0.03] pb-10 last:border-none">
-                <div className="flex justify-between items-start mb-4">
-                  <div>
-                    <h3 className="text-lg font-semibold text-white tracking-tight leading-tight mb-1">{exp.role}</h3>
-                    <div className="flex items-center gap-2 text-[11px] font-mono" style={{ color: "var(--text-faint)" }}>
-                      <span>{exp.company}</span>
-                      <span>·</span>
-                      <div className="flex items-center gap-1">
-                        <span>{exp.period}</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex flex-col items-end gap-2">
-                    <div className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-white/5 border border-white/5 text-[9px] font-mono text-white/50">
-                      <IconCalendar size={10} />
-                      <span>{exp.period}</span>
-                    </div>
-                  </div>
-                </div>
-
-                <p className="text-[12px] leading-relaxed mb-6 max-w-[95%]" style={{ color: "var(--text-secondary)" }}>
-                  {exp.description}
-                </p>
-
-                <div className="flex flex-wrap gap-2">
-                  {exp.skills.map(skill => (
-                    <span
-                      key={skill}
-                      className="px-2 py-0.5 rounded bg-white/[0.03] border border-white/[0.05] text-[10px] font-mono"
-                      style={{ color: "var(--text-faint)" }}
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+        {content}
       </div>
     </motion.div>
   );

@@ -61,9 +61,8 @@ body {
 }
 
 /* Dot Grid Background */
-.bg-dot-grid {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-  background-size: 24px 24px;
+.desktop-bg {
+    background: radial-gradient(circle, var(--bg-dot) 1px, transparent 1px) 0 0 / 28px 28px var(--bg-base);
 }
 
 /* Custom Utilities */
@@ -88,4 +87,29 @@ body {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--window-border-unfocused);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--window-border-focused);
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--window-border-unfocused) transparent;
 }
