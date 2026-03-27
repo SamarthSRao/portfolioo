@@ -26,8 +26,8 @@ export default function Calendar() {
           <p className="font-mono text-[10px]" style={{ color: "var(--text-faint)" }}>2026</p>
         </div>
         <div className="grid grid-cols-7 mb-1">
-          {days.map(d => (
-            <div key={d} className="text-center font-mono text-[9px] py-0.5" style={{ color: "var(--text-faint)" }}>{d}</div>
+          {days.map((d, i) => (
+            <div key={`${d}-${i}`} className="text-center font-mono text-[9px] py-0.5" style={{ color: "var(--text-faint)" }}>{d}</div>
           ))}
         </div>
         <div className="grid grid-cols-7 gap-y-0.5">

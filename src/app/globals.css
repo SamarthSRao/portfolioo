@@ -2,43 +2,53 @@
 
 
 @theme {
-  --font-sans: var(--font-inter);
-  --font-mono: var(--font-roboto-mono);
-  --color-background: #080808;
-  --color-foreground: #ffffff;
-  --color-border: rgba(255, 255, 255, 0.08);
-  --color-glass: rgba(255, 255, 255, 0.03);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-background: #0b0b0b;
+  --color-foreground: #f0f0f0;
 }
 
 :root {
-  --background: #111111;
-  --foreground: #ffffff;
+  --background: #0b0b0b;
+  --foreground: #f0f0f0;
+  
+  --text-primary: #ffffffd9;
+  --text-secondary: #ffffff80;
+  --text-muted: #ffffff47;
+  --text-faint: #ffffff38;
+  
+  --bg-base: #0b0b0b;
+  --bg-dot: #ffffff0d;
+  
+  --titlebar-bg: #0e0e0e;
+  --window-bg: #111;
+  --terminal-bg: #0d0d0d;
+  --menubar-bg: #0b0b0b;
+  
+  --window-border-focused: #ffffff1f;
+  --window-border-unfocused: #ffffff0f;
+  
+  --widget-bg: #111;
+  --widget-border: #ffffff14;
+  
+  --drag-handle-bg: #ffffff08;
+  --item-separator: #ffffff0d;
+  
+  --dock-bg: #121212eb;
+  --tooltip-bg: #1a1a1a;
+  
+  --accent: #ffffffa6;
+  --accent-subtle: #ffffff1f;
+  
+  --heatmap-empty: #ffffff0f;
+  --separator: #ffffff12;
 
-  --menubar-bg: rgba(13, 13, 13, 0.7);
-  --titlebar-bg: rgba(26, 26, 26, 0.9);
-  --window-bg: rgba(18, 18, 18, 0.9);
-  --dock-bg: rgba(20, 20, 20, 0.6);
-  --widget-bg: rgba(255, 255, 255, 0.03);
-
-  --window-border-focused: rgba(255, 255, 255, 0.12);
-  --window-border-unfocused: rgba(255, 255, 255, 0.06);
-  --widget-border: rgba(255, 255, 255, 0.07);
-
-  --separator: rgba(255, 255, 255, 0.08);
-  --item-separator: rgba(255, 255, 255, 0.04);
-
-  --text-primary: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.65);
-  --text-muted: rgba(255, 255, 255, 0.4);
-  --text-faint: rgba(255, 255, 255, 0.25);
-
-  --accent: #ffffff;
-  --accent-subtle: rgba(255, 255, 255, 0.15);
-
-  --heatmap-empty: rgba(255, 255, 255, 0.05);
-
-  --font-geist-sans: var(--font-sans);
-  --font-geist-mono: var(--font-mono);
+  --spacing: .25rem;
+  --radius-xs: .125rem;
+  --radius-md: .375rem;
+  --radius-lg: .5rem;
+  --radius-xl: .75rem;
+  --radius-2xl: 1rem;
 }
 
 body {

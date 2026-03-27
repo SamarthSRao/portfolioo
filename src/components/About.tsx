@@ -51,10 +51,10 @@ export default function About({ onClose }: { onClose?: () => void }) {
       <div className="flex-1 overflow-y-auto overflow-x-hidden scrollbar-hide">
         <div className="px-6 py-8 flex flex-col h-full" style={{ minHeight: "0px" }}>
           <div className="mb-5">
-            <h1 className="font-semibold tracking-tight text-white leading-[0.92] mb-3" style={{ fontSize: "40px" }}>
-              Samarth<br />S Rao
+            <h1 className="font-bold tracking-tighter text-white leading-[0.88] mb-4" style={{ fontSize: "56px" }}>
+              Samarth<br />S
             </h1>
-            <p className="font-mono text-[10px] uppercase tracking-[0.14em]" style={{ color: "var(--text-secondary)" }}>
+            <p className="font-mono text-[9px] uppercase tracking-[0.3em] font-medium" style={{ color: "var(--text-faint)" }}>
               Backend Developer | Engineer | Building Systems
             </p>
           </div>

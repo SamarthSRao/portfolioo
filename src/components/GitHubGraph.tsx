@@ -13,7 +13,7 @@ interface ContributionDay {
 
 interface GitHubData {
   totalContributions: number;
-  weeks: ContributionDay[][];
+  contributions: ContributionDay[][];
 }
 
 export default function GitHubGraph() {
@@ -84,7 +84,7 @@ export default function GitHubGraph() {
             ))}
           </div>
           <div className="flex gap-[2px]">
-            {data.weeks.map((week, i) => (
+            {data.contributions.map((week, i) => (
               <div key={i} className="flex flex-col gap-[2px]">
                 {week.map((day, j) => (
                   <div 

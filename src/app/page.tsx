@@ -49,7 +49,7 @@ export default function Home() {
             <AnimatePresence>
                {/* Top Left: Quote */}
                {showQuote && (
-                  <div className="absolute" style={{ top: "48px", left: "24px", pointerEvents: "auto" }}>
+                  <div key="quote-layer" className="absolute" style={{ top: "48px", left: "24px", pointerEvents: "auto" }}>
                      <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
@@ -63,7 +63,7 @@ export default function Home() {
 
                {/* Top Right: Open To Work */}
                {showOpenToWork && (
-                  <div className="absolute" style={{ top: "48px", right: "24px", pointerEvents: "auto" }}>
+                  <div key="work-layer" className="absolute" style={{ top: "48px", right: "24px", pointerEvents: "auto" }}>
                      <motion.div
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -77,7 +77,7 @@ export default function Home() {
 
                {/* Mid Left: Links */}
                {showLinks && (
-                  <div className="absolute" style={{ top: "228px", left: "24px", pointerEvents: "auto" }}>
+                  <div key="links-layer" className="absolute" style={{ top: "228px", left: "24px", pointerEvents: "auto" }}>
                      <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -91,7 +91,7 @@ export default function Home() {
 
                {/* Mid Right: Calendar */}
                {showCalendar && (
-                  <div className="absolute" style={{ top: "228px", right: "24px", pointerEvents: "auto" }}>
+                  <div key="calendar-layer" className="absolute" style={{ top: "228px", right: "24px", pointerEvents: "auto" }}>
                      <motion.div
                         initial={{ opacity: 0, x: 50 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -105,7 +105,7 @@ export default function Home() {
 
                {/* Bottom Left: Spotify */}
                {showSpotify && (
-                  <div className="absolute" style={{ bottom: "72px", left: "20px", pointerEvents: "auto" }}>
+                  <div key="spotify-layer" className="absolute" style={{ bottom: "72px", left: "20px", pointerEvents: "auto" }}>
                      <motion.div
                         initial={{ opacity: 0, y: 50 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -119,7 +119,7 @@ export default function Home() {
 
                {/* Bottom Right: GitHub Graph */}
                {showGraph && (
-                  <div className="absolute" style={{ bottom: "80px", right: "24px", pointerEvents: "auto" }}>
+                  <div key="github-layer" className="absolute" style={{ bottom: "80px", right: "24px", pointerEvents: "auto" }}>
                      <motion.div
                         initial={{ opacity: 0, y: 50 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -133,7 +133,7 @@ export default function Home() {
 
                {/* Visitors */}
                {showVisitors && (
-                  <div className="absolute" style={{ bottom: "80px", left: "320px", pointerEvents: "auto" }}>
+                  <div key="visitors-layer" className="absolute" style={{ bottom: "80px", left: "320px", pointerEvents: "auto" }}>
                      <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -146,24 +146,24 @@ export default function Home() {
                )}
 
                {/* Window Layers */}
-               <div className="fixed inset-0 pointer-events-none flex items-center justify-center z-[100]">
+               <div key="window-layers" className="fixed inset-0 pointer-events-none flex items-center justify-center z-[100]">
                   {showAbout && (
-                    <div className={`absolute pointer-events-auto ${getZIndex("about")}`} onMouseDown={() => setActiveWindow("about")}>
+                    <div key="about-window" className={`absolute pointer-events-auto ${getZIndex("about")}`} onMouseDown={() => setActiveWindow("about")}>
                       <About onClose={() => setShowAbout(false)} />
                     </div>
                   )}
                   {showExperience && (
-                    <div className={`absolute pointer-events-auto ${getZIndex("experience")}`} onMouseDown={() => setActiveWindow("experience")}>
+                    <div key="experience-window" className={`absolute pointer-events-auto ${getZIndex("experience")}`} onMouseDown={() => setActiveWindow("experience")}>
                       <Experience onClose={() => setShowExperience(false)} />
                     </div>
                   )}
                   {showProjects && (
-                    <div className={`absolute pointer-events-auto ${getZIndex("projects")}`} onMouseDown={() => setActiveWindow("projects")}>
+                    <div key="projects-window" className={`absolute pointer-events-auto ${getZIndex("projects")}`} onMouseDown={() => setActiveWindow("projects")}>
                       <Projects onClose={() => setShowProjects(false)} />
                     </div>
                   )}
                   {showResume && (
-                    <div className={`absolute pointer-events-auto ${getZIndex("resume")}`} onMouseDown={() => setActiveWindow("resume")}>
+                    <div key="resume-window" className={`absolute pointer-events-auto ${getZIndex("resume")}`} onMouseDown={() => setActiveWindow("resume")}>
                       <Resume onClose={() => setShowResume(false)} />
                     </div>
                   )}
