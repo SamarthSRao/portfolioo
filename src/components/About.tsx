@@ -51,48 +51,42 @@ export default function About({ onClose }: { onClose?: () => void }) {
       <div className="flex-1 overflow-y-auto overflow-x-hidden scrollbar-hide">
         <div className="px-6 py-8 flex flex-col h-full" style={{ minHeight: "0px" }}>
           <div className="mb-5">
-            <h1 className="font-semibold tracking-tight text-white leading-[0.92] mb-3" style={{ fontSize: "46px" }}>
-              Chaitanya<br />Bajpai
+            <h1 className="font-semibold tracking-tight text-white leading-[0.92] mb-3" style={{ fontSize: "40px" }}>
+              Samarth<br />S Rao
             </h1>
             <p className="font-mono text-[10px] uppercase tracking-[0.14em]" style={{ color: "var(--text-secondary)" }}>
-              Sr. Rust / Solana Protocol Engineer
+              Backend Developer | Engineer | Building Systems
             </p>
           </div>
 
           <div style={{ height: "1px", background: "var(--separator)", marginBottom: "20px" }} />
 
-          <p className="text-[13px] leading-[1.75]" style={{ color: "var(--text-secondary)" }}>
-            Building systems at the intersection of distributed computing and on-chain finance.
-            Protocols, indexers, smart contracts. Occasionally writes about Rust and the examined life.
+          <p className="text-[12px] leading-[1.75]" style={{ color: "var(--text-secondary)" }}>
+            Building production-ready web applications with clean architecture and modern tech stacks that scale.
+            Focused on distributed systems, RESTful APIs, and cloud-native tech using Go, Node.js, React, and Docker.
           </p>
 
           <div className="flex items-center justify-between mt-auto pt-5" style={{ borderTop: "1px solid var(--separator)" }}>
             <div className="flex items-center gap-3">
               <div className="relative w-8 h-8 rounded-md overflow-hidden flex-none">
                 <img
-                  alt="Chaitanya Bajpai"
-                  src="/pfp-1.webp"
+                  alt="Samarth S Rao"
+                  src="https://github.com/SamarthSRao.png"
                   className="object-cover w-full h-full"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).src = "https://github.com/cb7chaitanya.png";
-                  }}
                 />
               </div>
               <div>
-                <p className="font-mono text-[10px] uppercase tracking-widest" style={{ color: "var(--text-secondary)" }}>cb7chaitanya</p>
-                <p className="font-mono text-[10px]" style={{ color: "var(--text-faint)" }}>Delhi · 22</p>
+                <p className="font-mono text-[10px] uppercase tracking-widest" style={{ color: "var(--text-secondary)" }}>SamarthSRao</p>
+                <p className="font-mono text-[10px]" style={{ color: "var(--text-faint)" }}>Bengaluru · India</p>
               </div>
             </div>
 
             <div className="flex items-center gap-1">
-              <a href="https://x.com/cbajpai7" target="_blank" rel="noopener noreferrer" className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/5 transition-colors" style={{ color: "var(--text-secondary)" }}>
+              <a href="https://twitter.com/SamarthSRao" target="_blank" rel="noopener noreferrer" className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/5 transition-colors" style={{ color: "var(--text-secondary)" }}>
                 <Twitter size={15} />
               </a>
-              <a href="https://github.com/cb7chaitanya" target="_blank" rel="noopener noreferrer" className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/5 transition-colors" style={{ color: "var(--text-secondary)" }}>
+              <a href="https://github.com/SamarthSRao" target="_blank" rel="noopener noreferrer" className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/5 transition-colors" style={{ color: "var(--text-secondary)" }}>
                 <Github size={15} />
-              </a>
-              <a href="https://medium.com/@cb7chaitanya" target="_blank" rel="noopener noreferrer" className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/5 transition-colors" style={{ color: "var(--text-secondary)" }}>
-                <BookOpen size={15} />
               </a>
             </div>
           </div>

@@ -148,7 +148,7 @@ export default function Dock({
         <DockIcon 
             icon={Github} 
             label="GitHub" 
-            action={() => window.open("https://github.com/cb7chaitanya", "_blank")}
+            action={() => window.open("https://github.com/SamarthSRao", "_blank")}
             mouseX={mouseX}
         />
 
@@ -159,7 +159,7 @@ export default function Dock({
                 </svg>
             )}
             label="Twitter"
-            action={() => window.open("https://x.com/cbajpai7", "_blank")}
+            action={() => window.open("https://twitter.com/SamarthSRao", "_blank")}
             mouseX={mouseX}
         />
       </motion.div>

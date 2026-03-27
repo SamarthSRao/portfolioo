@@ -46,7 +46,7 @@ export default function GitHubGraph() {
         <div className="flex items-center justify-between mb-2.5 gap-8">
           <div className="flex items-center gap-1.5 text-white/30">
             <Github size={11} />
-            <span className="text-[10px] font-medium text-white/60">cb7chaitanya</span>
+            <span className="text-[10px] font-medium text-white/60">SamarthSRao</span>
           </div>
           <span className="text-[10px] text-white/40">1,184 contributions this year</span>
         </div>

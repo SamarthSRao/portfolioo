@@ -16,8 +16,8 @@ export default function Resume({ onClose }: { onClose?: () => void }) {
       animate={{ opacity: 1, scale: 1 }}
       className="flex flex-col overflow-hidden z-[50] pointer-events-auto"
       style={{
-        width: "min(700px, -32px + 100vw)",
-        height: "min(800px, -72px + 100vh)",
+        width: "min(600px, -32px + 100vw)",
+        height: "min(700px, -72px + 100vh)",
         borderRadius: "8px",
         border: "1px solid var(--window-border-focused)",
         boxShadow: "rgba(0, 0, 0, 0.9) 0px 40px 80px, rgb(0, 0, 0) 0px 0px 0px 0.5px",
@@ -28,7 +28,7 @@ export default function Resume({ onClose }: { onClose?: () => void }) {
       {/* Title Bar */}
       <div
         onPointerDown={(e) => dragControls.start(e)}
-        className="flex-none flex items-center h-9 px-3 relative select-none cursor-grab active:cursor-grabbing border-b border-white/5"
+        className="flex-none flex items-center h-7 px-3 relative select-none cursor-grab active:cursor-grabbing border-b border-white/5"
       >
         <div className="flex items-center gap-1.5 z-10">
           <button
@@ -49,13 +49,13 @@ export default function Resume({ onClose }: { onClose?: () => void }) {
 
       {/* Content */}
       <div className="flex-1 overflow-y-auto overflow-x-hidden scrollbar-hide">
-        <div className="px-8 py-10">
+        <div className="px-5 py-5">
           {/* Header */}
-          <div className="flex justify-between items-start mb-10">
+          <div className="flex justify-between items-start mb-3">
             <div>
-              <h1 className="text-4xl font-bold text-white mb-2 tracking-tight">Samarth S Rao</h1>
-              <p className="text-lg text-white/70 mb-4">Backend Developer | Engineer | Building Systems</p>
-              <div className="flex flex-wrap gap-4 text-[11px] font-mono" style={{ color: "var(--text-faint)" }}>
+              <h1 className="text-[20px] font-bold text-white  tracking-tight">Samarth S Rao</h1>
+              <p className="text-[12px] text-white/70 mb-4">Backend Developer | Engineer | Building Systems</p>
+              <div className="flex flex-wrap gap-1 text-[11px] font-mono" style={{ color: "var(--text-faint)" }}>
                 <div className="flex items-center gap-1.5">
                   <MapPin size={12} />
                   <span>Bengaluru, India</span>
@@ -77,14 +77,7 @@ export default function Resume({ onClose }: { onClose?: () => void }) {
           </div>
 
           {/* Education */}
-          <section className="mb-10">
-            <h2 className="font-mono text-[10px] uppercase tracking-[0.2em] mb-6" style={{ color: "var(--text-faint)" }}>Education</h2>
-            <div className="border-l border-white/10 pl-4 py-1">
-              <h3 className="text-base font-bold text-white">JSS Academy of Technology</h3>
-              <p className="text-[12px] text-white/70">Bachelor of Engineering, Computer Science</p>
-              <p className="text-[10px] font-mono mt-1" style={{ color: "var(--text-faint)" }}>May 2023 — May 2027</p>
-            </div>
-          </section>
+
 
           {/* Skills */}
           <section className="mb-10">
