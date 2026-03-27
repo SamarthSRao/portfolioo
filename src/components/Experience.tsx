@@ -5,32 +5,25 @@ import { MapPin, Calendar as IconCalendar } from "lucide-react";
 
 const experiences = [
   {
-    company: "Exo Technologies",
-    role: "Software Engineer",
-    period: "Jun 2025 — Present",
-    description: "Building Solana-based protocols and infrastructure solutions.",
-    skills: ["Solana", "Rust", "TypeScript", "Anchor"]
+    company: "Jss Rooms",
+    role: "Backend Lead",
+    period: "May 2024 — Present",
+    description: "Built a dynamic real-time collaboration and event management platform. Implemented custom WebSocket hub, JWT auth, and QR ticketing.",
+    skills: ["Go", "Gin", "PostgreSQL", "WebSockets", "GORM"]
   },
   {
-    company: "Wildcard",
-    role: "Full-Stack Blockchain Engineer",
-    period: "Past",
-    description: "Smart wallet infrastructure and multi-chain blockchain applications.",
-    skills: ["Rust", "Solana", "EVM", "Next.js"]
+    company: "Inter Prep",
+    role: "Full-Stack Developer",
+    period: "Jan 2024 — Apr 2024",
+    description: "Developed a comprehensive interview preparation platform with category-based question banks and secure access management.",
+    skills: ["Go", "React 18", "PostgreSQL", "Tailwind CSS"]
   },
   {
-    company: "Swifey AI",
-    role: "Full-Stack Engineer",
-    period: "Past",
-    description: "Full-stack development across web, mobile, blockchain, and AI agents.",
-    skills: ["FastAPI", "Node.js", "React", "Flutter", "Solana", "Rust"]
-  },
-  {
-    company: "Veritas AO",
-    role: "Founding Engineer",
-    period: "Apr — Nov 2024",
-    description: "Fair-launch token platform on Arweave's AO compute protocol.",
-    skills: ["AO", "Lua", "TypeScript", "React"]
+    company: "Eco-Quest",
+    role: "Backend Engineer",
+    period: "Nov 2023 — Dec 2023",
+    description: "Incentivized sustainable living by tracking eco-friendly activities and rewarding users with gamified milestones.",
+    skills: ["Node.js", "Express", "MongoDB", "JWT"]
   }
 ];
 

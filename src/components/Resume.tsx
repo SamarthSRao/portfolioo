@@ -26,7 +26,7 @@ export default function Resume({ onClose }: { onClose?: () => void }) {
       }}
     >
       {/* Title Bar */}
-      <div 
+      <div
         onPointerDown={(e) => dragControls.start(e)}
         className="flex-none flex items-center h-9 px-3 relative select-none cursor-grab active:cursor-grabbing border-b border-white/5"
       >
@@ -43,7 +43,7 @@ export default function Resume({ onClose }: { onClose?: () => void }) {
           className="absolute left-1/2 -translate-x-1/2 font-mono text-[10px] uppercase tracking-[0.1em] pointer-events-none"
           style={{ color: "rgba(255, 255, 255, 0.45)" }}
         >
-          Résumé — Chaitanya Bajpai
+          Résumé — Samarth S Rao
         </span>
       </div>
 
@@ -53,65 +53,63 @@ export default function Resume({ onClose }: { onClose?: () => void }) {
           {/* Header */}
           <div className="flex justify-between items-start mb-10">
             <div>
-              <h1 className="text-4xl font-bold text-white mb-2 tracking-tight">Chaitanya Bajpai</h1>
-              <p className="text-lg text-white/70 mb-4">Senior Rust / Solana Protocol & Systems Engineer</p>
+              <h1 className="text-4xl font-bold text-white mb-2 tracking-tight">Samarth S Rao</h1>
+              <p className="text-lg text-white/70 mb-4">Backend Developer | Engineer | Building Systems</p>
               <div className="flex flex-wrap gap-4 text-[11px] font-mono" style={{ color: "var(--text-faint)" }}>
                 <div className="flex items-center gap-1.5">
                   <MapPin size={12} />
-                  <span>Delhi, India</span>
+                  <span>Bengaluru, India</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <Mail size={12} />
-                  <span>cb7chaitanya@gmail.com</span>
+                  <span>Samarthz0901@gmail.com</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <Github size={12} />
-                  <span>cb7chaitanya</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <Twitter size={12} />
-                  <span>cbajpai7</span>
+                  <span>SamarthSRao</span>
                 </div>
               </div>
             </div>
-            <button className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-white/5 border border-white/10 hover:bg-white/10 transition-colors text-[11px] font-mono text-white/80">
-              <ExternalLink size={12} />
-              View on Notion
-            </button>
+            <a href="https://github.com/SamarthSRao" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-white/5 border border-white/10 hover:bg-white/10 transition-colors text-[11px] font-mono text-white/80">
+              <Github size={12} />
+              GitHub Profile
+            </a>
           </div>
+
+          {/* Education */}
+          <section className="mb-10">
+            <h2 className="font-mono text-[10px] uppercase tracking-[0.2em] mb-6" style={{ color: "var(--text-faint)" }}>Education</h2>
+            <div className="border-l border-white/10 pl-4 py-1">
+              <h3 className="text-base font-bold text-white">JSS Academy of Technology</h3>
+              <p className="text-[12px] text-white/70">Bachelor of Engineering, Computer Science</p>
+              <p className="text-[10px] font-mono mt-1" style={{ color: "var(--text-faint)" }}>May 2023 — May 2027</p>
+            </div>
+          </section>
 
           {/* Skills */}
           <section className="mb-10">
             <h2 className="font-mono text-[10px] uppercase tracking-[0.2em] mb-6" style={{ color: "var(--text-faint)" }}>Skills</h2>
             <div className="space-y-4">
               <div className="flex gap-4">
-                <span className="w-32 flex-none text-[11px] font-mono" style={{ color: "var(--text-faint)" }}>Protocol / Chain</span>
+                <span className="w-32 flex-none text-[11px] font-mono" style={{ color: "var(--text-faint)" }}>Backend</span>
                 <div className="flex flex-wrap gap-2">
-                  {["Solana", "Anchor", "PDAs", "CPIs", "SPL Tokens", "AO Protocol", "Arweave", "EVM", "Solidity"].map(skill => (
+                  {["RESTful APIs", "Microservices", "gRPC", "JWT", "OAuth2", "WebSockets"].map(skill => (
                     <span key={skill} className="px-2 py-1 rounded-full bg-white/5 text-[10px] text-white/70 border border-white/5">{skill}</span>
                   ))}
                 </div>
               </div>
               <div className="flex gap-4">
-                <span className="w-32 flex-none text-[11px] font-mono" style={{ color: "var(--text-faint)" }}>Systems / Backend</span>
+                <span className="w-32 flex-none text-[11px] font-mono" style={{ color: "var(--text-faint)" }}>Languages</span>
                 <div className="flex flex-wrap gap-2">
-                  {["Rust", "Actix Web", "Node.js", "TypeScript", "Go", "FastAPI", "Lua"].map(skill => (
+                  {["Go", "Java", "TypeScript", "JavaScript", "SQL"].map(skill => (
                     <span key={skill} className="px-2 py-1 rounded-full bg-white/5 text-[10px] text-white/70 border border-white/5">{skill}</span>
                   ))}
                 </div>
               </div>
               <div className="flex gap-4">
-                <span className="w-32 flex-none text-[11px] font-mono" style={{ color: "var(--text-faint)" }}>Data / Infra</span>
+                <span className="w-32 flex-none text-[11px] font-mono" style={{ color: "var(--text-faint)" }}>Infrastructure</span>
                 <div className="flex flex-wrap gap-2">
-                  {["PostgreSQL", "TimescaleDB", "Redis", "Docker", "AWS S3", "Indexer Architecture"].map(skill => (
-                    <span key={skill} className="px-2 py-1 rounded-full bg-white/5 text-[10px] text-white/70 border border-white/5">{skill}</span>
-                  ))}
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <span className="w-32 flex-none text-[11px] font-mono" style={{ color: "var(--text-faint)" }}>Frontend / Mobile</span>
-                <div className="flex flex-wrap gap-2">
-                  {["React", "Next.js", "TailwindCSS", "Flutter"].map(skill => (
+                  {["PostgreSQL", "MongoDB", "Redis", "Kafka", "Docker", "Linux/Shell"].map(skill => (
                     <span key={skill} className="px-2 py-1 rounded-full bg-white/5 text-[10px] text-white/70 border border-white/5">{skill}</span>
                   ))}
                 </div>
@@ -119,30 +117,35 @@ export default function Resume({ onClose }: { onClose?: () => void }) {
             </div>
           </section>
 
-          {/* Experience */}
+          {/* Projects as Experience */}
           <section className="mb-10">
-            <h2 className="font-mono text-[10px] uppercase tracking-[0.2em] mb-6" style={{ color: "var(--text-faint)" }}>Experience</h2>
+            <h2 className="font-mono text-[10px] uppercase tracking-[0.2em] mb-6" style={{ color: "var(--text-faint)" }}>Featured Projects</h2>
             <div className="space-y-8">
               <div>
                 <div className="flex justify-between items-baseline mb-2">
-                  <div className="flex items-center gap-2">
-                    <h3 className="text-base font-bold text-white tracking-tight">Exo Technologies</h3>
-                    <span className="text-[11px]" style={{ color: "var(--text-faint)" }}>Senior Protocol Engineer</span>
-                  </div>
-                  <span className="text-[10px] font-mono" style={{ color: "var(--text-faint)" }}>Jun 2025 – Present</span>
+                  <h3 className="text-base font-bold text-white tracking-tight">Jss Rooms — Event Management</h3>
+                  <span className="text-[10px] font-mono" style={{ color: "var(--text-faint)" }}>Industrial Design System</span>
                 </div>
                 <ul className="space-y-2 list-none p-0">
                   <li className="text-[12px] leading-relaxed flex gap-2" style={{ color: "var(--text-secondary)" }}>
                     <span className="text-white/20">•</span>
-                    Auditing the Solana Record Service — an official Solana Foundation extension to the Solana Name Service (SNS)
+                    Built a real-time collaboration platform used by 400+ students for campus activities.
                   </li>
                   <li className="text-[12px] leading-relaxed flex gap-2" style={{ color: "var(--text-secondary)" }}>
                     <span className="text-white/20">•</span>
-                    Building indexing solutions and TypeScript SDKs for Doma's Solana DomainFi contracts
+                    Implemented digital ticketing with real-time QR code verification and WebSocket chat.
                   </li>
+                </ul>
+              </div>
+              <div>
+                <div className="flex justify-between items-baseline mb-2">
+                  <h3 className="text-base font-bold text-white tracking-tight">Inter Prep — Interview Platform</h3>
+                  <span className="text-[10px] font-mono" style={{ color: "var(--text-faint)" }}>Go & Gin</span>
+                </div>
+                <ul className="space-y-2 list-none p-0">
                   <li className="text-[12px] leading-relaxed flex gap-2" style={{ color: "var(--text-secondary)" }}>
                     <span className="text-white/20">•</span>
-                    Designed and implemented a two-step tokenomics program architecture for the SKR token launch
+                    Designed high-performance backend with Gin, featuring secure JWT-based authentication.
                   </li>
                 </ul>
               </div>

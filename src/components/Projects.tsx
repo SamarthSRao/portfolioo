@@ -6,28 +6,25 @@ import { Star } from "lucide-react";
 
 const projects = [
   {
-    title: "Exchange",
-    description: "High-performance CEX backend with a trade matching engine, pub/sub order book, and TimescaleDB for tick data.",
-    stars: 16,
-    tags: ["Rust", "Actix Web", "PostgreSQL", "Redis", "TimescaleDB"]
+    title: "Jss Rooms",
+    description: "Campus Connectivity & Event Management Platform with real-time chat and QR ticketing. Used by 400+ students during college fests.",
+    tags: ["Go", "React 19", "PostgreSQL", "WebSockets", "Framer Motion"],
+    link: "https://jssroom.space",
+    stars: "400+ Users"
   },
   {
-    title: "Networking",
-    description: "Low-level TCP/UDP networking primitives and async I/O patterns built in Rust from scratch.",
-    stars: 15,
-    tags: ["Rust"]
+    title: "Inter Prep",
+    description: "Collaborative interview preparation platform with category-based question banks and real-time progress tracking.",
+    tags: ["Go", "Gin", "React 18", "PostgreSQL", "Tailwind CSS"],
+    link: "https://prepterview.vercel.app",
+    stars: "Live"
   },
   {
-    title: "StreamVault",
-    description: "Decentralized video sharing platform on WeaveVM with permanent on-chain storage and EVM contract integration.",
-    stars: 7,
-    tags: ["WeaveVM", "Arweave", "React", "Solidity"]
-  },
-  {
-    title: "Bonding Curve",
-    description: "Solana smart contract for automated token launches with linear or exponential pricing models.",
-    stars: 7,
-    tags: ["Solana", "Anchor", "Rust", "Typescript"]
+    title: "Eco-Quest",
+    description: "Sustainable activity tracker incentivizing eco-friendly living through gamified milestones and leaderboards.",
+    tags: ["Node.js", "Express", "MongoDB", "React 18", "JWT"],
+    link: "https://github.com/SamarthSRao/eco-rewards",
+    stars: "GitHub"
   }
 ];
 
