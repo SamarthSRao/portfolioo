@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Chaitanya Bajpai",
-  description: "Senior Rust / Solana Protocol Engineer",
+  title: "Samarth S Rao",
+  description: "Backend Developer | Engineer | Building Systems",
 };
 
 export default function RootLayout({
