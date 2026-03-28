@@ -1,7 +1,7 @@
 {
   "name": "samarth-portfolio",
   "compatibility_date": "2024-11-01",
-  "pages_build_output_dir": ".vercel/output",
+  "pages_build_output_dir": ".next",
   "vars": {
     "SPOTIFY_CLIENT_ID": "34e634832a8d45d0ab7e7b68507d9ca8",
     "SPOTIFY_CLIENT_SECRET": "4214b0241b874494a89f75cd1091d2b4"

@@ -7,35 +7,35 @@
   --font-geist-mono: "GeistMono";
   --background: #0b0b0b;
   --foreground: #f0f0f0;
-  
+
   --text-primary: #ffffffd9;
   --text-secondary: #ffffff80;
   --text-muted: #ffffff47;
   --text-faint: #ffffff38;
-  
+
   --bg-base: #0b0b0b;
   --bg-dot: #ffffff0d;
-  
+
   --titlebar-bg: #0e0e0e;
   --window-bg: #111;
   --terminal-bg: #0d0d0d;
   --menubar-bg: #0b0b0b;
-  
+
   --window-border-focused: #ffffff1f;
   --window-border-unfocused: #ffffff0f;
-  
+
   --widget-bg: #111;
   --widget-border: #ffffff14;
-  
+
   --drag-handle-bg: #ffffff08;
   --item-separator: #ffffff0d;
-  
+
   --dock-bg: #121212eb;
   --tooltip-bg: #1a1a1a;
-  
+
   --accent: #ffffffa6;
   --accent-subtle: #ffffff1f;
-  
+
   --heatmap-empty: #ffffff0f;
   --separator: #ffffff12;
 
@@ -66,7 +66,7 @@ body {
 
 /* Dot Grid Background */
 .desktop-bg {
-    background: radial-gradient(circle, var(--bg-dot) 1px, transparent 1px) 0 0 / 28px 28px var(--bg-base);
+  background: radial-gradient(circle, var(--bg-dot) 1px, transparent 1px) 0 0 / 28px 28px var(--bg-base);
 }
 
 /* Custom Utilities */
