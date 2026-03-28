@@ -50,7 +50,7 @@ export default function Home() {
    const tabs = ["ABOUT", "EXPERIENCE", "PROJECTS", "WRITING", "CONTACT", "RÉSUMÉ"];
 
    return (
-      <main className="relative min-h-[100dvh] w-screen bg-[#0b0b0b] overflow-x-hidden selection:bg-white/10 selection:text-white" style={{ color: "rgb(240, 240, 240)" }}>
+      <main className="relative min-h-[100dvh] w-screen bg-[var(--background)] overflow-x-hidden selection:bg-white/10 selection:text-white" style={{ color: "rgb(240, 240, 240)" }}>
          {/* Background Dot Grid */}
          <div className="absolute inset-0 desktop-bg opacity-40 pointer-events-none" />
 
@@ -143,7 +143,7 @@ export default function Home() {
 
          {/* MOBILE LAYOUT */}
          <div className="md:hidden flex flex-col h-screen overflow-hidden relative z-10">
-            <div className="flex-none px-6 pt-8 pb-4 border-b border-white/5 bg-[#0b0b0b]/80 backdrop-blur-md sticky top-0 z-50">
+            <div className="flex-none px-6 pt-8 pb-4 border-b border-white/5 bg-[var(--background)]/80 backdrop-blur-md sticky top-0 z-50">
                <div className="flex items-center justify-between mb-8">
                   <span className="font-bold text-[10px] tracking-widest text-white/90">SSR</span>
                   <span className="font-mono text-[10px] text-white/40">{new Date().getHours().toString().padStart(2, '0')}:{new Date().getMinutes().toString().padStart(2, '0')}</span>
