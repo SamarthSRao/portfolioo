@@ -20,7 +20,7 @@ export default function Header() {
       }}
     >
       <div className="flex items-center gap-3">
-        <span className="font-mono text-[11px] font-semibold uppercase tracking-widest" style={{ color: "rgba(255, 255, 255, 0.9)" }}>CB</span>
+        <span className="font-mono text-[11px] font-semibold uppercase tracking-widest" style={{ color: "rgba(255, 255, 255, 0.9)" }}>SAM</span>
         <span style={{ color: "rgba(255, 255, 255, 0.15)", fontSize: "10px" }}>|</span>
         <span className="font-mono text-[11px] tracking-wide" style={{ color: "rgba(255, 255, 255, 0.4)" }}>About</span>
       </div>
