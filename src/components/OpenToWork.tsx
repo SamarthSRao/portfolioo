@@ -8,7 +8,7 @@ export default function OpenToWork() {
       drag
       dragMomentum={false}
       className="select-none overflow-hidden rounded-xl border border-white/10 cursor-grab active:cursor-grabbing"
-      style={{ 
+      style={{
         width: "232px",
         background: "var(--window-bg)",
         boxShadow: "rgba(0, 0, 0, 0.4) 0px 8px 32px"
@@ -33,7 +33,7 @@ export default function OpenToWork() {
           </div>
           <div className="flex gap-3 items-start">
             <span className="font-mono text-[9px] uppercase tracking-wider flex-none pt-px" style={{ color: "var(--text-faint)", width: "52px" }}>Writing</span>
-            <span className="text-[11px] leading-snug" style={{ color: "var(--text-secondary)" }}>Rust Networking Series</span>
+            <span className="text-[11px] leading-snug" style={{ color: "var(--text-secondary)" }}>Designing Data intenesive applications</span>
           </div>
         </div>
       </div>
