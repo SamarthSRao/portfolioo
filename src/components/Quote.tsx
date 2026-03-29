@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 
 const QUOTES = [
-  { text: "Those sudden spikes of self-worth are reminders, not discoveries.", author: "cb · writing" },
+  { text: "Do you want it or do you like the idea of it?", author: " · writing" },
   { text: "Make it simple, but significant.", author: "Don Draper" },
   { text: "Simplicity is the ultimate sophistication.", author: "Leonardo da Vinci" },
   { text: "Design is not just what it looks like and feels like. Design is how it works.", author: "Steve Jobs" },
@@ -29,7 +29,7 @@ export default function Quote() {
       drag
       dragMomentum={false}
       className="select-none overflow-hidden rounded-xl border border-white/10 cursor-grab active:cursor-grabbing"
-      style={{ 
+      style={{
         width: "240px",
         background: "var(--window-bg)",
         boxShadow: "rgba(0, 0, 0, 0.4) 0px 8px 32px"
@@ -55,17 +55,17 @@ export default function Quote() {
             </p>
           </motion.div>
         </AnimatePresence>
-        
+
         <div className="flex items-center gap-1 mt-4">
           {QUOTES.map((_, i) => (
-            <div 
-              key={i} 
+            <div
+              key={i}
               className="rounded-full transition-all duration-300"
-              style={{ 
-                width: i === index ? "12px" : "4px", 
-                height: "3px", 
-                background: i === index ? "var(--accent)" : "var(--accent-subtle)" 
-              }} 
+              style={{
+                width: i === index ? "12px" : "4px",
+                height: "3px",
+                background: i === index ? "var(--accent)" : "var(--accent-subtle)"
+              }}
             />
           ))}
         </div>
