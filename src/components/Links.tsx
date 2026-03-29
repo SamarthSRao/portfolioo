@@ -4,11 +4,10 @@ import { motion } from "framer-motion";
 
 export default function Links() {
   const links = [
-    { title: "The Zen of Erlang", site: "Fred Hebert · systems", url: "https://ferd.ca/the-zen-of-erlang.html" },
-    { title: "Fearless Concurrency", site: "The Rust Book · rust", url: "https://doc.rust-lang.org/book/ch16-00-concurrency.html" },
-    { title: "without.boats", site: "withoutboats · rust", url: "https://without.boats" },
-    { title: "Meditations", site: "Marcus Aurelius · philosophy", url: "https://www.gutenberg.org/ebooks/2680" },
-    { title: "Solana Program Library", site: "Solana Labs · solana", url: "https://spl.solana.com" },
+    { title: "Databases were not meant for AI", site: "Arpit Bhayani · databases", url: "https://arpitbhayani.me/blogs/defensive-databases" },
+    { title: "DDIA references", site: "git · rust", url: "https://github.com/SamarthSRao/ddia-references" },
+    { title: "Sherlock Holmes", site: "Arthur Conan Doyle · mystery", url: "https://sherlock-holm.es/pdf/letter/1-sided/" },
+    { title: "The Inner Game of Tennis", site: "W. Timothy Gallwey · psychology", url: "https://www.gutenberg.org/ebooks/2680" },
   ];
 
   return (
@@ -16,7 +15,7 @@ export default function Links() {
       drag
       dragMomentum={false}
       className="select-none overflow-hidden rounded-xl border border-white/10 cursor-grab active:cursor-grabbing"
-      style={{ 
+      style={{
         width: "240px",
         background: "var(--window-bg)",
         boxShadow: "rgba(0, 0, 0, 0.4) 0px 8px 32px"
@@ -30,12 +29,12 @@ export default function Links() {
       </div>
       <div>
         {links.map((link, i) => (
-          <a 
+          <a
             key={link.url}
-            href={link.url} 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="flex items-center justify-between px-3 py-2 group hover:bg-white/5 transition-colors" 
+            href={link.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-between px-3 py-2 group hover:bg-white/5 transition-colors"
             style={{ borderBottom: i === links.length - 1 ? "none" : "1px solid var(--item-separator)" }}
           >
             <div className="min-w-0">

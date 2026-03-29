@@ -8,47 +8,47 @@ export default function About({ onClose, isMobile }: { onClose?: () => void, isM
 
   const content = (
     <div className={`${isMobile ? 'px-4 py-6' : 'px-6 py-8'} flex flex-col h-full`} style={{ minHeight: "0px" }}>
-          <div className="mb-5">
-            <h1 className={`${isMobile ? 'text-[42px]' : 'text-[56px]'} font-bold tracking-tighter text-white leading-[0.88] mb-4`}>
-              Samarth<br />S
-            </h1>
-            <p className="font-mono text-[9px] uppercase tracking-[0.3em] font-medium" style={{ color: "var(--text-faint)" }}>
-              Backend Developer | Engineer | Building Systems
-            </p>
+      <div className="mb-5">
+        <h1 className={`${isMobile ? 'text-[42px]' : 'text-[56px]'} font-bold tracking-tighter text-white leading-[0.88] mb-4`}>
+          Samarth<br />S
+        </h1>
+        <p className="font-mono text-[9px] uppercase tracking-[0.3em] font-medium" style={{ color: "var(--text-faint)" }}>
+          Backend Developer | Engineer | Building Systems
+        </p>
+      </div>
+
+      <div style={{ height: "1px", background: "var(--separator)", marginBottom: "20px" }} />
+
+      <p className={`${isMobile ? 'text-[14px]' : 'text-[12px]'} leading-[1.75]`} style={{ color: "var(--text-secondary)" }}>
+        currently learning how distributed systems work,
+        exploring backend systems and database internals in depth.
+        and sometimes vibecoding uis just for fun          </p>
+
+      <div className="flex items-center justify-between mt-auto pt-5" style={{ borderTop: "1px solid var(--separator)" }}>
+        <div className="flex items-center gap-3">
+          <div className="relative w-8 h-8 rounded-md overflow-hidden flex-none border border-white/10">
+            <img
+              alt="Samarth S Rao"
+              src="https://github.com/SamarthSRao.png"
+              className="object-cover w-full h-full"
+            />
           </div>
-
-          <div style={{ height: "1px", background: "var(--separator)", marginBottom: "20px" }} />
-
-          <p className={`${isMobile ? 'text-[14px]' : 'text-[12px]'} leading-[1.75]`} style={{ color: "var(--text-secondary)" }}>
-            Building production-ready web applications with clean architecture and modern tech stacks that scale.
-            Focused on distributed systems, RESTful APIs, and cloud-native tech using Go, Node.js, React, and Docker.
-          </p>
-
-          <div className="flex items-center justify-between mt-auto pt-5" style={{ borderTop: "1px solid var(--separator)" }}>
-            <div className="flex items-center gap-3">
-              <div className="relative w-8 h-8 rounded-md overflow-hidden flex-none border border-white/10">
-                <img
-                  alt="Samarth S Rao"
-                  src="https://github.com/SamarthSRao.png"
-                  className="object-cover w-full h-full"
-                />
-              </div>
-              <div>
-                <p className="font-mono text-[10px] uppercase tracking-widest" style={{ color: "var(--text-secondary)" }}>SamarthSRao</p>
-                <p className="font-mono text-[10px]" style={{ color: "var(--text-faint)" }}>Bengaluru · India</p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-1">
-              <a href="https://twitter.com/SamarthSRao" target="_blank" rel="noopener noreferrer" className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/5 transition-colors" style={{ color: "var(--text-secondary)" }}>
-                <Twitter size={15} />
-              </a>
-              <a href="https://github.com/SamarthSRao" target="_blank" rel="noopener noreferrer" className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/5 transition-colors" style={{ color: "var(--text-secondary)" }}>
-                <Github size={15} />
-              </a>
-            </div>
+          <div>
+            <p className="font-mono text-[10px] uppercase tracking-widest" style={{ color: "var(--text-secondary)" }}>SamarthSRao</p>
+            <p className="font-mono text-[10px]" style={{ color: "var(--text-faint)" }}>Bengaluru · India</p>
           </div>
         </div>
+
+        <div className="flex items-center gap-1">
+          <a href="https://twitter.com/SamarthSRao" target="_blank" rel="noopener noreferrer" className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/5 transition-colors" style={{ color: "var(--text-secondary)" }}>
+            <Twitter size={15} />
+          </a>
+          <a href="https://github.com/SamarthSRao" target="_blank" rel="noopener noreferrer" className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/5 transition-colors" style={{ color: "var(--text-secondary)" }}>
+            <Github size={15} />
+          </a>
+        </div>
+      </div>
+    </div>
   );
 
   if (isMobile) {

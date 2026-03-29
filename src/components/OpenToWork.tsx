@@ -25,11 +25,11 @@ export default function OpenToWork() {
         <div className="space-y-2">
           <div className="flex gap-3 items-start">
             <span className="font-mono text-[9px] uppercase tracking-wider flex-none pt-px" style={{ color: "var(--text-faint)", width: "52px" }}>Building</span>
-            <span className="text-[11px] leading-snug" style={{ color: "var(--text-secondary)" }}>SKR Tokenomics @ Exo Technologies</span>
+            <span className="text-[11px] leading-snug" style={{ color: "var(--text-secondary)" }}>Beagle Corp</span>
           </div>
           <div className="flex gap-3 items-start">
             <span className="font-mono text-[9px] uppercase tracking-wider flex-none pt-px" style={{ color: "var(--text-faint)", width: "52px" }}>Reading</span>
-            <span className="text-[11px] leading-snug" style={{ color: "var(--text-secondary)" }}>The Stranger by Albert Camus</span>
+            <span className="text-[11px] leading-snug" style={{ color: "var(--text-secondary)" }}>The Phoenix project</span>
           </div>
           <div className="flex gap-3 items-start">
             <span className="font-mono text-[9px] uppercase tracking-wider flex-none pt-px" style={{ color: "var(--text-faint)", width: "52px" }}>Writing</span>

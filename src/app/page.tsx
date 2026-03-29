@@ -17,6 +17,7 @@ import VisitorCount from "../components/VisitorCount";
 import Experience from "../components/Experience";
 import Projects from "../components/Projects";
 import Resume from "../components/Resume";
+import Contact from "../components/Contact";
 
 export default function Home() {
    const [showAbout, setShowAbout] = useState(true);
@@ -30,6 +31,7 @@ export default function Home() {
    const [showExperience, setShowExperience] = useState(false);
    const [showProjects, setShowProjects] = useState(false);
    const [showResume, setShowResume] = useState(false);
+   const [showContact, setShowContact] = useState(false);
 
    const [activeWindow, setActiveWindow] = useState<string | null>(null);
    const [activeTab, setActiveTab] = useState("ABOUT");
@@ -129,6 +131,11 @@ export default function Home() {
                            <Resume onClose={() => setShowResume(false)} />
                         </div>
                      )}
+                     {showContact && (
+                        <div key="contact-window" className={`absolute pointer-events-auto ${getZIndex("contact")}`} onMouseDown={() => setActiveWindow("contact")}>
+                           <Contact onClose={() => setShowContact(false)} />
+                        </div>
+                     )}
                   </div>
                </AnimatePresence>
             </div>
@@ -137,7 +144,8 @@ export default function Home() {
                onToggleExperience={() => { setShowExperience(prev => !prev); if (!showExperience) setActiveWindow("experience"); }}
                onToggleProjects={() => { setShowProjects(prev => !prev); if (!showProjects) setActiveWindow("projects"); }}
                onToggleResume={() => { setShowResume(prev => !prev); if (!showResume) setActiveWindow("resume"); }}
-               isAboutOpen={showAbout} isExperienceOpen={showExperience} isProjectsOpen={showProjects} isResumeOpen={showResume}
+               onToggleContact={() => { setShowContact(prev => !prev); if (!showContact) setActiveWindow("contact"); }}
+               isAboutOpen={showAbout} isExperienceOpen={showExperience} isProjectsOpen={showProjects} isResumeOpen={showResume} isContactOpen={showContact}
             />
          </div>
 
@@ -196,10 +204,7 @@ export default function Home() {
                </section>
 
                <section id="contact" className="scroll-mt-32 pb-32">
-                  <div className="py-12 border-t border-white/5 space-y-4">
-                     <p className="font-mono text-[10px] text-white/40 uppercase tracking-widest">Connect with me</p>
-                     <a href="mailto:hello@samarth.dev" className="block text-2xl font-bold tracking-tight hover:text-white/80 transition-colors">hello@samarth.dev</a>
-                  </div>
+                  <Contact isMobile />
                </section>
             </div>
          </div>

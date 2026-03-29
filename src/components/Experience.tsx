@@ -5,25 +5,11 @@ import { MapPin, Calendar as IconCalendar } from "lucide-react";
 
 const experiences = [
   {
-    company: "Jss Rooms",
-    role: "Backend Lead",
-    period: "May 2024 — Present",
-    description: "Built a dynamic real-time collaboration and event management platform. Implemented custom WebSocket hub, JWT auth, and QR ticketing.",
+    company: "BeagleCorp",
+    role: "Intern",
+    period: "Jan 2026 ",
+    description: "Yet to Update",
     skills: ["Go", "Gin", "PostgreSQL", "WebSockets", "GORM"]
-  },
-  {
-    company: "Inter Prep",
-    role: "Full-Stack Developer",
-    period: "Jan 2024 — Apr 2024",
-    description: "Developed a comprehensive interview preparation platform with category-based question banks and secure access management.",
-    skills: ["Go", "React 18", "PostgreSQL", "Tailwind CSS"]
-  },
-  {
-    company: "Eco-Quest",
-    role: "Backend Engineer",
-    period: "Nov 2023 — Dec 2023",
-    description: "Incentivized sustainable living by tracking eco-friendly activities and rewarding users with gamified milestones.",
-    skills: ["Node.js", "Express", "MongoDB", "JWT"]
   }
 ];
 
@@ -32,53 +18,53 @@ export default function Experience({ onClose, isMobile }: { onClose?: () => void
 
   const content = (
     <div className={`${isMobile ? 'px-4 py-6' : 'px-6 py-8'}`}>
-          <h2 className="font-mono text-[10px] uppercase tracking-[0.2em] mb-10" style={{ color: "var(--text-faint)" }}>
-            Experience
-          </h2>
+      <h2 className="font-mono text-[10px] uppercase tracking-[0.2em] mb-10" style={{ color: "var(--text-faint)" }}>
+        Experience
+      </h2>
 
-          <div className="space-y-12">
-            {experiences.map((exp, i) => (
-              <div key={i} className="group border-b border-white/[0.03] pb-10 last:border-none">
-                <div className="flex flex-col md:flex-row justify-between items-start mb-4 gap-4">
-                  <div>
-                    <h3 className={`${isMobile ? 'text-xl' : 'text-lg'} font-bold text-white tracking-tight leading-tight mb-1`}>{exp.role}</h3>
-                    <div className="flex items-center gap-2 text-[11px] font-mono" style={{ color: "var(--text-faint)" }}>
-                      <span>{exp.company}</span>
-                      <span>·</span>
-                      <div className="flex items-center gap-1">
-                        <span>{exp.period}</span>
-                      </div>
-                    </div>
+      <div className="space-y-12">
+        {experiences.map((exp, i) => (
+          <div key={i} className="group border-b border-white/[0.03] pb-10 last:border-none">
+            <div className="flex flex-col md:flex-row justify-between items-start mb-4 gap-4">
+              <div>
+                <h3 className={`${isMobile ? 'text-xl' : 'text-lg'} font-bold text-white tracking-tight leading-tight mb-1`}>{exp.role}</h3>
+                <div className="flex items-center gap-2 text-[11px] font-mono" style={{ color: "var(--text-faint)" }}>
+                  <span>{exp.company}</span>
+                  <span>·</span>
+                  <div className="flex items-center gap-1">
+                    <span>{exp.period}</span>
                   </div>
-                  {!isMobile && (
-                    <div className="flex flex-col items-end gap-2">
-                        <div className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-white/5 border border-white/5 text-[9px] font-mono text-white/50">
-                        <IconCalendar size={10} />
-                        <span>{exp.period}</span>
-                        </div>
-                    </div>
-                  )}
-                </div>
-
-                <p className={`${isMobile ? 'text-[14px]' : 'text-[12px]'} leading-relaxed mb-6 max-w-[95%]`} style={{ color: "var(--text-secondary)" }}>
-                  {exp.description}
-                </p>
-
-                <div className="flex flex-wrap gap-2">
-                  {exp.skills.map(skill => (
-                    <span
-                      key={skill}
-                      className="px-2 py-0.5 rounded bg-white/[0.03] border border-white/[0.05] text-[10px] font-mono"
-                      style={{ color: "var(--text-faint)" }}
-                    >
-                      {skill}
-                    </span>
-                  ))}
                 </div>
               </div>
-            ))}
+              {!isMobile && (
+                <div className="flex flex-col items-end gap-2">
+                  <div className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-white/5 border border-white/5 text-[9px] font-mono text-white/50">
+                    <IconCalendar size={10} />
+                    <span>{exp.period}</span>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <p className={`${isMobile ? 'text-[14px]' : 'text-[12px]'} leading-relaxed mb-6 max-w-[95%]`} style={{ color: "var(--text-secondary)" }}>
+              {exp.description}
+            </p>
+
+            <div className="flex flex-wrap gap-2">
+              {exp.skills.map(skill => (
+                <span
+                  key={skill}
+                  className="px-2 py-0.5 rounded bg-white/[0.03] border border-white/[0.05] text-[10px] font-mono"
+                  style={{ color: "var(--text-faint)" }}
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
           </div>
-        </div>
+        ))}
+      </div>
+    </div>
   );
 
   if (isMobile) {

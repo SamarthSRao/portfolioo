@@ -26,10 +26,12 @@ interface DockProps {
   onToggleExperience: () => void;
   onToggleProjects: () => void;
   onToggleResume: () => void;
+  onToggleContact: () => void;
   isAboutOpen?: boolean;
   isExperienceOpen?: boolean;
   isProjectsOpen?: boolean;
   isResumeOpen?: boolean;
+  isContactOpen?: boolean;
 }
 
 function DockIcon({ 
@@ -102,10 +104,12 @@ export default function Dock({
   onToggleExperience, 
   onToggleProjects, 
   onToggleResume,
+  onToggleContact,
   isAboutOpen,
   isExperienceOpen,
   isProjectsOpen,
-  isResumeOpen
+  isResumeOpen,
+  isContactOpen
 }: DockProps) {
   const mouseX = useMotionValue(Infinity);
 
@@ -114,7 +118,7 @@ export default function Dock({
     { icon: Briefcase, label: "Experience", action: onToggleExperience, active: isExperienceOpen },
     { icon: CodeXml, label: "Projects", action: onToggleProjects, active: isProjectsOpen },
     { icon: BookOpen, label: "Education" },
-    { icon: Mail, label: "Contact" },
+    { icon: Mail, label: "Contact", action: onToggleContact, active: isContactOpen },
     { icon: ScrollText, label: "Résumé", action: onToggleResume, active: isResumeOpen },
     { icon: SquareTerminal, label: "Terminal" },
     { icon: Cpu, label: "Hardware" },
