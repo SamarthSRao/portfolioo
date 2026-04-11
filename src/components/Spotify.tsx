@@ -28,7 +28,7 @@ export default function Spotify() {
       drag
       dragMomentum={false}
       className="select-none overflow-hidden rounded-xl border border-white/10 cursor-grab active:cursor-grabbing pointer-events-auto"
-      style={{ 
+      style={{
         width: "272px",
         background: "var(--window-bg)",
         boxShadow: "rgba(0, 0, 0, 0.4) 0px 8px 32px"
@@ -37,9 +37,9 @@ export default function Spotify() {
       <div className="px-3 py-2 border-b border-white/5 flex items-center">
         <div style={{ width: "24px", height: "2px", borderRadius: "1px", background: isPlaying ? "rgb(29, 185, 84)" : "rgba(255, 255, 255, 0.12)" }} />
       </div>
-      <a 
-        href={isPlaying ? data.songUrl : "#"} 
-        target="_blank" 
+      <a
+        href={isPlaying ? data.songUrl : "#"}
+        target="_blank"
         rel="noopener noreferrer"
         className="flex items-center gap-3 px-3 py-2.5 transition-colors hover:bg-white/[0.02]"
       >

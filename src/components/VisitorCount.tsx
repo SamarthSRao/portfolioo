@@ -8,7 +8,7 @@ export default function VisitorCount() {
       drag
       dragMomentum={false}
       className="select-none overflow-hidden rounded-xl border border-white/10 cursor-grab active:cursor-grabbing"
-      style={{ 
+      style={{
         width: "160px",
         background: "var(--window-bg)",
         boxShadow: "rgba(0, 0, 0, 0.4) 0px 8px 32px"

@@ -11,7 +11,7 @@ export default function Calendar() {
       drag
       dragMomentum={false}
       className="select-none overflow-hidden rounded-xl border border-white/10 cursor-grab active:cursor-grabbing"
-      style={{ 
+      style={{
         width: "200px",
         background: "var(--window-bg)",
         boxShadow: "rgba(0, 0, 0, 0.4) 0px 8px 32px"
@@ -32,11 +32,11 @@ export default function Calendar() {
         </div>
         <div className="grid grid-cols-7 gap-y-0.5">
           {dates.map(date => (
-            <div 
-              key={date} 
-              className="flex items-center justify-center font-mono text-[10px]" 
-              style={{ 
-                height: "22px", 
+            <div
+              key={date}
+              className="flex items-center justify-center font-mono text-[10px]"
+              style={{
+                height: "22px",
                 borderRadius: "4px",
                 background: date === 27 ? "var(--accent-subtle)" : "transparent",
                 color: date === 27 ? "var(--text-primary)" : "var(--text-secondary)",

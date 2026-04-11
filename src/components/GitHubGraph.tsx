@@ -60,7 +60,7 @@ export default function GitHubGraph() {
       drag
       dragMomentum={false}
       className="select-none overflow-hidden rounded-xl border border-white/10 cursor-grab active:cursor-grabbing"
-      style={{ 
+      style={{
         background: "var(--window-bg)",
         boxShadow: "rgba(0, 0, 0, 0.4) 0px 8px 32px"
       }}
@@ -76,7 +76,7 @@ export default function GitHubGraph() {
           </div>
           <span className="text-[10px] text-white/40">{data.totalContributions.toLocaleString()} contributions this year</span>
         </div>
-        
+
         <div>
           <div className="relative h-3.5 mb-0.5 flex" style={{ width: "530px" }}>
             {months.map((m, i) => (
@@ -87,14 +87,14 @@ export default function GitHubGraph() {
             {data.contributions.map((week, i) => (
               <div key={i} className="flex flex-col gap-[2px]">
                 {week.map((day, j) => (
-                  <div 
-                    key={j} 
+                  <div
+                    key={j}
                     title={`${day.contributionCount} contributions on ${day.date}`}
-                    className="w-[10px] h-[10px] rounded-[2px] transition-colors hover:scale-110" 
-                    style={{ 
-                        background: day.contributionCount === 0 ? "var(--heatmap-empty)" : day.color,
-                        opacity: day.contributionCount === 0 ? 0.3 : 0.9
-                    }} 
+                    className="w-[10px] h-[10px] rounded-[2px] transition-colors hover:scale-110"
+                    style={{
+                      background: day.contributionCount === 0 ? "var(--heatmap-empty)" : day.color,
+                      opacity: day.contributionCount === 0 ? 0.3 : 0.9
+                    }}
                   />
                 ))}
               </div>

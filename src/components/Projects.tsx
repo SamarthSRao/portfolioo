@@ -9,14 +9,14 @@ const projects = [
     title: "Jss Rooms",
     description: "Campus Connectivity & Event Management Platform with real-time chat and QR ticketing. Used by 400+ students during college fests.",
     tags: ["Go", "React 19", "PostgreSQL", "WebSockets", "Framer Motion"],
-    link: "https://jssroom.space",
+    link: "https://jssroom.space/",
     stars: "400+ Users"
   },
   {
     title: "Inter Prep",
     description: "Collaborative interview preparation platform with category-based question banks and real-time progress tracking.",
     tags: ["Go", "Gin", "React 18", "PostgreSQL", "Tailwind CSS"],
-    link: "https://prepterview.vercel.app",
+    link: "https://prepterview.vercel.app/",
     stars: "Live"
   },
   {
@@ -34,59 +34,68 @@ export default function Projects({ onClose, isMobile }: { onClose?: () => void, 
 
   const content = (
     <div className={`${isMobile ? 'px-4 py-6' : 'px-6 py-6'}`}>
-        <h2 className="font-mono text-[10px] uppercase tracking-[0.2em] mb-6" style={{ color: "var(--text-faint)" }}>
-          Projects
-        </h2>
+      <h2 className="font-mono text-[10px] uppercase tracking-[0.2em] mb-6" style={{ color: "var(--text-faint)" }}>
+        Projects
+      </h2>
 
-        <div className="flex items-center gap-3 mb-2 border-b border-white/5">
-          {["PERSONAL", "CLIENT WORK"].map((tab) => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className="pb-2 text-[10px] font-mono tracking-widest transition-colors relative"
-              style={{ color: activeTab === tab ? "white" : "var(--text-faint)" }}
-            >
-              {tab}
-              {activeTab === tab && (
-                <motion.div
-                  layoutId="activeTab"
-                  className="absolute bottom-0 left-0 right-0 h-px bg-white"
-                />
-              )}
-            </button>
-          ))}
-        </div>
+      <div className="flex items-center gap-3 mb-2 border-b border-white/5">
+        {["PERSONAL", "CLIENT WORK"].map((tab) => (
+          <button
+            key={tab}
+            onClick={() => setActiveTab(tab)}
+            className="pb-2 text-[10px] font-mono tracking-widest transition-colors relative"
+            style={{ color: activeTab === tab ? "white" : "var(--text-faint)" }}
+          >
+            {tab}
+            {activeTab === tab && (
+              <motion.div
+                layoutId="activeTab"
+                className="absolute bottom-0 left-0 right-0 h-px bg-white"
+              />
+            )}
+          </button>
+        ))}
+      </div>
 
-        <div className="space-y-1 pb-6">
-          {projects.map((project, i) => (
-            <div key={i} className="group border-b border-white/[0.03] pb-8 last:border-none">
-              <div className="flex items-center justify-between mb-3">
-                <div className="flex items-center gap-2">
-                  <h4 className={`${isMobile ? 'text-lg' : 'text-base'} font-bold text-white tracking-tight`}>{project.title}</h4>
-                  {project.stars && (
-                    <div className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-white/5" style={{ color: "var(--text-faint)" }}>
-                      <Star size={10} />
-                      <span className="text-[10px] font-mono">{project.stars}</span>
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              <p className={`${isMobile ? 'text-[14px]' : 'text-[11px]'} leading-relaxed mb-4`} style={{ color: "var(--text-secondary)" }}>
-                {project.description}
-              </p>
-
-              <div className="flex flex-wrap gap-x-4 gap-y-1">
-                {project.tags.map((tag, j) => (
-                  <span key={j} className="text-[10px] font-mono" style={{ color: "var(--text-faint)" }}>
-                    {tag}
-                  </span>
-                ))}
+      <div className="space-y-1 pb-6">
+        {projects.map((project, i) => (
+          <div key={i} className="group border-b border-white/[0.03] pb-8 last:border-none">
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center gap-2">
+                <a 
+                  href={project.link} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="group/link flex items-center gap-2"
+                >
+                  <h4 className={`${isMobile ? 'text-lg' : 'text-base'} font-bold text-white tracking-tight group-hover/link:text-white/80 transition-colors`}>
+                    {project.title}
+                  </h4>
+                </a>
+                {project.stars && (
+                  <div className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-white/5" style={{ color: "var(--text-faint)" }}>
+                    <Star size={10} />
+                    <span className="text-[10px] font-mono">{project.stars}</span>
+                  </div>
+                )}
               </div>
             </div>
-          ))}
-        </div>
+
+            <p className={`${isMobile ? 'text-[14px]' : 'text-[11px]'} leading-relaxed mb-4`} style={{ color: "var(--text-secondary)" }}>
+              {project.description}
+            </p>
+
+            <div className="flex flex-wrap gap-x-4 gap-y-1">
+              {project.tags.map((tag, j) => (
+                <span key={j} className="text-[10px] font-mono" style={{ color: "var(--text-faint)" }}>
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
+    </div>
   );
 
   if (isMobile) {
