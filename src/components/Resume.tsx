@@ -43,7 +43,8 @@ export default function Resume({ onClose, isMobile }: { onClose?: () => void, is
           {[
             { label: "Backend", items: ["RESTful APIs", "Microservices", "gRPC", "JWT", "OAuth2", "WebSockets"] },
             { label: "Languages", items: ["Go", "Java", "TypeScript", "JavaScript", "SQL"] },
-            { label: "Infrastructure", items: ["PostgreSQL", "MongoDB", "Redis", "Kafka", "Docker", "Linux/Shell"] }
+            { label: "Infrastructure", items: ["PostgreSQL", "MongoDB", "Redis", "Kafka", "Docker", "Linux/Shell"] },
+            { label: "Systems", items: ["WAL", "LSM Tree", "Bloom Filters", "Raft Consensus", "Storage Engines", "Distributed Systems"] },
           ].map(group => (
             <div key={group.label} className={`flex ${isMobile ? 'flex-col gap-2' : 'gap-4'}`}>
               <span className={`${isMobile ? 'w-full' : 'w-32'} flex-none text-[11px] font-mono`} style={{ color: "var(--text-faint)" }}>{group.label}</span>
@@ -63,29 +64,101 @@ export default function Resume({ onClose, isMobile }: { onClose?: () => void, is
         <div className="space-y-8">
           <div>
             <div className="flex justify-between items-baseline mb-2">
-              <h3 className={`${isMobile ? 'text-lg' : 'text-base'} font-bold text-white tracking-tight`}>Jss Rooms — Event Management</h3>
-              {!isMobile && <span className="text-[10px] font-mono" style={{ color: "var(--text-faint)" }}>Industrial Design System</span>}
+              <h3 className={`${isMobile ? 'text-lg' : 'text-base'} font-bold text-white tracking-tight`}>WAL-Kv — Storage Engine</h3>
+              {!isMobile && <span className="text-[10px] font-mono" style={{ color: "var(--text-faint)" }}>Go · Systems</span>}
             </div>
             <ul className="space-y-2 list-none p-0">
               <li className={`${isMobile ? 'text-[14px]' : 'text-[12px]'} leading-relaxed flex gap-2`} style={{ color: "var(--text-secondary)" }}>
                 <span className="text-white/20">•</span>
-                Built a real-time collaboration platform used by 400+ students for campus activities.
+                Built a write-ahead log based key-value engine from scratch with segment-based WAL flushing and crash recovery.
               </li>
               <li className={`${isMobile ? 'text-[14px]' : 'text-[12px]'} leading-relaxed flex gap-2`} style={{ color: "var(--text-secondary)" }}>
                 <span className="text-white/20">•</span>
-                Implemented digital ticketing with real-time QR code verification and WebSocket chat.
+                Implemented durable commit semantics and recovery-on-boot using structured binary log segments.
+              </li>
+            </ul>
+          </div>
+          <div>
+            <div className="flex justify-between items-baseline mb-2">
+              <h3 className={`${isMobile ? 'text-lg' : 'text-base'} font-bold text-white tracking-tight`}>sbloom — Bloom Filter</h3>
+              {!isMobile && <span className="text-[10px] font-mono" style={{ color: "var(--text-faint)" }}>Go · Data Structures</span>}
+            </div>
+            <ul className="space-y-2 list-none p-0">
+              <li className={`${isMobile ? 'text-[14px]' : 'text-[12px]'} leading-relaxed flex gap-2`} style={{ color: "var(--text-secondary)" }}>
+                <span className="text-white/20">•</span>
+                Implemented a probabilistic Bloom filter in Go using multiple hash functions for space-efficient membership testing.
+              </li>
+            </ul>
+          </div>
+          <div>
+            <div className="flex justify-between items-baseline mb-2">
+              <h3 className={`${isMobile ? 'text-lg' : 'text-base'} font-bold text-white tracking-tight`}>Hackblog — AI Blogging Platform</h3>
+              {!isMobile && <span className="text-[10px] font-mono" style={{ color: "var(--text-faint)" }}>Node.js · Docker · AWS</span>}
+            </div>
+            <ul className="space-y-2 list-none p-0">
+              <li className={`${isMobile ? 'text-[14px]' : 'text-[12px]'} leading-relaxed flex gap-2`} style={{ color: "var(--text-secondary)" }}>
+                <span className="text-white/20">•</span>
+                Full-stack blogging platform with AI-powered content generation via Gemini API and Docker Compose deployment.
+              </li>
+              <li className={`${isMobile ? 'text-[14px]' : 'text-[12px]'} leading-relaxed flex gap-2`} style={{ color: "var(--text-secondary)" }}>
+                <span className="text-white/20">•</span>
+                Deployed backend to AWS App Runner with PostgreSQL on RDS, and frontend on AWS Amplify.
+              </li>
+            </ul>
+          </div>
+          <div>
+            <div className="flex justify-between items-baseline mb-2">
+              <h3 className={`${isMobile ? 'text-lg' : 'text-base'} font-bold text-white tracking-tight`}>Jss Rooms — Event Management</h3>
+              {!isMobile && <span className="text-[10px] font-mono" style={{ color: "var(--text-faint)" }}>Go · WebSockets · PostgreSQL</span>}
+            </div>
+            <ul className="space-y-2 list-none p-0">
+              <li className={`${isMobile ? 'text-[14px]' : 'text-[12px]'} leading-relaxed flex gap-2`} style={{ color: "var(--text-secondary)" }}>
+                <span className="text-white/20">•</span>
+                Real-time campus platform serving 400+ concurrent users with Go goroutine-pooled WebSocket connections.
+              </li>
+              <li className={`${isMobile ? 'text-[14px]' : 'text-[12px]'} leading-relaxed flex gap-2`} style={{ color: "var(--text-secondary)" }}>
+                <span className="text-white/20">•</span>
+                Implemented atomic QR ticket generation with PostgreSQL transactions to prevent double-booking.
               </li>
             </ul>
           </div>
           <div>
             <div className="flex justify-between items-baseline mb-2">
               <h3 className={`${isMobile ? 'text-lg' : 'text-base'} font-bold text-white tracking-tight`}>Inter Prep — Interview Platform</h3>
-              {!isMobile && <span className="text-[10px] font-mono" style={{ color: "var(--text-faint)" }}>Go & Gin</span>}
+              {!isMobile && <span className="text-[10px] font-mono" style={{ color: "var(--text-faint)" }}>Go · Gin · PostgreSQL</span>}
             </div>
             <ul className="space-y-2 list-none p-0">
               <li className={`${isMobile ? 'text-[14px]' : 'text-[12px]'} leading-relaxed flex gap-2`} style={{ color: "var(--text-secondary)" }}>
                 <span className="text-white/20">•</span>
-                Designed high-performance backend with Gin, featuring secure JWT-based authentication.
+                Designed high-performance backend with Gin and B-tree indexed PostgreSQL queries for low-latency lookups.
+              </li>
+              <li className={`${isMobile ? 'text-[14px]' : 'text-[12px]'} leading-relaxed flex gap-2`} style={{ color: "var(--text-secondary)" }}>
+                <span className="text-white/20">•</span>
+                Implemented connection pooling and JWT-based stateless auth for horizontal scalability.
+              </li>
+            </ul>
+          </div>
+          <div>
+            <div className="flex justify-between items-baseline mb-2">
+              <h3 className={`${isMobile ? 'text-lg' : 'text-base'} font-bold text-white tracking-tight`}>go-typing — Terminal Typing Test</h3>
+              {!isMobile && <span className="text-[10px] font-mono" style={{ color: "var(--text-faint)" }}>Go · TUI · Goroutines</span>}
+            </div>
+            <ul className="space-y-2 list-none p-0">
+              <li className={`${isMobile ? 'text-[14px]' : 'text-[12px]'} leading-relaxed flex gap-2`} style={{ color: "var(--text-secondary)" }}>
+                <span className="text-white/20">•</span>
+                Terminal-based WPM and accuracy test using raw I/O and goroutine-based input processing with no external deps.
+              </li>
+            </ul>
+          </div>
+          <div>
+            <div className="flex justify-between items-baseline mb-2">
+              <h3 className={`${isMobile ? 'text-lg' : 'text-base'} font-bold text-white tracking-tight`}>Eco-Quest — Activity Tracker</h3>
+              {!isMobile && <span className="text-[10px] font-mono" style={{ color: "var(--text-faint)" }}>Node.js · MongoDB · JWT</span>}
+            </div>
+            <ul className="space-y-2 list-none p-0">
+              <li className={`${isMobile ? 'text-[14px]' : 'text-[12px]'} leading-relaxed flex gap-2`} style={{ color: "var(--text-secondary)" }}>
+                <span className="text-white/20">•</span>
+                Gamified sustainability tracker with leaderboard aggregation backed by MongoDB oplog tailing and Redis caching.
               </li>
             </ul>
           </div>
