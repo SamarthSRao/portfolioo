@@ -12,7 +12,7 @@ export default function Resume({ onClose, isMobile }: { onClose?: () => void, is
       <div className={`flex ${isMobile ? 'flex-col gap-4' : 'justify-between items-start'} mb-8`}>
         <div>
           <h1 className={`${isMobile ? 'text-[32px]' : 'text-[20px]'} font-bold text-white tracking-tight`}>Samarth S Rao</h1>
-          <p className={`${isMobile ? 'text-[14px]' : 'text-[12px]'} text-white/70 mb-4`}>Backend Developer | Engineer | Building Systems</p>
+          <p className={`${isMobile ? 'text-[14px]' : 'text-[12px]'} text-white/70 mb-4`}>Backend Developer | Engineer | Distributed Systems</p>
           <div className="flex flex-col gap-2 text-[11px] font-mono" style={{ color: "var(--text-faint)" }}>
             <div className="flex items-center gap-1.5">
               <MapPin size={12} />

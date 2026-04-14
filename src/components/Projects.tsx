@@ -1,35 +1,67 @@
 "use client";
 
-import { useState } from "react";
 import { motion, useDragControls } from "framer-motion";
-import { Star } from "lucide-react";
 
 const projects = [
   {
+    title: "WAL-Kv",
+    description: "A write-ahead log based key-value storage engine built in Go. Implements crash recovery, segment-based WAL flushing, and durable commit semantics from scratch.",
+    tags: ["Go", "Storage Engine", "WAL", "Crash Recovery", "Durability"],
+    link: "https://github.com/SamarthSRao/Wal-Kv",
+    badge: "Systems",
+    badgeColor: "text-blue-400 border-blue-400/30 bg-blue-400/5"
+  },
+  {
+    title: "sbloom",
+    description: "A Bloom filter implementation in Go for probabilistic set membership testing. Uses multiple hash functions to achieve space-efficient false-positive-bounded lookups.",
+    tags: ["Go", "Bloom Filter", "Probabilistic DS", "Hashing"],
+    link: "https://github.com/SamarthSRao/sbloom",
+    badge: "Data Structures",
+    badgeColor: "text-purple-400 border-purple-400/30 bg-purple-400/5"
+  },
+  {
+    title: "Hackblog",
+    description: "Full-stack blogging platform with AI-powered content generation. Features Docker Compose setup, REST API backend, and a React frontend deployed to AWS App Runner.",
+    tags: ["Node.js", "React", "PostgreSQL", "Docker", "AWS", "Gemini AI"],
+    link: "https://github.com/SamarthSRao/hackblog",
+    badge: "Full Stack",
+    badgeColor: "text-amber-400 border-amber-400/30 bg-amber-400/5"
+  },
+  {
     title: "Jss Rooms",
-    description: "Campus Connectivity & Event Management Platform with real-time chat and QR ticketing. Used by 400+ students during college fests.",
-    tags: ["Go", "React 19", "PostgreSQL", "WebSockets", "Framer Motion"],
+    description: "Campus connectivity & event management platform with real-time chat and QR ticketing. Served 400+ concurrent students during college fests with Go-powered WebSocket goroutines.",
+    tags: ["Go", "WebSockets", "PostgreSQL", "React 19", "Framer Motion"],
     link: "https://jssroom.space/",
-    stars: "400+ Users"
+    badge: "Live",
+    badgeColor: "text-emerald-400 border-emerald-400/30 bg-emerald-400/5"
   },
   {
     title: "Inter Prep",
-    description: "Collaborative interview preparation platform with category-based question banks and real-time progress tracking.",
-    tags: ["Go", "Gin", "React 18", "PostgreSQL", "Tailwind CSS"],
+    description: "Collaborative interview preparation platform with category-based question banks and real-time progress tracking. Built with Go/Gin for high-throughput query handling.",
+    tags: ["Go", "Gin", "PostgreSQL", "React 18", "Tailwind CSS"],
     link: "https://prepterview.vercel.app/",
-    stars: "Live"
+    badge: "Live",
+    badgeColor: "text-emerald-400 border-emerald-400/30 bg-emerald-400/5"
+  },
+  {
+    title: "go-typing",
+    description: "A terminal-based typing speed test written in pure Go. Measures WPM and accuracy in real-time, using raw terminal I/O and goroutine-based input processing.",
+    tags: ["Go", "TUI", "Terminal", "Goroutines", "Raw I/O"],
+    link: "https://github.com/SamarthSRao/go-typing",
+    badge: "CLI",
+    badgeColor: "text-white/40 border-white/10 bg-white/5"
   },
   {
     title: "Eco-Quest",
-    description: "Sustainable activity tracker incentivizing eco-friendly living through gamified milestones and leaderboards.",
+    description: "Sustainable activity tracker incentivizing eco-friendly living through gamified milestones and global leaderboards. Uses MongoDB oplog and Redis cache for score aggregation.",
     tags: ["Node.js", "Express", "MongoDB", "React 18", "JWT"],
     link: "https://github.com/SamarthSRao/eco-rewards",
-    stars: "GitHub"
-  }
+    badge: "Open Source",
+    badgeColor: "text-white/40 border-white/10 bg-white/5"
+  },
 ];
 
 export default function Projects({ onClose, isMobile }: { onClose?: () => void, isMobile?: boolean }) {
-  const [activeTab, setActiveTab] = useState("PERSONAL");
   const dragControls = useDragControls();
 
   const content = (
@@ -37,25 +69,6 @@ export default function Projects({ onClose, isMobile }: { onClose?: () => void, 
       <h2 className="font-mono text-[10px] uppercase tracking-[0.2em] mb-6" style={{ color: "var(--text-faint)" }}>
         Projects
       </h2>
-
-      <div className="flex items-center gap-3 mb-2 border-b border-white/5">
-        {["PERSONAL", "CLIENT WORK"].map((tab) => (
-          <button
-            key={tab}
-            onClick={() => setActiveTab(tab)}
-            className="pb-2 text-[10px] font-mono tracking-widest transition-colors relative"
-            style={{ color: activeTab === tab ? "white" : "var(--text-faint)" }}
-          >
-            {tab}
-            {activeTab === tab && (
-              <motion.div
-                layoutId="activeTab"
-                className="absolute bottom-0 left-0 right-0 h-px bg-white"
-              />
-            )}
-          </button>
-        ))}
-      </div>
 
       <div className="space-y-1 pb-6">
         {projects.map((project, i) => (
@@ -72,12 +85,6 @@ export default function Projects({ onClose, isMobile }: { onClose?: () => void, 
                     {project.title}
                   </h4>
                 </a>
-                {project.stars && (
-                  <div className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-white/5" style={{ color: "var(--text-faint)" }}>
-                    <Star size={10} />
-                    <span className="text-[10px] font-mono">{project.stars}</span>
-                  </div>
-                )}
               </div>
             </div>
 

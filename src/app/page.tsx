@@ -18,6 +18,7 @@ import Experience from "../components/Experience";
 import Projects from "../components/Projects";
 import Resume from "../components/Resume";
 import Contact from "../components/Contact";
+import SystemPulse from "../components/SystemPulse";
 
 export default function Home() {
    const [showAbout, setShowAbout] = useState(true);
@@ -32,6 +33,7 @@ export default function Home() {
    const [showProjects, setShowProjects] = useState(false);
    const [showResume, setShowResume] = useState(false);
    const [showContact, setShowContact] = useState(false);
+   const [showSystems, setShowSystems] = useState(false);
 
    const [activeWindow, setActiveWindow] = useState<string | null>(null);
    const [activeTab, setActiveTab] = useState("ABOUT");
@@ -97,7 +99,7 @@ export default function Home() {
       }
    };
 
-   const tabs = ["ABOUT", "EXPERIENCE", "PROJECTS", "WRITING", "CONTACT", "RÉSUMÉ"];
+   const tabs = ["ABOUT", "EXPERIENCE", "PROJECTS", "SYSTEMS", "CONTACT", "RÉSUMÉ"];
 
    return (
       <main className="relative min-h-[100dvh] w-screen bg-[var(--background)] overflow-x-hidden selection:bg-white/10 selection:text-white" style={{ color: "rgb(240, 240, 240)" }}>
@@ -184,6 +186,11 @@ export default function Home() {
                            <Contact onClose={() => setShowContact(false)} />
                         </div>
                      )}
+                     {showSystems && (
+                        <div key="systems-window" className={`absolute pointer-events-auto ${getZIndex("systems")}`} onMouseDown={() => setActiveWindow("systems")}>
+                           <SystemPulse onClose={() => setShowSystems(false)} />
+                        </div>
+                     )}
                   </div>
                </AnimatePresence>
             </div>
@@ -193,7 +200,8 @@ export default function Home() {
                onToggleProjects={() => { setShowProjects(prev => !prev); if (!showProjects) setActiveWindow("projects"); }}
                onToggleResume={() => { setShowResume(prev => !prev); if (!showResume) setActiveWindow("resume"); }}
                onToggleContact={() => { setShowContact(prev => !prev); if (!showContact) setActiveWindow("contact"); }}
-               isAboutOpen={showAbout} isExperienceOpen={showExperience} isProjectsOpen={showProjects} isResumeOpen={showResume} isContactOpen={showContact}
+               onToggleSystems={() => { setShowSystems(prev => !prev); if (!showSystems) setActiveWindow("systems"); }}
+               isAboutOpen={showAbout} isExperienceOpen={showExperience} isProjectsOpen={showProjects} isResumeOpen={showResume} isContactOpen={showContact} isSystemsOpen={showSystems}
             />
          </div>
 
@@ -267,21 +275,8 @@ export default function Home() {
                   <Resume isMobile />
                </section>
 
-               <section id="writing" className="scroll-mt-32">
-                  <div className="space-y-8 py-4">
-                     <p className="text-[10px] font-mono text-white/20 uppercase tracking-[0.2em]">Writing • Planned 2026</p>
-                     <div className="space-y-6">
-                        {[1, 2, 3].map(i => (
-                           <div key={i} className="group border-b border-white/5 pb-6">
-                              <div className="flex justify-between items-start mb-2">
-                                 <div className="h-4 w-48 bg-white/5 rounded animate-pulse" />
-                                 <div className="h-3 w-12 bg-white/5 rounded animate-pulse" />
-                              </div>
-                              <div className="h-3 w-full bg-white/5 rounded animate-pulse opacity-50" />
-                           </div>
-                        ))}
-                     </div>
-                  </div>
+               <section id="systems" className="scroll-mt-32">
+                  <SystemPulse isMobile />
                </section>
 
                <section id="contact" className="scroll-mt-32 pb-32">

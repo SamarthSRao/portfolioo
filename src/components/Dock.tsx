@@ -18,7 +18,8 @@ import {
   SquareTerminal, 
   Cpu, 
   NotebookPen,
-  Github
+  Github,
+  Activity
 } from "lucide-react";
 
 interface DockProps {
@@ -27,11 +28,13 @@ interface DockProps {
   onToggleProjects: () => void;
   onToggleResume: () => void;
   onToggleContact: () => void;
+  onToggleSystems: () => void;
   isAboutOpen?: boolean;
   isExperienceOpen?: boolean;
   isProjectsOpen?: boolean;
   isResumeOpen?: boolean;
   isContactOpen?: boolean;
+  isSystemsOpen?: boolean;
 }
 
 function DockIcon({ 
@@ -105,11 +108,13 @@ export default function Dock({
   onToggleProjects, 
   onToggleResume,
   onToggleContact,
+  onToggleSystems,
   isAboutOpen,
   isExperienceOpen,
   isProjectsOpen,
   isResumeOpen,
-  isContactOpen
+  isContactOpen,
+  isSystemsOpen
 }: DockProps) {
   const mouseX = useMotionValue(Infinity);
 
@@ -120,8 +125,8 @@ export default function Dock({
     { icon: BookOpen, label: "Education" },
     { icon: Mail, label: "Contact", action: onToggleContact, active: isContactOpen },
     { icon: ScrollText, label: "Résumé", action: onToggleResume, active: isResumeOpen },
+    { icon: Activity, label: "Systems", action: onToggleSystems, active: isSystemsOpen },
     { icon: SquareTerminal, label: "Terminal" },
-    { icon: Cpu, label: "Hardware" },
     { icon: NotebookPen, label: "Notes" },
   ];
 
