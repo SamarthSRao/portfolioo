@@ -2,8 +2,8 @@
 
 
 
-import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { useState, useRef, useEffect } from "react";
+import { AnimatePresence, motion, useScroll, useSpring, useTransform } from "framer-motion";
 import Header from "../components/Header";
 import Dock from "../components/Dock";
 import About from "../components/About";
@@ -35,6 +35,54 @@ export default function Home() {
 
    const [activeWindow, setActiveWindow] = useState<string | null>(null);
    const [activeTab, setActiveTab] = useState("ABOUT");
+   
+   const mobileScrollRef = useRef<HTMLDivElement>(null);
+   const tabsRef = useRef<HTMLDivElement>(null);
+   
+   const { scrollYProgress } = useScroll({
+      container: mobileScrollRef
+   });
+
+   const scaleX = useSpring(scrollYProgress, {
+      stiffness: 100,
+      damping: 30,
+      restDelta: 0.001
+   });
+
+   const logoX = useTransform(scrollYProgress, [0, 1], [0, 16]);
+
+   useEffect(() => {
+      const container = mobileScrollRef.current;
+      if (!container) return;
+
+      const handleScroll = () => {
+         const sections = tabs.map(tab => ({
+            id: tab,
+            el: document.getElementById(tab.toLowerCase())
+         }));
+
+         const currentSection = sections.find(section => {
+            if (!section.el) return false;
+            const rect = section.el.getBoundingClientRect();
+            return rect.top <= 150 && rect.bottom >= 150;
+         });
+
+         if (currentSection && currentSection.id !== activeTab) {
+            setActiveTab(currentSection.id);
+            
+            // Auto-scroll the tab bar
+            const tabEl = document.getElementById(`tab-${currentSection.id}`);
+            if (tabEl && tabsRef.current) {
+               const container = tabsRef.current;
+               const scrollLeft = tabEl.offsetLeft - (container.offsetWidth / 2) + (tabEl.offsetWidth / 2);
+               container.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+            }
+         }
+      };
+
+      container.addEventListener('scroll', handleScroll);
+      return () => container.removeEventListener('scroll', handleScroll);
+   }, [activeTab]);
 
    const getZIndex = (windowId: string) => {
       if (activeWindow === windowId) return "z-[100]";
@@ -150,26 +198,59 @@ export default function Home() {
          </div>
 
          {/* MOBILE LAYOUT */}
-         <div className="md:hidden flex flex-col h-screen overflow-hidden relative z-10">
-            <div className="flex-none px-6 pt-8 pb-4 border-b border-white/5 bg-[var(--background)]/80 backdrop-blur-md sticky top-0 z-50">
+         <div className="md:hidden flex flex-col h-[100dvh] overflow-hidden relative z-10">
+            <div className="flex-none px-6 pt-8 pb-4 border-b border-white/5 bg-[var(--background)]/80 backdrop-blur-md sticky top-0 z-50 overflow-hidden">
+               {/* Progress Bar that moves left to right */}
+               <motion.div 
+                  className="absolute bottom-0 left-0 h-[1.5px] z-50"
+                  style={{ 
+                     scaleX, 
+                     transformOrigin: "0%", 
+                     width: "100%",
+                     background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.4), rgba(255,255,255,0.8))"
+                  }}
+               />
+               
                <div className="flex items-center justify-between mb-8">
-                  <span className="font-bold text-[10px] tracking-widest text-white/90">SSR</span>
+                  <motion.span 
+                     style={{ x: logoX }}
+                     className="font-bold text-[10px] tracking-widest text-white/90"
+                  >
+                     SSR
+                  </motion.span>
                   <span className="font-mono text-[10px] text-white/40">{new Date().getHours().toString().padStart(2, '0')}:{new Date().getMinutes().toString().padStart(2, '0')}</span>
                </div>
-               <div className="flex items-center gap-6 overflow-x-auto scrollbar-hide no-scrollbar -mx-6 px-6">
+               <div 
+                  ref={tabsRef}
+                  className="flex items-center gap-6 overflow-x-auto scrollbar-hide no-scrollbar -mx-6 px-6 relative"
+               >
                   {tabs.map(tab => (
                      <button
                         key={tab}
-                        onClick={() => scrollToSection(tab)}
-                        className={`text-[10px] font-bold tracking-widest transition-all whitespace-nowrap pb-1 border-b-2 ${activeTab === tab ? 'text-white border-white' : 'text-white/30 border-transparent hover:text-white/60'}`}
+                        id={`tab-${tab}`}
+                        onClick={() => {
+                           scrollToSection(tab);
+                           setActiveTab(tab);
+                        }}
+                        className={`relative text-[10px] font-bold tracking-widest transition-all whitespace-nowrap pb-2 ${activeTab === tab ? 'text-white' : 'text-white/30 hover:text-white/60'}`}
                      >
                         {tab}
+                        {activeTab === tab && (
+                           <motion.div 
+                              layoutId="activeTabMobile"
+                              className="absolute bottom-0 left-0 right-0 h-0.5 bg-white"
+                              transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                           />
+                        )}
                      </button>
                   ))}
                </div>
             </div>
 
-            <div className="flex-1 overflow-y-auto px-6 py-6 scroll-smooth space-y-20">
+            <div 
+               ref={mobileScrollRef}
+               className="flex-1 overflow-y-auto px-6 py-6 scroll-smooth space-y-20"
+            >
                <section id="about" className="scroll-mt-32">
                   <About isMobile />
                </section>

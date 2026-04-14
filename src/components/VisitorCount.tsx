@@ -1,8 +1,29 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 
 export default function VisitorCount() {
+  const [count, setCount] = useState<number | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchCount = async () => {
+      try {
+        const res = await fetch('/api/visitors');
+        const data = await res.json();
+        setCount(data.count);
+      } catch (err) {
+        console.error("Failed to load visitor count", err);
+        setCount(2075); // Fallback
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCount();
+  }, []);
+
   return (
     <motion.div
       drag
@@ -19,7 +40,9 @@ export default function VisitorCount() {
       </div>
       <div className="px-4 py-3">
         <p className="font-mono text-[9px] uppercase tracking-[0.12em] mb-1.5" style={{ color: "var(--text-faint)" }}>Visitors</p>
-        <p className="text-[28px] font-semibold leading-none text-white">2,075</p>
+        <p className="text-[28px] font-semibold leading-none text-white">
+          {loading ? "..." : (count?.toLocaleString() || "2,075")}
+        </p>
         <p className="font-mono text-[9px] mt-1.5" style={{ color: "var(--text-muted)" }}>total visits</p>
       </div>
     </motion.div>
