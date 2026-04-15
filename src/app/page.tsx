@@ -18,7 +18,6 @@ import Experience from "../components/Experience";
 import Projects from "../components/Projects";
 import Resume from "../components/Resume";
 import Contact from "../components/Contact";
-import SystemPulse from "../components/SystemPulse";
 
 export default function Home() {
    const [showAbout, setShowAbout] = useState(true);
@@ -33,58 +32,9 @@ export default function Home() {
    const [showProjects, setShowProjects] = useState(false);
    const [showResume, setShowResume] = useState(false);
    const [showContact, setShowContact] = useState(false);
-   const [showSystems, setShowSystems] = useState(false);
 
    const [activeWindow, setActiveWindow] = useState<string | null>(null);
    const [activeTab, setActiveTab] = useState("ABOUT");
-   
-   const mobileScrollRef = useRef<HTMLDivElement>(null);
-   const tabsRef = useRef<HTMLDivElement>(null);
-   
-   const { scrollYProgress } = useScroll({
-      container: mobileScrollRef
-   });
-
-   const scaleX = useSpring(scrollYProgress, {
-      stiffness: 100,
-      damping: 30,
-      restDelta: 0.001
-   });
-
-   const logoX = useTransform(scrollYProgress, [0, 1], [0, 16]);
-
-   useEffect(() => {
-      const container = mobileScrollRef.current;
-      if (!container) return;
-
-      const handleScroll = () => {
-         const sections = tabs.map(tab => ({
-            id: tab,
-            el: document.getElementById(tab.toLowerCase())
-         }));
-
-         const currentSection = sections.find(section => {
-            if (!section.el) return false;
-            const rect = section.el.getBoundingClientRect();
-            return rect.top <= 150 && rect.bottom >= 150;
-         });
-
-         if (currentSection && currentSection.id !== activeTab) {
-            setActiveTab(currentSection.id);
-            
-            // Auto-scroll the tab bar
-            const tabEl = document.getElementById(`tab-${currentSection.id}`);
-            if (tabEl && tabsRef.current) {
-               const container = tabsRef.current;
-               const scrollLeft = tabEl.offsetLeft - (container.offsetWidth / 2) + (tabEl.offsetWidth / 2);
-               container.scrollTo({ left: scrollLeft, behavior: 'smooth' });
-            }
-         }
-      };
-
-      container.addEventListener('scroll', handleScroll);
-      return () => container.removeEventListener('scroll', handleScroll);
-   }, [activeTab]);
 
    const getZIndex = (windowId: string) => {
       if (activeWindow === windowId) return "z-[100]";
@@ -95,11 +45,40 @@ export default function Home() {
       const el = document.getElementById(id.toLowerCase());
       if (el) {
          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-         setActiveTab(id);
       }
    };
 
-   const tabs = ["ABOUT", "EXPERIENCE", "PROJECTS", "SYSTEMS", "CONTACT", "RÉSUMÉ"];
+   const tabs = ["ABOUT", "EXPERIENCE", "PROJECTS", "WRITING", "CONTACT", "RÉSUMÉ"];
+
+   // Mobile time state
+   const [time, setTime] = useState("");
+   useEffect(() => {
+     const update = () => {
+       const now = new Date()
+       setTime(now.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: false }))
+     }
+     update()
+     const id = setInterval(update, 30_000)
+     return () => clearInterval(id)
+   }, [])
+
+   // Mobile Intersection Observer for active tab
+   useEffect(() => {
+     const observers: IntersectionObserver[] = []
+     tabs.forEach((id) => {
+       const el = document.getElementById(id.toLowerCase())
+       if (!el) return
+       const obs = new IntersectionObserver(
+         ([entry]) => { if (entry.isIntersecting) setActiveTab(id) },
+         { threshold: 0.4 }
+       )
+       obs.observe(el)
+       observers.push(obs)
+     })
+     return () => observers.forEach((o) => o.disconnect())
+   }, [])
+
+   const MOBILE_BORDER = "1px solid rgba(255,255,255,0.07)";
 
    return (
       <main className="relative min-h-[100dvh] w-screen bg-[var(--background)] overflow-x-hidden selection:bg-white/10 selection:text-white" style={{ color: "rgb(240, 240, 240)" }}>
@@ -160,6 +139,7 @@ export default function Home() {
                         </motion.div>
                      </div>
                   )}
+
                   <div key="window-layers" className="fixed inset-0 pointer-events-none flex items-center justify-center z-[100]">
                      {showAbout && (
                         <div key="about-window" className={`absolute pointer-events-auto ${getZIndex("about")}`} onMouseDown={() => setActiveWindow("about")}>
@@ -186,11 +166,6 @@ export default function Home() {
                            <Contact onClose={() => setShowContact(false)} />
                         </div>
                      )}
-                     {showSystems && (
-                        <div key="systems-window" className={`absolute pointer-events-auto ${getZIndex("systems")}`} onMouseDown={() => setActiveWindow("systems")}>
-                           <SystemPulse onClose={() => setShowSystems(false)} />
-                        </div>
-                     )}
                   </div>
                </AnimatePresence>
             </div>
@@ -200,89 +175,91 @@ export default function Home() {
                onToggleProjects={() => { setShowProjects(prev => !prev); if (!showProjects) setActiveWindow("projects"); }}
                onToggleResume={() => { setShowResume(prev => !prev); if (!showResume) setActiveWindow("resume"); }}
                onToggleContact={() => { setShowContact(prev => !prev); if (!showContact) setActiveWindow("contact"); }}
-               onToggleSystems={() => { setShowSystems(prev => !prev); if (!showSystems) setActiveWindow("systems"); }}
-               isAboutOpen={showAbout} isExperienceOpen={showExperience} isProjectsOpen={showProjects} isResumeOpen={showResume} isContactOpen={showContact} isSystemsOpen={showSystems}
+               isAboutOpen={showAbout} isExperienceOpen={showExperience} isProjectsOpen={showProjects} isResumeOpen={showResume} isContactOpen={showContact}
             />
          </div>
 
          {/* MOBILE LAYOUT */}
-         <div className="md:hidden flex flex-col h-[100dvh] overflow-hidden relative z-10">
-            <div className="flex-none px-6 pt-8 pb-4 border-b border-white/5 bg-[var(--background)]/80 backdrop-blur-md sticky top-0 z-50 overflow-hidden">
-               {/* Progress Bar that moves left to right */}
-               <motion.div 
-                  className="absolute bottom-0 left-0 h-[1.5px] z-50"
-                  style={{ 
-                     scaleX, 
-                     transformOrigin: "0%", 
-                     width: "100%",
-                     background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.4), rgba(255,255,255,0.8))"
-                  }}
-               />
-               
-               <div className="flex items-center justify-between mb-8">
-                  <motion.span 
-                     style={{ x: logoX }}
-                     className="font-bold text-[10px] tracking-widest text-white/90"
-                  >
-                     SSR
-                  </motion.span>
-                  <span className="font-mono text-[10px] text-white/40">{new Date().getHours().toString().padStart(2, '0')}:{new Date().getMinutes().toString().padStart(2, '0')}</span>
-               </div>
-               <div 
-                  ref={tabsRef}
-                  className="flex items-center gap-6 overflow-x-auto scrollbar-hide no-scrollbar -mx-6 px-6 relative"
-               >
-                  {tabs.map(tab => (
-                     <button
-                        key={tab}
-                        id={`tab-${tab}`}
-                        onClick={() => {
-                           scrollToSection(tab);
-                           setActiveTab(tab);
-                        }}
-                        className={`relative text-[10px] font-bold tracking-widest transition-all whitespace-nowrap pb-2 ${activeTab === tab ? 'text-white' : 'text-white/30 hover:text-white/60'}`}
-                     >
-                        {tab}
-                        {activeTab === tab && (
-                           <motion.div 
-                              layoutId="activeTabMobile"
-                              className="absolute bottom-0 left-0 right-0 h-0.5 bg-white"
-                              transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                           />
-                        )}
-                     </button>
-                  ))}
-               </div>
-            </div>
-
-            <div 
-               ref={mobileScrollRef}
-               className="flex-1 overflow-y-auto px-6 py-6 scroll-smooth space-y-20"
+         <div className="md:hidden flex flex-col min-h-screen relative z-10" style={{ background: "var(--background)", color: "#f0f0f0" }}>
+            {/* Status bar */}
+            <header
+              className="sticky top-0 z-50 flex items-center justify-between px-5"
+              style={{ height: 44, background: "rgba(11,11,11,0.96)", borderBottom: MOBILE_BORDER, backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)" }}
             >
-               <section id="about" className="scroll-mt-32">
+              <span className="font-mono text-[11px] font-semibold uppercase tracking-widest text-white/90">
+                SSR
+              </span>
+              <span className="font-mono text-[11px]" style={{ color: "rgba(255,255,255,0.35)" }}>
+                {time}
+              </span>
+            </header>
+
+            {/* Section nav */}
+            <nav
+              className="sticky z-40 flex items-center gap-5 px-5 overflow-x-auto scrollbar-hide no-scrollbar"
+              style={{ top: 44, height: 36, background: "rgba(11,11,11,0.96)", borderBottom: MOBILE_BORDER, backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)", overscrollBehaviorX: "contain" }}
+            >
+              {tabs.map((tab) => (
+                <button
+                  key={tab}
+                  onClick={() => scrollToSection(tab)}
+                  className="font-mono text-[10px] uppercase tracking-widest whitespace-nowrap transition-colors pb-px"
+                  style={{
+                    color: activeTab === tab ? "rgba(255,255,255,0.8)" : "rgba(255,255,255,0.28)",
+                    borderBottom: activeTab === tab ? "1px solid rgba(255,255,255,0.5)" : "1px solid transparent",
+                  }}
+                >
+                  {tab}
+                </button>
+              ))}
+            </nav>
+
+            {/* Sections */}
+            <div className="flex-1">
+               <section id="about" style={{ borderBottom: MOBILE_BORDER }}>
                   <About isMobile />
                </section>
 
-               <section id="experience" className="scroll-mt-32">
+               <section id="experience" style={{ borderBottom: MOBILE_BORDER }}>
                   <Experience isMobile />
                </section>
 
-               <section id="projects" className="scroll-mt-32">
+               <section id="projects" style={{ borderBottom: MOBILE_BORDER }}>
                   <Projects isMobile />
                </section>
 
-               <section id="résumé" className="scroll-mt-32">
+               <section id="résumé" style={{ borderBottom: MOBILE_BORDER }}>
                   <Resume isMobile />
                </section>
 
-               <section id="systems" className="scroll-mt-32">
-                  <SystemPulse isMobile />
+               <section id="writing" style={{ borderBottom: MOBILE_BORDER }}>
+                  <div className="space-y-8 py-10 px-6">
+                     <p className="font-mono text-[10px] uppercase tracking-[0.14em]" style={{ color: "var(--text-muted)" }}>Writing</p>
+                     <div className="space-y-6">
+                        {[1, 2, 3].map(i => (
+                           <div key={i} className="group border-b border-white/5 pb-6">
+                              <div className="flex justify-between items-start mb-2">
+                                 <div className="h-4 w-48 bg-white/5 rounded animate-pulse" />
+                                 <div className="h-3 w-12 bg-white/5 rounded animate-pulse" />
+                              </div>
+                              <div className="h-3 w-full bg-white/5 rounded animate-pulse opacity-50" />
+                           </div>
+                        ))}
+                     </div>
+                  </div>
                </section>
 
-               <section id="contact" className="scroll-mt-32 pb-32">
+               <section id="contact">
                   <Contact isMobile />
                </section>
             </div>
+
+            {/* Footer */}
+            <footer className="px-6 py-12 text-center">
+              <p className="font-mono text-[10px] uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.18)" }}>
+                Samarth S Rao · {new Date().getFullYear()}
+              </p>
+            </footer>
          </div>
       </main>
    );

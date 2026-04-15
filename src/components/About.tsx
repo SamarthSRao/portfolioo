@@ -7,19 +7,19 @@ export default function About({ onClose, isMobile }: { onClose?: () => void, isM
   const dragControls = useDragControls();
 
   const content = (
-    <div className={`${isMobile ? 'px-4 py-6' : 'px-6 py-8'} flex flex-col h-full`} style={{ minHeight: "0px" }}>
+    <div className={`${isMobile ? 'px-4 py-6' : 'px-6 pt-7 pb-6'} flex flex-col h-full`} style={{ minHeight: "0px" }}>
       <div className="mb-5">
-        <h1 className={`${isMobile ? 'text-[42px]' : 'text-[56px]'} font-bold tracking-tighter text-white leading-[0.88] mb-4`}>
+        <h1 className={`${isMobile ? 'text-[42px]' : 'text-[56px]'} font-semibold tracking-tight text-white leading-[0.92] mb-3`}>
           Samarth<br />S
         </h1>
-        <p className="font-mono text-[9px] uppercase tracking-[0.3em] font-medium" style={{ color: "var(--text-faint)" }}>
+        <p className="font-mono text-[10px] uppercase tracking-[0.14em]" style={{ color: "var(--text-secondary)" }}>
           Backend Developer | Engineer | Building Systems
         </p>
       </div>
 
       <div style={{ height: "1px", background: "var(--separator)", marginBottom: "20px" }} />
 
-      <p className={`${isMobile ? 'text-[14px]' : 'text-[12px]'} leading-[1.75]`} style={{ color: "var(--text-secondary)" }}>
+      <p className={`${isMobile ? 'text-[14px]' : 'text-[13px]'} leading-[1.75]`} style={{ color: "var(--text-secondary)" }}>
         currently learning how distributed systems work,
         exploring backend systems and database internals in depth.
         and sometimes vibecoding uis just for fun          </p>
@@ -78,6 +78,7 @@ export default function About({ onClose, isMobile }: { onClose?: () => void, isM
       <div
         onPointerDown={(e) => dragControls.start(e)}
         className="flex-none flex items-center h-9 px-3 relative select-none cursor-grab active:cursor-grabbing border-b border-white/5"
+        style={{ background: "var(--titlebar-bg)" }}
       >
         <div className="flex items-center gap-1.5 z-10">
           <button

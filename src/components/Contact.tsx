@@ -8,20 +8,20 @@ export default function Contact({ onClose, isMobile }: { onClose?: () => void, i
 
   const contactItems = [
     {
-      icon: <Mail size={16} />,
+      icon: <Mail size={15} />,
       label: "Email",
       value: "hello@samarth.dev",
       url: "mailto:hello@samarth.dev",
     },
     {
-      icon: <Calendar size={16} />,
+      icon: <Calendar size={15} />,
       label: "Schedule a call",
       value: "cal.com/samarthsrao",
       url: "https://cal.com/samarthsrao",
     },
     {
       icon: (
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
           <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
         </svg>
       ),
@@ -32,15 +32,15 @@ export default function Contact({ onClose, isMobile }: { onClose?: () => void, i
   ];
 
   const content = (
-    <div className={`flex flex-col h-full ${isMobile ? 'py-8' : 'px-8 py-10'}`}>
+    <div className={`flex flex-col h-full ${isMobile ? 'py-6 px-4' : 'px-6 py-6'}`}>
       <div className="mb-8">
-        <p className="font-mono text-[10px] uppercase tracking-[0.2em] mb-4" style={{ color: "var(--text-faint)" }}>
+        <p className="font-mono text-[10px] uppercase tracking-[0.14em] mb-2" style={{ color: "var(--text-muted)" }}>
           Contact
         </p>
-        <h2 className={`${isMobile ? 'text-3xl' : 'text-4xl'} font-bold tracking-tight text-white mb-3`}>
+        <h2 className="text-[22px] font-semibold text-white mb-1">
           Let's Connect
         </h2>
-        <p className={`${isMobile ? 'text-[15px]' : 'text-[14px]'} leading-relaxed`} style={{ color: "var(--text-secondary)" }}>
+        <p className="text-[13px] mb-7" style={{ color: "var(--text-secondary)" }}>
           Open to collaborations, freelance work, or just a conversation.
         </p>
       </div>
@@ -54,17 +54,21 @@ export default function Contact({ onClose, isMobile }: { onClose?: () => void, i
             href={item.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-between py-5 group transition-colors border-b border-white/5 last:border-none"
+            className="flex items-center justify-between py-4 group transition-colors"
+            style={{
+              borderTop: i === 0 ? "1px solid var(--separator)" : undefined,
+              borderBottom: "1px solid var(--separator)",
+            }}
           >
             <div className="flex items-center gap-4">
               <span style={{ color: "var(--text-secondary)" }} className="group-hover:text-white transition-colors">
                 {item.icon}
               </span>
-              <span className={`${isMobile ? 'text-[15px]' : 'text-[14px]'} font-medium text-white/80 group-hover:text-white transition-colors`}>
+              <span className={`${isMobile ? 'text-[15px]' : 'text-[13px]'} font-medium text-white/70 group-hover:text-white transition-colors`}>
                 {item.label}
               </span>
             </div>
-            <span className="font-mono text-[11px] text-white/20 group-hover:text-white/40 transition-colors">
+            <span className="font-mono text-[10px] group-hover:text-white/50 transition-colors" style={{ color: "var(--text-faint)" }}>
               {item.value}
             </span>
           </a>
@@ -99,6 +103,7 @@ export default function Contact({ onClose, isMobile }: { onClose?: () => void, i
       <div
         onPointerDown={(e) => dragControls.start(e)}
         className="flex-none flex items-center h-10 px-4 relative select-none cursor-grab active:cursor-grabbing border-b border-white/5"
+        style={{ background: "var(--titlebar-bg)" }}
       >
         <div className="flex items-center gap-1.5 z-10">
           <button

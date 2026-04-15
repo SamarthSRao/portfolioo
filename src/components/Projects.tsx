@@ -1,105 +1,115 @@
 "use client";
 
+import { useState } from "react";
 import { motion, useDragControls } from "framer-motion";
+import { Star, ArrowUpRight } from "lucide-react";
 
 const projects = [
   {
-    title: "WAL-Kv",
-    description: "A write-ahead log based key-value storage engine built in Go. Implements crash recovery, segment-based WAL flushing, and durable commit semantics from scratch.",
-    tags: ["Go", "Storage Engine", "WAL", "Crash Recovery", "Durability"],
-    link: "https://github.com/SamarthSRao/Wal-Kv",
-    badge: "Systems",
-    badgeColor: "text-blue-400 border-blue-400/30 bg-blue-400/5"
-  },
-  {
-    title: "sbloom",
-    description: "A Bloom filter implementation in Go for probabilistic set membership testing. Uses multiple hash functions to achieve space-efficient false-positive-bounded lookups.",
-    tags: ["Go", "Bloom Filter", "Probabilistic DS", "Hashing"],
-    link: "https://github.com/SamarthSRao/sbloom",
-    badge: "Data Structures",
-    badgeColor: "text-purple-400 border-purple-400/30 bg-purple-400/5"
-  },
-  {
-    title: "Hackblog",
-    description: "Full-stack blogging platform with AI-powered content generation. Features Docker Compose setup, REST API backend, and a React frontend deployed to AWS App Runner.",
-    tags: ["Node.js", "React", "PostgreSQL", "Docker", "AWS", "Gemini AI"],
-    link: "https://github.com/SamarthSRao/hackblog",
-    badge: "Full Stack",
-    badgeColor: "text-amber-400 border-amber-400/30 bg-amber-400/5"
-  },
-  {
     title: "Jss Rooms",
-    description: "Campus connectivity & event management platform with real-time chat and QR ticketing. Served 400+ concurrent students during college fests with Go-powered WebSocket goroutines.",
-    tags: ["Go", "WebSockets", "PostgreSQL", "React 19", "Framer Motion"],
+    description: "Campus Connectivity & Event Management Platform with real-time chat and QR ticketing. Used by 400+ students during college fests.",
+    tags: ["Go", "React 19", "PostgreSQL", "WebSockets", "Framer Motion"],
     link: "https://jssroom.space/",
-    badge: "Live",
-    badgeColor: "text-emerald-400 border-emerald-400/30 bg-emerald-400/5"
+    stars: "400+ Users"
   },
   {
     title: "Inter Prep",
-    description: "Collaborative interview preparation platform with category-based question banks and real-time progress tracking. Built with Go/Gin for high-throughput query handling.",
-    tags: ["Go", "Gin", "PostgreSQL", "React 18", "Tailwind CSS"],
+    description: "Collaborative interview preparation platform with category-based question banks and real-time progress tracking.",
+    tags: ["Go", "Gin", "React 18", "PostgreSQL", "Tailwind CSS"],
     link: "https://prepterview.vercel.app/",
-    badge: "Live",
-    badgeColor: "text-emerald-400 border-emerald-400/30 bg-emerald-400/5"
-  },
-  {
-    title: "go-typing",
-    description: "A terminal-based typing speed test written in pure Go. Measures WPM and accuracy in real-time, using raw terminal I/O and goroutine-based input processing.",
-    tags: ["Go", "TUI", "Terminal", "Goroutines", "Raw I/O"],
-    link: "https://github.com/SamarthSRao/go-typing",
-    badge: "CLI",
-    badgeColor: "text-white/40 border-white/10 bg-white/5"
+    stars: "Live"
   },
   {
     title: "Eco-Quest",
-    description: "Sustainable activity tracker incentivizing eco-friendly living through gamified milestones and global leaderboards. Uses MongoDB oplog and Redis cache for score aggregation.",
+    description: "Sustainable activity tracker incentivizing eco-friendly living through gamified milestones and leaderboards.",
     tags: ["Node.js", "Express", "MongoDB", "React 18", "JWT"],
     link: "https://github.com/SamarthSRao/eco-rewards",
-    badge: "Open Source",
-    badgeColor: "text-white/40 border-white/10 bg-white/5"
-  },
+    stars: "GitHub"
+  }
 ];
 
 export default function Projects({ onClose, isMobile }: { onClose?: () => void, isMobile?: boolean }) {
+  const [activeTab, setActiveTab] = useState("PERSONAL");
   const dragControls = useDragControls();
 
   const content = (
     <div className={`${isMobile ? 'px-4 py-6' : 'px-6 py-6'}`}>
-      <h2 className="font-mono text-[10px] uppercase tracking-[0.2em] mb-6" style={{ color: "var(--text-faint)" }}>
+      <p className="font-mono text-[10px] uppercase tracking-[0.14em] mb-5" style={{ color: "var(--text-muted)" }}>
         Projects
-      </h2>
+      </p>
 
-      <div className="space-y-1 pb-6">
+      <div
+        className="flex gap-5 mb-5"
+        style={{ borderBottom: "1px solid var(--separator)" }}
+      >
+        {["PERSONAL", "CLIENT WORK"].map((tab) => (
+          <button
+            key={tab}
+            onClick={() => setActiveTab(tab)}
+            className="pb-2 text-[10px] font-mono tracking-widest transition-colors relative"
+            style={{
+              color: activeTab === tab ? "var(--text-primary)" : "var(--text-muted)",
+              borderBottom: activeTab === tab ? "1px solid var(--accent)" : "1px solid transparent",
+              marginBottom: -1,
+            }}
+          >
+            {tab}
+            {activeTab === tab && (
+              <motion.div
+                layoutId="activeTab"
+                className="absolute bottom-0 left-0 right-0 h-px bg-white"
+              />
+            )}
+          </button>
+        ))}
+      </div>
+
+      <div>
         {projects.map((project, i) => (
-          <div key={i} className="group border-b border-white/[0.03] pb-8 last:border-none">
-            <div className="flex items-center justify-between mb-3">
-              <div className="flex items-center gap-2">
-                <a 
-                  href={project.link} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="group/link flex items-center gap-2"
-                >
-                  <h4 className={`${isMobile ? 'text-lg' : 'text-base'} font-bold text-white tracking-tight group-hover/link:text-white/80 transition-colors`}>
-                    {project.title}
-                  </h4>
-                </a>
-              </div>
-            </div>
-
-            <p className={`${isMobile ? 'text-[14px]' : 'text-[11px]'} leading-relaxed mb-4`} style={{ color: "var(--text-secondary)" }}>
-              {project.description}
-            </p>
-
-            <div className="flex flex-wrap gap-x-4 gap-y-1">
-              {project.tags.map((tag, j) => (
-                <span key={j} className="text-[10px] font-mono" style={{ color: "var(--text-faint)" }}>
-                  {tag}
+          <motion.a
+            key={i}
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-start justify-between gap-4 py-4"
+            style={{
+              borderTop: i === 0 ? "1px solid var(--separator)" : undefined,
+              borderBottom: "1px solid var(--separator)",
+            }}
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: i * 0.04 }}
+          >
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-2 mb-1.5">
+                <span className="text-[13px] font-semibold text-white group-hover:text-white/75 transition-colors">
+                  {project.title}
                 </span>
-              ))}
+                {project.stars && (
+                  <span
+                    className="flex items-center gap-0.5 font-mono text-[10px]"
+                    style={{ color: "var(--text-faint)" }}
+                  >
+                    <Star size={9} className="fill-current" />
+                    {project.stars}
+                  </span>
+                )}
+              </div>
+
+              <p className="text-[12px] leading-relaxed mb-2" style={{ color: "var(--text-secondary)" }}>
+                {project.description}
+              </p>
+
+              <p className="font-mono text-[10px]" style={{ color: "var(--text-faint)" }}>
+                {project.tags.join(" · ")}
+              </p>
             </div>
-          </div>
+            <ArrowUpRight
+              size={14}
+              className="flex-none mt-0.5 opacity-0 group-hover:opacity-60 transition-opacity"
+              style={{ color: "white" }}
+            />
+          </motion.a>
         ))}
       </div>
     </div>
@@ -132,6 +142,7 @@ export default function Projects({ onClose, isMobile }: { onClose?: () => void, 
       <div
         onPointerDown={(e) => dragControls.start(e)}
         className="flex-none flex items-center h-7 px-4 relative select-none cursor-grab active:cursor-grabbing border-b border-white/5"
+        style={{ background: "var(--titlebar-bg)" }}
       >
         <div className="flex items-center gap-1.5 z-10">
           <button

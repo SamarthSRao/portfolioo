@@ -17,38 +17,44 @@ export default function Experience({ onClose, isMobile }: { onClose?: () => void
   const dragControls = useDragControls();
 
   const content = (
-    <div className={`${isMobile ? 'px-4 py-6' : 'px-6 py-8'}`}>
-      <h2 className="font-mono text-[10px] uppercase tracking-[0.2em] mb-10" style={{ color: "var(--text-faint)" }}>
+    <div className={`${isMobile ? 'px-4 py-6' : 'px-6 py-6'}`}>
+      <p className="font-mono text-[10px] uppercase tracking-[0.14em] mb-5" style={{ color: "var(--text-muted)" }}>
         Experience
-      </h2>
+      </p>
 
-      <div className="space-y-12">
+      <div>
         {experiences.map((exp, i) => (
-          <div key={i} className="group border-b border-white/[0.03] pb-10 last:border-none">
-            <div className="flex flex-col md:flex-row justify-between items-start mb-4 gap-4">
-              <div>
-                <h3 className={`${isMobile ? 'text-xl' : 'text-lg'} font-bold text-white tracking-tight leading-tight mb-1`}>{exp.role}</h3>
-                <div className="flex items-center gap-2 text-[11px] font-mono" style={{ color: "var(--text-faint)" }}>
-                  <span>{exp.company}</span>
-                  <span>·</span>
-                  <div className="flex items-center gap-1">
-                    <span>{exp.period}</span>
-                  </div>
+          <div
+            key={i}
+            className="group cursor-pointer py-4"
+            style={{
+              borderTop: i === 0 ? "1px solid var(--separator)" : undefined,
+              borderBottom: "1px solid var(--separator)",
+            }}
+          >
+              <div className="flex items-baseline justify-between gap-4 mb-1.5">
+                <div className="flex items-baseline gap-2 min-w-0">
+                  <span className="text-[14px] font-semibold text-white group-hover:text-white/80 transition-colors truncate">
+                    {exp.company}
+                  </span>
+                  <span
+                    className="font-mono text-[10px] truncate"
+                    style={{ color: "var(--text-secondary)" }}
+                  >
+                    {exp.role}
+                  </span>
                 </div>
+                <span
+                  className="font-mono text-[10px] flex-none"
+                  style={{ color: "var(--text-faint)" }}
+                >
+                  {exp.period}
+                </span>
               </div>
-              {!isMobile && (
-                <div className="flex flex-col items-end gap-2">
-                  <div className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-white/5 border border-white/5 text-[9px] font-mono text-white/50">
-                    <IconCalendar size={10} />
-                    <span>{exp.period}</span>
-                  </div>
-                </div>
-              )}
-            </div>
 
-            <p className={`${isMobile ? 'text-[14px]' : 'text-[12px]'} leading-relaxed mb-6 max-w-[95%]`} style={{ color: "var(--text-secondary)" }}>
-              {exp.description}
-            </p>
+              <p className="text-[12px] mb-2" style={{ color: "var(--text-secondary)" }}>
+                {exp.description}
+              </p>
 
             <div className="flex flex-wrap gap-2">
               {exp.skills.map(skill => (
@@ -94,6 +100,7 @@ export default function Experience({ onClose, isMobile }: { onClose?: () => void
       <div
         onPointerDown={(e) => dragControls.start(e)}
         className="flex-none flex items-center h-9 px-3 relative select-none cursor-grab active:cursor-grabbing border-b border-white/5"
+        style={{ background: "var(--titlebar-bg)" }}
       >
         <div className="flex items-center gap-1.5 z-10">
           <button
