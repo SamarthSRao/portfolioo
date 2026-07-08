@@ -116,7 +116,7 @@ export default function MixedMobileTheme() {
             <div className="flex flex-wrap gap-5 mt-4 font-sans text-base text-neutral-200">
               <a href="/resume.docx" download className="hover:text-white transition-colors underline decoration-white/30 underline-offset-4">resume</a>
               <a href="https://github.com/SamarthSRao" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors underline decoration-white/30 underline-offset-4">github</a>
-              <a href="https://twitter.com/SamarthSRao" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors underline decoration-white/30 underline-offset-4">x dot com</a>
+              <a href="https://twitter.com/SamarthSRao" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors underline decoration-white/30 underline-offset-4">x </a>
               <button onClick={() => setActivePage('books')} className="hover:text-white transition-colors underline decoration-white/30 underline-offset-4 text-left">books</button>
             </div>
           </div>
