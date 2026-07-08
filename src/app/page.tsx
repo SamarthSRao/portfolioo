@@ -18,7 +18,7 @@ import Experience from "../components/Experience";
 import Projects from "../components/Projects";
 import Resume from "../components/Resume";
 import Contact from "../components/Contact";
-import MobileLayoutSwitcher from "../components/MobileLayoutSwitcher";
+import MixedMobileTheme from "../components/MixedMobileTheme";
 
 export default function Home() {
    const [showAbout, setShowAbout] = useState(true);
@@ -182,7 +182,7 @@ export default function Home() {
 
          {/* MOBILE LAYOUT */}
          <div className="md:hidden">
-            <MobileLayoutSwitcher />
+            <MixedMobileTheme />
          </div>
       </main>
    );

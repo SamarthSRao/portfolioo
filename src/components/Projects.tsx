@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion, useDragControls } from "framer-motion";
 import { Star, ArrowUpRight } from "lucide-react";
 
-const projects = [
+export const projects = [
   {
     title: "Jss Rooms",
     description: "Campus Connectivity & Event Management Platform with real-time chat and QR ticketing. Used by 400+ students during college fests.",
@@ -24,6 +24,20 @@ const projects = [
     description: "Sustainable activity tracker incentivizing eco-friendly living through gamified milestones and leaderboards.",
     tags: ["Node.js", "Express", "MongoDB", "React 18", "JWT"],
     link: "https://github.com/SamarthSRao/eco-rewards",
+    stars: "GitHub"
+  },
+  {
+    title: "reactorDb",
+    description: "Custom Database Engine exploring database internals with B-Tree indexing and WAL.",
+    tags: ["C++", "Databases"],
+    link: "https://github.com/SamarthSRao/reactorDb",
+    stars: "GitHub"
+  },
+  {
+    title: "RSS Aggregator",
+    description: "A custom RSS aggregator service for processing feeds.",
+    tags: ["Go", "Backend"],
+    link: "https://github.com/SamarthSRao/rss",
     stars: "GitHub"
   }
 ];

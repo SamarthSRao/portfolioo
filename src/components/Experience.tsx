@@ -3,13 +3,22 @@
 import { motion, useDragControls } from "framer-motion";
 import { MapPin, Calendar as IconCalendar } from "lucide-react";
 
-const experiences = [
+export const experiences = [
   {
-    company: "BeagleCorp",
+    company: "Surya Fintech",
     role: "Intern",
-    period: "Jan 2026 ",
-    description: "Yet to Update",
-    skills: ["Go", "Gin", "PostgreSQL", "WebSockets", "GORM"]
+    period: "Present",
+    description: "Backend Developer Intern working on financial technologies.",
+    skills: ["Go", "Gin", "PostgreSQL", "WebSockets", "GORM"],
+    link: ""
+  },
+  {
+    company: "Beagle Corporation",
+    role: "Freelancer / Intern",
+    period: "Previous",
+    description: "Freelancer working on AI assisted projects.",
+    skills: ["AI", "React", "Node.js"],
+    link: "https://beaglecorp.com/"
   }
 ];
 
@@ -34,9 +43,15 @@ export default function Experience({ onClose, isMobile }: { onClose?: () => void
           >
               <div className="flex items-baseline justify-between gap-4 mb-1.5">
                 <div className="flex items-baseline gap-2 min-w-0">
-                  <span className="text-[14px] font-semibold text-white group-hover:text-white/80 transition-colors truncate">
-                    {exp.company}
-                  </span>
+                  {exp.link ? (
+                    <a href={exp.link} target="_blank" rel="noopener noreferrer" className="text-[14px] font-semibold text-white group-hover:text-white/80 transition-colors truncate hover:underline">
+                      {exp.company}
+                    </a>
+                  ) : (
+                    <span className="text-[14px] font-semibold text-white group-hover:text-white/80 transition-colors truncate">
+                      {exp.company}
+                    </span>
+                  )}
                   <span
                     className="font-mono text-[10px] truncate"
                     style={{ color: "var(--text-secondary)" }}

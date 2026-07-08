@@ -88,6 +88,29 @@ export default function Resume({ onClose, isMobile }: { onClose?: () => void, is
                 Designed high-performance backend with Gin, featuring secure JWT-based authentication.
               </li>
             </ul>
+          <div>
+            <div className="flex justify-between items-baseline mb-2">
+              <h3 className={`${isMobile ? 'text-lg' : 'text-base'} font-bold text-white tracking-tight`}>reactorDb</h3>
+              {!isMobile && <span className="text-[10px] font-mono" style={{ color: "var(--text-faint)" }}>C++ & Databases</span>}
+            </div>
+            <ul className="space-y-2 list-none p-0">
+              <li className={`${isMobile ? 'text-[14px]' : 'text-[12px]'} leading-relaxed flex gap-2`} style={{ color: "var(--text-secondary)" }}>
+                <span className="text-white/20">•</span>
+                Custom Database Engine exploring database internals with B-Tree indexing and WAL.
+              </li>
+            </ul>
+          </div>
+          <div>
+            <div className="flex justify-between items-baseline mb-2">
+              <h3 className={`${isMobile ? 'text-lg' : 'text-base'} font-bold text-white tracking-tight`}>RSS Aggregator</h3>
+              {!isMobile && <span className="text-[10px] font-mono" style={{ color: "var(--text-faint)" }}>Go & PostgreSQL</span>}
+            </div>
+            <ul className="space-y-2 list-none p-0">
+              <li className={`${isMobile ? 'text-[14px]' : 'text-[12px]'} leading-relaxed flex gap-2`} style={{ color: "var(--text-secondary)" }}>
+                <span className="text-white/20">•</span>
+                A high-performance custom RSS aggregator service for processing feeds.
+              </li>
+            </ul>
           </div>
         </div>
       </section>
