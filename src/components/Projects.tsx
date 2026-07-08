@@ -46,6 +46,20 @@ export const projects = [
     tags: ["Go", "Backend"],
     link: "https://github.com/SamarthSRao/rss",
     stars: "GitHub"
+  },
+  {
+    title: "TCP Connection Pool",
+    description: "A robust and efficient TCP connection pool implementation.",
+    tags: ["Go", "Networking"],
+    link: "https://github.com/SamarthSRao/tcp-connection-pool",
+    stars: "GitHub"
+  },
+  {
+    title: "sbloom",
+    description: "Implementation of a Scalable Bloom Filter.",
+    tags: ["Go", "Data Structures"],
+    link: "https://github.com/SamarthSRao/sbloom",
+    stars: "GitHub"
   }
 ];
 
