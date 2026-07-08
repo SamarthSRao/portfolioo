@@ -5,10 +5,11 @@ import { List, X, Github, Linkedin, Twitter, FileText } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import ProjectsComponent, { projects } from "./Projects";
 import ExperienceComponent, { experiences } from "./Experience";
+import BooksComponent from "./Books";
 
 export default function MixedMobileTheme() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
-  const [activePage, setActivePage] = useState<'home' | 'work' | 'projects'>('home');
+  const [activePage, setActivePage] = useState<'home' | 'work' | 'projects' | 'books'>('home');
   const [time, setTime] = useState("");
 
   useEffect(() => {
@@ -111,10 +112,11 @@ export default function MixedMobileTheme() {
               </p>
             </div>
 
-            <div className="flex gap-5 mt-4 font-sans text-base text-neutral-200">
-              <a href="#" className="hover:text-white transition-colors underline decoration-white/30 underline-offset-4">resume</a>
+            <div className="flex flex-wrap gap-5 mt-4 font-sans text-base text-neutral-200">
+              <a href="/resume.docx" download className="hover:text-white transition-colors underline decoration-white/30 underline-offset-4">resume</a>
               <a href="https://github.com/SamarthSRao" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors underline decoration-white/30 underline-offset-4">github</a>
               <a href="https://twitter.com/SamarthSRao" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors underline decoration-white/30 underline-offset-4">x dot com</a>
+              <button onClick={() => setActivePage('books')} className="hover:text-white transition-colors underline decoration-white/30 underline-offset-4 text-left">books</button>
             </div>
           </div>
 
@@ -216,6 +218,16 @@ export default function MixedMobileTheme() {
             <button onClick={() => setActivePage('home')} className="text-gray-500 hover:text-white font-mono text-xs">← back</button>
           </div>
           <ProjectsComponent isMobile={true} />
+        </div>
+      )}
+
+      {/* Books Page */}
+      {activePage === 'books' && (
+        <div className="pb-20">
+          <div className="px-4 py-4 mb-2 flex items-center gap-3 border-b border-white/5">
+            <button onClick={() => setActivePage('home')} className="text-gray-500 hover:text-white font-mono text-xs">← back</button>
+          </div>
+          <BooksComponent isMobile={true} />
         </div>
       )}
 

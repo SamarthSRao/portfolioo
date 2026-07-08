@@ -29,10 +29,16 @@ export default function Resume({ onClose, isMobile }: { onClose?: () => void, is
           </div>
         </div>
         {!isMobile && (
-          <a href="https://github.com/SamarthSRao" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-white/5 border border-white/10 hover:bg-white/10 transition-colors text-[11px] font-mono text-white/80">
-            <Github size={12} />
-            GitHub Profile
-          </a>
+          <div className="flex gap-2">
+            <a href="/resume.docx" download className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-white/5 border border-white/10 hover:bg-white/10 transition-colors text-[11px] font-mono text-white/80">
+              <ExternalLink size={12} />
+              Download
+            </a>
+            <a href="https://github.com/SamarthSRao" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-white/5 border border-white/10 hover:bg-white/10 transition-colors text-[11px] font-mono text-white/80">
+              <Github size={12} />
+              GitHub
+            </a>
+          </div>
         )}
       </div>
 

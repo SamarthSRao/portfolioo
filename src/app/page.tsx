@@ -18,6 +18,7 @@ import Experience from "../components/Experience";
 import Projects from "../components/Projects";
 import Resume from "../components/Resume";
 import Contact from "../components/Contact";
+import Books from "../components/Books";
 import MixedMobileTheme from "../components/MixedMobileTheme";
 
 export default function Home() {
@@ -33,6 +34,7 @@ export default function Home() {
    const [showProjects, setShowProjects] = useState(false);
    const [showResume, setShowResume] = useState(false);
    const [showContact, setShowContact] = useState(false);
+   const [showBooks, setShowBooks] = useState(false);
 
    const [activeWindow, setActiveWindow] = useState<string | null>(null);
    const [activeTab, setActiveTab] = useState("ABOUT");
@@ -167,6 +169,11 @@ export default function Home() {
                            <Contact onClose={() => setShowContact(false)} />
                         </div>
                      )}
+                     {showBooks && (
+                        <div key="books-window" className={`absolute pointer-events-auto ${getZIndex("books")}`} onMouseDown={() => setActiveWindow("books")}>
+                           <Books onClose={() => setShowBooks(false)} />
+                        </div>
+                     )}
                   </div>
                </AnimatePresence>
             </div>
@@ -176,7 +183,8 @@ export default function Home() {
                onToggleProjects={() => { setShowProjects(prev => !prev); if (!showProjects) setActiveWindow("projects"); }}
                onToggleResume={() => { setShowResume(prev => !prev); if (!showResume) setActiveWindow("resume"); }}
                onToggleContact={() => { setShowContact(prev => !prev); if (!showContact) setActiveWindow("contact"); }}
-               isAboutOpen={showAbout} isExperienceOpen={showExperience} isProjectsOpen={showProjects} isResumeOpen={showResume} isContactOpen={showContact}
+               onToggleBooks={() => { setShowBooks(prev => !prev); if (!showBooks) setActiveWindow("books"); }}
+               isAboutOpen={showAbout} isExperienceOpen={showExperience} isProjectsOpen={showProjects} isResumeOpen={showResume} isContactOpen={showContact} isBooksOpen={showBooks}
             />
          </div>
 
