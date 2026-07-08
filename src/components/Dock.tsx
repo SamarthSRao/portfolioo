@@ -1,6 +1,7 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
+import { useTheme } from "next-themes";
 import {
   motion,
   useMotionValue,
@@ -18,7 +19,9 @@ import {
   SquareTerminal,
   Cpu,
   NotebookPen,
-  Github
+  Github,
+  Sun,
+  Moon
 } from "lucide-react";
 
 interface DockProps {
@@ -71,7 +74,7 @@ function DockIcon({
             initial={{ opacity: 0, y: 10, x: "-50%" }}
             animate={{ opacity: 1, y: 0, x: "-50%" }}
             exit={{ opacity: 0, y: 10, x: "-50%" }}
-            className="absolute -top-10 left-1/2 px-2 py-1 rounded-md bg-[#1a1a1a] border border-white/10 text-white font-mono text-[9px] uppercase tracking-wider whitespace-nowrap pointer-events-none z-[110]"
+            className="absolute -top-10 left-1/2 px-2 py-1 rounded-md bg-[var(--tooltip-bg)] border border-[var(--widget-border)] text-[var(--foreground)] font-mono text-[9px] uppercase tracking-wider whitespace-nowrap pointer-events-none z-[110]"
           >
             {label}
           </motion.div>
@@ -87,15 +90,15 @@ function DockIcon({
         tabIndex={0}
         initial={false}
         animate={{
-          background: active ? "rgba(255, 255, 255, 0.12)" : "rgba(255, 255, 255, 0.05)",
-          color: active ? "rgba(255, 255, 255, 0.9)" : "rgba(255, 255, 255, 0.5)"
+          background: active ? "var(--accent-subtle)" : "var(--heatmap-empty)",
+          color: active ? "var(--foreground)" : "var(--text-secondary)"
         }}
       >
         <Icon size={24} strokeWidth={1.5} />
       </motion.div>
       <div
         className="w-1 h-1 rounded-full transition-all duration-200"
-        style={{ background: active ? "white" : "transparent" }}
+        style={{ background: active ? "var(--foreground)" : "transparent" }}
       />
     </div>
   );
@@ -116,6 +119,12 @@ export default function Dock({
   onToggleBooks
 }: DockProps) {
   const mouseX = useMotionValue(Infinity);
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const items = [
     { icon: User, label: "About", action: onToggleAbout, active: isAboutOpen },
@@ -134,10 +143,10 @@ export default function Dock({
       <motion.div
         onMouseMove={(e) => mouseX.set(e.pageX)}
         onMouseLeave={() => mouseX.set(Infinity)}
-        className="flex items-end gap-2 px-3 pb-2 pt-2.5 rounded-2xl backdrop-blur-xl border border-white/10"
+        className="flex items-end gap-2 px-3 pb-2 pt-2.5 rounded-2xl backdrop-blur-xl border border-[var(--widget-border)]"
         style={{
           background: "var(--dock-bg)",
-          boxShadow: "rgba(0, 0, 0, 0.7) 0px 8px 32px"
+          boxShadow: "rgba(0, 0, 0, 0.2) 0px 8px 32px"
         }}
       >
         {items.map((item, i) => (
@@ -170,6 +179,17 @@ export default function Dock({
           action={() => window.open("https://twitter.com/SamarthSRao", "_blank")}
           mouseX={mouseX}
         />
+
+        <div className="h-8 self-center mx-1 rounded-full border-r border-white/10" style={{ width: "1px", borderColor: "var(--separator)" }} />
+
+        {mounted && (
+          <DockIcon
+            icon={theme === "dark" ? Sun : Moon}
+            label={theme === "dark" ? "Light Mode" : "Dark Mode"}
+            action={() => setTheme(theme === "dark" ? "light" : "dark")}
+            mouseX={mouseX}
+          />
+        )}
       </motion.div>
     </div>
   );

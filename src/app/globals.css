@@ -5,6 +5,51 @@
 :root {
   --font-geist-sans: "Geist";
   --font-geist-mono: "GeistMono";
+  
+  /* Light Mode Colors */
+  --background: #fdfdfd;
+  --foreground: #111111;
+
+  --text-primary: #000000d9;
+  --text-secondary: #00000080;
+  --text-muted: #00000047;
+  --text-faint: #00000038;
+
+  --bg-base: #fdfdfd;
+  --bg-dot: #00000014;
+
+  --titlebar-bg: #f5f5f5;
+  --window-bg: #ffffff;
+  --terminal-bg: #f0f0f0;
+  --menubar-bg: #fdfdfd;
+
+  --window-border-focused: #0000001f;
+  --window-border-unfocused: #0000000f;
+
+  --widget-bg: #ffffff;
+  --widget-border: #00000014;
+
+  --drag-handle-bg: #00000008;
+  --item-separator: #0000000d;
+
+  --dock-bg: #ffffffeb;
+  --tooltip-bg: #e0e0e0;
+
+  --accent: #000000a6;
+  --accent-subtle: #0000001f;
+
+  --heatmap-empty: #0000000f;
+  --separator: #00000012;
+
+  --spacing: .25rem;
+  --radius-xs: .125rem;
+  --radius-md: .375rem;
+  --radius-lg: .5rem;
+  --radius-xl: .75rem;
+  --radius-2xl: 1rem;
+}
+
+.dark {
   --background: #0b0b0b;
   --foreground: #f0f0f0;
 
@@ -14,7 +59,7 @@
   --text-faint: #ffffff38;
 
   --bg-base: #0b0b0b;
-  --bg-dot: #ffffff14; /* Slightly more visible dots like in the image */
+  --bg-dot: #ffffff14;
 
   --titlebar-bg: #0e0e0e;
   --window-bg: #111;
@@ -38,13 +83,6 @@
 
   --heatmap-empty: #ffffff0f;
   --separator: #ffffff12;
-
-  --spacing: .25rem;
-  --radius-xs: .125rem;
-  --radius-md: .375rem;
-  --radius-lg: .5rem;
-  --radius-xl: .75rem;
-  --radius-2xl: 1rem;
 }
 
 body {

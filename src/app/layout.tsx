@@ -1,7 +1,7 @@
-
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { MotionConfig } from "framer-motion";
+import { ThemeProvider } from "@/components/ThemeProvider";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -25,13 +25,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark scroll-smooth">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased selection:bg-white/10 selection:text-white bg-[var(--background)] text-white overflow-hidden h-screen w-screen`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased selection:bg-black/10 dark:selection:bg-white/10 selection:text-black dark:selection:text-white bg-[var(--background)] text-[var(--foreground)] overflow-hidden h-screen w-screen`}
       >
-        <MotionConfig reducedMotion="user">
-          {children}
-        </MotionConfig>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <MotionConfig reducedMotion="user">
+            {children}
+          </MotionConfig>
+        </ThemeProvider>
       </body>
     </html>
   );
