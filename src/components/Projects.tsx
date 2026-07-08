@@ -6,6 +6,13 @@ import { Star, ArrowUpRight } from "lucide-react";
 
 export const projects = [
   {
+    title: "WAL KV Store",
+    description: "A highly available, fault-tolerant key-value store built in Go, implementing Raft consensus algorithm.",
+    tags: ["Go", "Distributed Systems"],
+    link: "https://github.com/SamarthSRao/",
+    stars: "GitHub"
+  },
+  {
     title: "Jss Rooms",
     description: "Campus Connectivity & Event Management Platform with real-time chat and QR ticketing. Used by 400+ students during college fests.",
     tags: ["Go", "React 19", "PostgreSQL", "WebSockets", "Framer Motion"],

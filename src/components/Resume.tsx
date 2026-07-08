@@ -88,6 +88,7 @@ export default function Resume({ onClose, isMobile }: { onClose?: () => void, is
                 Designed high-performance backend with Gin, featuring secure JWT-based authentication.
               </li>
             </ul>
+          </div>
           <div>
             <div className="flex justify-between items-baseline mb-2">
               <h3 className={`${isMobile ? 'text-lg' : 'text-base'} font-bold text-white tracking-tight`}>reactorDb</h3>
