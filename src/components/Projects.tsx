@@ -6,6 +6,13 @@ import { Star, ArrowUpRight } from "lucide-react";
 
 export const projects = [
   {
+    title: "Hackblog",
+    description: "A blog platform built with Next.js and deployed on AWS Amplify.",
+    tags: ["Next.js", "Blog", "AWS Amplify"],
+    link: "https://main.d2ncu76bbgdazq.amplifyapp.com/",
+    stars: "Live"
+  },
+  {
     title: "WAL KV Store",
     description: "A highly available, fault-tolerant key-value store built in Go, implementing Raft consensus algorithm.",
     tags: ["Go", "Distributed Systems"],

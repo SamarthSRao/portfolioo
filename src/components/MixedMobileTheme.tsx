@@ -24,6 +24,7 @@ export default function MixedMobileTheme() {
 
   // Filter projects for the home page (WAL KV, reactorDb, Eco-Quest)
   const homeProjects = projects.filter(p => 
+    p.title.toLowerCase().includes("hackblog") || 
     p.title.toLowerCase().includes("wal kv") || 
     p.title.toLowerCase().includes("reactordb") || 
     p.title.toLowerCase().includes("eco")
