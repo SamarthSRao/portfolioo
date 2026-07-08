@@ -18,6 +18,7 @@ import Experience from "../components/Experience";
 import Projects from "../components/Projects";
 import Resume from "../components/Resume";
 import Contact from "../components/Contact";
+import MobileLayoutSwitcher from "../components/MobileLayoutSwitcher";
 
 export default function Home() {
    const [showAbout, setShowAbout] = useState(true);
@@ -180,86 +181,8 @@ export default function Home() {
          </div>
 
          {/* MOBILE LAYOUT */}
-         <div className="md:hidden flex flex-col min-h-screen relative z-10" style={{ background: "var(--background)", color: "#f0f0f0" }}>
-            {/* Status bar */}
-            <header
-              className="sticky top-0 z-50 flex items-center justify-between px-5"
-              style={{ height: 44, background: "rgba(11,11,11,0.96)", borderBottom: MOBILE_BORDER, backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)" }}
-            >
-              <span className="font-mono text-[11px] font-semibold uppercase tracking-widest text-white/90">
-                SSR
-              </span>
-              <span className="font-mono text-[11px]" style={{ color: "rgba(255,255,255,0.35)" }}>
-                {time}
-              </span>
-            </header>
-
-            {/* Section nav */}
-            <nav
-              className="sticky z-40 flex items-center gap-5 px-5 overflow-x-auto scrollbar-hide no-scrollbar"
-              style={{ top: 44, height: 36, background: "rgba(11,11,11,0.96)", borderBottom: MOBILE_BORDER, backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)", overscrollBehaviorX: "contain" }}
-            >
-              {tabs.map((tab) => (
-                <button
-                  key={tab}
-                  onClick={() => scrollToSection(tab)}
-                  className="font-mono text-[10px] uppercase tracking-widest whitespace-nowrap transition-colors pb-px"
-                  style={{
-                    color: activeTab === tab ? "rgba(255,255,255,0.8)" : "rgba(255,255,255,0.28)",
-                    borderBottom: activeTab === tab ? "1px solid rgba(255,255,255,0.5)" : "1px solid transparent",
-                  }}
-                >
-                  {tab}
-                </button>
-              ))}
-            </nav>
-
-            {/* Sections */}
-            <div className="flex-1">
-               <section id="about" style={{ borderBottom: MOBILE_BORDER }}>
-                  <About isMobile />
-               </section>
-
-               <section id="experience" style={{ borderBottom: MOBILE_BORDER }}>
-                  <Experience isMobile />
-               </section>
-
-               <section id="projects" style={{ borderBottom: MOBILE_BORDER }}>
-                  <Projects isMobile />
-               </section>
-
-               <section id="résumé" style={{ borderBottom: MOBILE_BORDER }}>
-                  <Resume isMobile />
-               </section>
-
-               <section id="writing" style={{ borderBottom: MOBILE_BORDER }}>
-                  <div className="space-y-8 py-10 px-6">
-                     <p className="font-mono text-[10px] uppercase tracking-[0.14em]" style={{ color: "var(--text-muted)" }}>Writing</p>
-                     <div className="space-y-6">
-                        {[1, 2, 3].map(i => (
-                           <div key={i} className="group border-b border-white/5 pb-6">
-                              <div className="flex justify-between items-start mb-2">
-                                 <div className="h-4 w-48 bg-white/5 rounded animate-pulse" />
-                                 <div className="h-3 w-12 bg-white/5 rounded animate-pulse" />
-                              </div>
-                              <div className="h-3 w-full bg-white/5 rounded animate-pulse opacity-50" />
-                           </div>
-                        ))}
-                     </div>
-                  </div>
-               </section>
-
-               <section id="contact">
-                  <Contact isMobile />
-               </section>
-            </div>
-
-            {/* Footer */}
-            <footer className="px-6 py-12 text-center">
-              <p className="font-mono text-[10px] uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.18)" }}>
-                Samarth S Rao · {new Date().getFullYear()}
-              </p>
-            </footer>
+         <div className="md:hidden">
+            <MobileLayoutSwitcher />
          </div>
       </main>
    );
