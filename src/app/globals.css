@@ -201,42 +201,108 @@ body::after {
 }
 
 /* Wide-screen layout preference. A blocking script adds
-   `desktop-layout-mobile` before paint when that choice is saved. */
+   `desktop-layout-plain` before paint when that choice is saved. */
 @media (min-width: 768px) {
-  html.desktop-layout-mobile .desktop-classic {
+  html.desktop-layout-plain .desktop-classic {
     display: none !important;
   }
 
-  html:not(.desktop-layout-mobile) .desktop-mobile-aesthetic {
+  html:not(.desktop-layout-plain) .desktop-plain {
     display: none !important;
   }
-}
 
-.layout-toggle-theme {
-  border-color: var(--text-faint);
-  background: transparent;
+  html.desktop-layout-plain body {
+    background: #fff;
+  }
+
+  html.desktop-layout-plain body::after {
+    display: none;
+  }
 }
 
 .layout-toggle-theme .layout-opt-classic,
-.layout-toggle-theme .layout-opt-mobile {
+.layout-toggle-theme .layout-opt-plain {
   color: var(--text-secondary);
   background: transparent;
 }
 
-html:not(.desktop-layout-mobile) .layout-toggle-theme .layout-opt-classic,
-html.desktop-layout-mobile .layout-toggle-theme .layout-opt-mobile {
+html:not(.desktop-layout-plain) .layout-toggle-theme .layout-opt-classic,
+html.desktop-layout-plain .layout-toggle-theme .layout-opt-plain {
   color: var(--bg-base);
   background: var(--text-primary);
 }
 
-.layout-toggle-ink .layout-opt-classic,
-.layout-toggle-ink .layout-opt-mobile {
-  color: rgba(255, 255, 255, 0.5);
-  background: transparent;
+/* Classic personal homepage. Tailwind's preflight removes the browser
+   defaults, so this block puts them back inside the plain column only. */
+.plain-html {
+  min-height: 100%;
+  background: #fff;
+  color: #000;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 18px;
+  line-height: 1.5;
 }
 
-html:not(.desktop-layout-mobile) .layout-toggle-ink .layout-opt-classic,
-html.desktop-layout-mobile .layout-toggle-ink .layout-opt-mobile {
-  color: #0a0a0a;
-  background: #f4f4f4;
+.plain-html .plain-column {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 4rem;
+}
+
+.plain-html h1 {
+  font-size: 2em;
+  font-weight: bold;
+  margin: 0.67em 0;
+}
+
+.plain-html h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 0.83em 0 0.4em;
+}
+
+.plain-html p {
+  margin: 1em 0;
+}
+
+.plain-html ul {
+  margin: 1em 0;
+  padding-left: 2.5rem;
+  list-style: disc;
+}
+
+.plain-html li {
+  margin: 0.35em 0;
+}
+
+.plain-html hr {
+  border: 0;
+  border-top: 1px solid #000;
+  margin: 1.25em 0;
+}
+
+.plain-html a {
+  color: #0000ee;
+  text-decoration: underline;
+}
+
+.plain-html a:visited {
+  color: #551a8b;
+}
+
+.plain-html button {
+  font: inherit;
+  color: #0000ee;
+  background: none;
+  border: 0;
+  padding: 0;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.plain-html button[aria-pressed="true"] {
+  color: #000;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: default;
 }

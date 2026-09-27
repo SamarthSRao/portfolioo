@@ -20,7 +20,7 @@ import Resume from "../components/Resume";
 import Contact from "../components/Contact";
 import Books from "../components/Books";
 import MixedMobileTheme from "../components/MixedMobileTheme";
-import DesktopMobileTheme from "../components/DesktopMobileTheme";
+import PlainHtmlPage from "../components/PlainHtmlPage";
 
 export default function Home() {
    const [showAbout, setShowAbout] = useState(true);
@@ -189,9 +189,9 @@ export default function Home() {
             />
          </div>
 
-         {/* DESKTOP-SIZED MOBILE AESTHETIC */}
-         <div className="desktop-mobile-aesthetic hidden md:block absolute inset-0 z-10 h-full overflow-hidden">
-            <DesktopMobileTheme />
+         {/* PLAIN HTML */}
+         <div className="desktop-plain hidden md:block absolute inset-0 z-10 overflow-y-auto">
+            <PlainHtmlPage />
          </div>
 
          {/* MOBILE LAYOUT */}
