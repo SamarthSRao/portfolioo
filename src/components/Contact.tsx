@@ -2,6 +2,7 @@
 
 import { motion, useDragControls } from "framer-motion";
 import { Mail, Calendar } from "lucide-react";
+import { X_URL } from "@/config/site";
 
 export default function Contact({ onClose, isMobile }: { onClose?: () => void, isMobile?: boolean }) {
   const dragControls = useDragControls();
@@ -26,8 +27,8 @@ export default function Contact({ onClose, isMobile }: { onClose?: () => void, i
         </svg>
       ),
       label: "X / Twitter",
-      value: "@SamarthSRao",
-      url: "https://twitter.com/SamarthSRao",
+      value: "@Samarthssrao",
+      url: X_URL,
     },
   ];
 
@@ -38,7 +39,7 @@ export default function Contact({ onClose, isMobile }: { onClose?: () => void, i
           Contact
         </p>
         <h2 className="text-[22px] font-semibold text-white mb-1">
-          Let's Connect
+          Let&apos;s Connect
         </h2>
         <p className="text-[13px] mb-7" style={{ color: "var(--text-secondary)" }}>
           Open to collaborations, freelance work, or just a conversation.

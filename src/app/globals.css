@@ -199,3 +199,44 @@ body::after {
   scrollbar-width: thin;
   scrollbar-color: var(--window-border-unfocused) transparent;
 }
+
+/* Wide-screen layout preference. A blocking script adds
+   `desktop-layout-mobile` before paint when that choice is saved. */
+@media (min-width: 768px) {
+  html.desktop-layout-mobile .desktop-classic {
+    display: none !important;
+  }
+
+  html:not(.desktop-layout-mobile) .desktop-mobile-aesthetic {
+    display: none !important;
+  }
+}
+
+.layout-toggle-theme {
+  border-color: var(--text-faint);
+  background: transparent;
+}
+
+.layout-toggle-theme .layout-opt-classic,
+.layout-toggle-theme .layout-opt-mobile {
+  color: var(--text-secondary);
+  background: transparent;
+}
+
+html:not(.desktop-layout-mobile) .layout-toggle-theme .layout-opt-classic,
+html.desktop-layout-mobile .layout-toggle-theme .layout-opt-mobile {
+  color: var(--bg-base);
+  background: var(--text-primary);
+}
+
+.layout-toggle-ink .layout-opt-classic,
+.layout-toggle-ink .layout-opt-mobile {
+  color: rgba(255, 255, 255, 0.5);
+  background: transparent;
+}
+
+html:not(.desktop-layout-mobile) .layout-toggle-ink .layout-opt-classic,
+html.desktop-layout-mobile .layout-toggle-ink .layout-opt-mobile {
+  color: #0a0a0a;
+  background: #f4f4f4;
+}

@@ -14,9 +14,9 @@ export const projects = [
   },
   {
     title: "WAL KV Store",
-    description: "A highly available, fault-tolerant key-value store built in Go, implementing Raft consensus algorithm.",
-    tags: ["Go", "Distributed Systems"],
-    link: "https://github.com/SamarthSRao/",
+    description: "A Go write-ahead log writer. Appends set and delete entries with a CRC32 checksum, a mutex around each write, and fsync on every append.",
+    tags: ["Go", "WAL"],
+    link: "https://github.com/SamarthSRao/Wal-Kv",
     stars: "GitHub"
   },
   {
@@ -42,8 +42,8 @@ export const projects = [
   },
   {
     title: "reactorDb",
-    description: "Custom Database Engine exploring database internals with B-Tree indexing and WAL.",
-    tags: ["C++", "Databases"],
+    description: "An early-stage Git-style content-addressed object store. The code so far is a blob type and a test; the project plan covers objects, packfiles, and refs.",
+    tags: ["Go", "Storage"],
     link: "https://github.com/SamarthSRao/reactorDb",
     stars: "GitHub"
   },
@@ -55,10 +55,10 @@ export const projects = [
     stars: "GitHub"
   },
   {
-    title: "TCP Connection Pool",
-    description: "A robust and efficient TCP connection pool implementation.",
-    tags: ["Go", "Networking"],
-    link: "https://github.com/SamarthSRao/tcp-connection-pool",
+    title: "tcp_next",
+    description: "A Postgres connection-pooling proxy. It accepts client connections and forwards simple queries to a fixed pool of backend connections.",
+    tags: ["Go", "Postgres"],
+    link: "https://github.com/SamarthSRao/tcp_next",
     stars: "GitHub"
   },
   {
