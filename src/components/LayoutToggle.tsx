@@ -39,15 +39,14 @@ export default function LayoutToggle({ tone = "theme" }: { tone?: "theme" | "pla
 
   if (tone === "plain") {
     return (
-      <nav aria-label="Layout style">
+      <>
         <button type="button" aria-pressed={mode === "classic"} onClick={() => choose("classic")}>
           Desktop
         </button>
-        {" | "}
         <button type="button" aria-pressed={mode === "plain"} onClick={() => choose("plain")}>
           Plain HTML
         </button>
-      </nav>
+      </>
     );
   }
 
