@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import { MotionConfig } from "framer-motion";
 import { ThemeProvider } from "@/components/ThemeProvider";
@@ -31,9 +30,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased selection:bg-black/10 dark:selection:bg-white/10 selection:text-black dark:selection:text-white bg-[var(--background)] text-[var(--foreground)] overflow-hidden h-screen w-screen`}
       >
-        <Script id="desktop-layout-boot" strategy="beforeInteractive">
-          {desktopLayoutBootScript()}
-        </Script>
+        <script
+          id="desktop-layout-boot"
+          dangerouslySetInnerHTML={{ __html: desktopLayoutBootScript() }}
+        />
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
