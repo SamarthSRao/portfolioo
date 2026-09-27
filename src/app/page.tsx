@@ -20,6 +20,7 @@ import Resume from "../components/Resume";
 import Contact from "../components/Contact";
 import Books from "../components/Books";
 import MixedMobileTheme from "../components/MixedMobileTheme";
+import PlainHtmlPage from "../components/PlainHtmlPage";
 
 export default function Home() {
    const [showAbout, setShowAbout] = useState(true);
@@ -89,7 +90,7 @@ export default function Home() {
          <div className="absolute inset-0 desktop-bg opacity-40 pointer-events-none" />
 
          {/* DESKTOP LAYOUT */}
-         <div className="hidden md:block absolute inset-0">
+         <div className="desktop-classic hidden md:block absolute inset-0">
             <Header />
             <div className="absolute inset-0 pointer-events-none pt-7 pb-4">
                <AnimatePresence>
@@ -186,6 +187,11 @@ export default function Home() {
                onToggleBooks={() => { setShowBooks(prev => !prev); if (!showBooks) setActiveWindow("books"); }}
                isAboutOpen={showAbout} isExperienceOpen={showExperience} isProjectsOpen={showProjects} isResumeOpen={showResume} isContactOpen={showContact} isBooksOpen={showBooks}
             />
+         </div>
+
+         {/* PLAIN HTML */}
+         <div className="desktop-plain hidden md:block absolute inset-0 z-10 overflow-y-auto">
+            <PlainHtmlPage />
          </div>
 
          {/* MOBILE LAYOUT */}

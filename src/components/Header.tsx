@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { format } from "date-fns";
+import LayoutToggle from "./LayoutToggle";
 
 export default function Header() {
   const [time, setTime] = useState(new Date());
@@ -23,6 +24,7 @@ export default function Header() {
         <span className="font-mono text-[11px] font-semibold uppercase tracking-widest" style={{ color: "rgba(255, 255, 255, 0.9)" }}>SAM</span>
         <span style={{ color: "rgba(255, 255, 255, 0.15)", fontSize: "10px" }}>|</span>
         <span className="font-mono text-[11px] tracking-wide" style={{ color: "rgba(255, 255, 255, 0.4)" }}>About</span>
+        <LayoutToggle />
       </div>
       <div className="flex items-center gap-4 font-mono text-[11px]">
         <div className="flex items-center gap-1.5 hover:opacity-100 transition-opacity">

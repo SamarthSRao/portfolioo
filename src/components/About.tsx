@@ -1,7 +1,8 @@
 "use client";
 
 import { motion, useDragControls } from "framer-motion";
-import { Twitter, Github, BookOpen } from "lucide-react";
+import { Twitter, Github, Linkedin, BookOpen } from "lucide-react";
+import { LINKEDIN_URL, X_URL } from "@/config/site";
 
 export default function About({ onClose, isMobile }: { onClose?: () => void, isMobile?: boolean }) {
   const dragControls = useDragControls();
@@ -40,11 +41,14 @@ export default function About({ onClose, isMobile }: { onClose?: () => void, isM
         </div>
 
         <div className="flex items-center gap-1">
-          <a href="https://twitter.com/SamarthSRao" target="_blank" rel="noopener noreferrer" className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/5 transition-colors" style={{ color: "var(--text-secondary)" }}>
+          <a href={X_URL} target="_blank" rel="noopener noreferrer" aria-label="Samarth on X" className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/5 transition-colors" style={{ color: "var(--text-secondary)" }}>
             <Twitter size={15} />
           </a>
           <a href="https://github.com/SamarthSRao" target="_blank" rel="noopener noreferrer" className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/5 transition-colors" style={{ color: "var(--text-secondary)" }}>
             <Github size={15} />
+          </a>
+          <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" aria-label="Samarth on LinkedIn" className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/5 transition-colors" style={{ color: "var(--text-secondary)" }}>
+            <Linkedin size={15} />
           </a>
         </div>
       </div>

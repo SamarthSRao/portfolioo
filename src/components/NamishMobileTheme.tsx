@@ -59,7 +59,7 @@ export default function NamishMobileTheme({ onToggle }: { onToggle: () => void }
           <div className="flex gap-5 mt-6 font-mono text-xs">
             <a href="#" className="underline decoration-neutral-600 underline-offset-4 hover:text-white transition-colors"><i className="ph-thin ph-file mr-1"></i>resume</a>
             <a href="https://github.com/SamarthSRao" className="underline decoration-neutral-600 underline-offset-4 hover:text-white transition-colors"><i className="ph-thin ph-github-logo mr-1"></i>github</a>
-            <a href="https://x.com/SamarthSRao" className="underline decoration-neutral-600 underline-offset-4 hover:text-white transition-colors"><i className="ph-thin ph-x-logo mr-1"></i>x dot com</a>
+            <a href="https://x.com/Samarthssrao" className="underline decoration-neutral-600 underline-offset-4 hover:text-white transition-colors"><i className="ph-thin ph-x-logo mr-1"></i>x dot com</a>
           </div>
 
           <div className="mt-8 text-neutral-400 text-sm tracking-wide">some projects</div>

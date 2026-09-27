@@ -146,7 +146,7 @@ export default function RamsMobileTheme({ onToggle }: { onToggle: () => void }) 
       {/* Quote Section */}
       <div className="mb-16 border border-gray-100 bg-gray-50/50 rounded-xl p-6 relative">
         <div className="absolute -top-4 -left-2 text-[6rem] text-gray-200 font-serif leading-none select-none z-0">
-          "
+          &ldquo;
         </div>
         <p className="relative z-10 text-gray-600 italic text-lg leading-relaxed mb-4">
           You have a right to perform your prescribed duty, but you are not entitled to the fruits of actions.

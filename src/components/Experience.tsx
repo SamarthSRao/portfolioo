@@ -3,22 +3,36 @@
 import { motion, useDragControls } from "framer-motion";
 import { MapPin, Calendar as IconCalendar } from "lucide-react";
 
-export const experiences = [
+type ExperienceItem = {
+  company: string;
+  role: string;
+  period: string;
+  description: string;
+  points?: string[];
+  skills: string[];
+  link: string;
+};
+
+export const experiences: ExperienceItem[] = [
+  {
+    company: "Beagle Corporation",
+    role: "Contract Software Engineer",
+    period: "Present",
+    description: "Contract engineering for Rival (rival.io), building and maintaining a production data pipeline for an automotive client. Work on AI-assisted automation for client media projects, collaborating with the client's PM and QA.",
+    points: [
+      "Contract engineering for Rival (rival.io), building and maintaining a production data pipeline for an automotive client.",
+      "Work on AI-assisted automation for client media projects, collaborating with the client's PM and QA.",
+    ],
+    skills: ["Python", "SQL", "Data Pipelines", "AI tooling"],
+    link: "https://beaglecorp.com/"
+  },
   {
     company: "Surya Fintech",
     role: "Intern",
-    period: "Present",
+    period: "Jun 2026 - Sep 2026",
     description: "Backend Developer Intern working on financial technologies.",
     skills: ["Go", "Gin", "PostgreSQL", "WebSockets", "GORM"],
     link: ""
-  },
-  {
-    company: "Beagle Corporation",
-    role: "Freelancer / Intern",
-    period: "Previous",
-    description: "Freelancer working on AI assisted projects.",
-    skills: ["AI", "React", "Node.js"],
-    link: "https://beaglecorp.com/"
   }
 ];
 
