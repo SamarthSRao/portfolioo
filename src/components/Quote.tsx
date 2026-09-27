@@ -1,17 +1,18 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { WidgetFrame } from "./desktop/StudioChrome";
 
 const QUOTES = [
-  { text: "Do you want it or do you like the idea of it?", author: " · writing" },
+  { text: "Do you want it or do you like the idea of it?", author: "Writing" },
   { text: "Make it simple, but significant.", author: "Don Draper" },
   { text: "Simplicity is the ultimate sophistication.", author: "Leonardo da Vinci" },
   { text: "Design is not just what it looks like and feels like. Design is how it works.", author: "Steve Jobs" },
   { text: "The best way to predict the future is to create it.", author: "Peter Drucker" },
   { text: "Good design is actually a lot harder to notice than poor design.", author: "Don Norman" },
   { text: "Any sufficiently advanced technology is indistinguishable from magic.", author: "Arthur C. Clarke" },
-  { text: "Design is intelligence made visible.", author: "Alina Wheeler" }
+  { text: "Design is intelligence made visible.", author: "Alina Wheeler" },
 ];
 
 export default function Quote() {
@@ -25,51 +26,25 @@ export default function Quote() {
   }, []);
 
   return (
-    <motion.div
-      drag
-      dragMomentum={false}
-      className="select-none overflow-hidden rounded-xl border border-white/10 cursor-grab active:cursor-grabbing"
-      style={{
-        width: "240px",
-        background: "var(--window-bg)",
-        boxShadow: "rgba(0, 0, 0, 0.4) 0px 8px 32px"
-      }}
-    >
-      <div className="px-3 py-2 border-b border-white/5 flex items-center">
-        <div style={{ width: "24px", height: "2px", borderRadius: "1px", background: "rgba(255, 255, 255, 0.12)" }} />
-      </div>
-      <div className="px-4 py-3.5" style={{ minHeight: "84px" }}>
+    <WidgetFrame label="NOTE" meta={`${String(index + 1).padStart(2, "0")} / ${String(QUOTES.length).padStart(2, "0")}`} width={280}>
+      <div className="px-4 py-4" style={{ minHeight: "128px" }}>
         <AnimatePresence mode="wait">
           <motion.div
             key={index}
-            initial={{ opacity: 0, y: 5 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -5 }}
-            transition={{ duration: 0.4, ease: "easeInOut" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
           >
-            <p className="text-[12px] leading-relaxed text-white/60">
-              “{QUOTES[index].text}”
+            <p className="text-[15px] leading-snug font-medium" style={{ color: "var(--studio-ink)" }}>
+              &quot;{QUOTES[index].text}&quot;
             </p>
-            <p className="font-mono text-[9px] uppercase tracking-[0.1em] mt-2 text-white/20">
-              — {QUOTES[index].author}
+            <p className="studio-index mt-3" style={{ textAlign: "left" }}>
+              {QUOTES[index].author}
             </p>
           </motion.div>
         </AnimatePresence>
-
-        <div className="flex items-center gap-1 mt-4">
-          {QUOTES.map((_, i) => (
-            <div
-              key={i}
-              className="rounded-full transition-all duration-300"
-              style={{
-                width: i === index ? "12px" : "4px",
-                height: "3px",
-                background: i === index ? "var(--accent)" : "var(--accent-subtle)"
-              }}
-            />
-          ))}
-        </div>
       </div>
-    </motion.div>
+    </WidgetFrame>
   );
 }

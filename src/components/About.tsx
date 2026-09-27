@@ -1,8 +1,9 @@
 "use client";
 
-import { motion, useDragControls } from "framer-motion";
-import { Twitter, Github, BookOpen } from "lucide-react";
+import { useDragControls } from "framer-motion";
+import { Twitter, Github } from "lucide-react";
 import { X_URL } from "@/config/site";
+import { StudioWindow } from "./desktop/StudioChrome";
 
 export default function About({ onClose, isMobile }: { onClose?: () => void, isMobile?: boolean }) {
   const dragControls = useDragControls();
@@ -10,12 +11,18 @@ export default function About({ onClose, isMobile }: { onClose?: () => void, isM
   const content = (
     <div className={`${isMobile ? 'px-4 py-6' : 'px-6 pt-7 pb-6'} flex flex-col h-full`} style={{ minHeight: "0px" }}>
       <div className="mb-5">
-        <h1 className={`${isMobile ? 'text-[42px]' : 'text-[56px]'} font-semibold tracking-tight text-white leading-[0.92] mb-3`}>
-          Samarth<br />S
+        <h1 className={isMobile ? "text-[42px] font-semibold tracking-tight text-white leading-[0.92] mb-3" : "studio-display"}>
+          {isMobile ? <>Samarth<br />S</> : "\"SAMARTH S RAO\""}
         </h1>
-        <p className="font-mono text-[10px] uppercase tracking-[0.14em]" style={{ color: "var(--text-secondary)" }}>
-          Backend Developer | Engineer | Building Systems
+        <p className={isMobile ? "font-mono text-[10px] uppercase tracking-[0.14em]" : "studio-index"} style={isMobile ? { color: "var(--text-secondary)" } : { textAlign: "left" }}>
+          Backend Developer · Engineer · Building Systems
         </p>
+        {!isMobile && (
+          <p className="studio-spec">
+            <i aria-hidden="true" />
+            BLR · 12.97°N · 77.59°E
+          </p>
+        )}
       </div>
 
       <div style={{ height: "1px", background: "var(--separator)", marginBottom: "20px" }} />
@@ -57,51 +64,15 @@ export default function About({ onClose, isMobile }: { onClose?: () => void, isM
   }
 
   return (
-    <motion.div
-      drag
+    <StudioWindow
+      title="ABOUT"
+      index="01"
+      onClose={onClose}
       dragControls={dragControls}
-      dragListener={false}
-      dragMomentum={false}
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      className="flex flex-col overflow-hidden z-[50] pointer-events-auto"
-      style={{
-        width: "min(500px, -32px + 100vw)",
-        height: "min(440px, -72px + 100vh)",
-        borderRadius: "8px",
-        border: "1px solid var(--window-border-focused)",
-        boxShadow: "rgba(0, 0, 0, 0.9) 0px 40px 80px, rgb(0, 0, 0) 0px 0px 0px 0.5px",
-        background: "var(--window-bg)",
-        backdropFilter: "blur(20px)",
-      }}
+      width="min(540px, calc(100vw - 48px))"
+      height="min(480px, calc(100vh - 120px))"
     >
-      {/* Title Bar */}
-      <div
-        onPointerDown={(e) => dragControls.start(e)}
-        className="flex-none flex items-center h-9 px-3 relative select-none cursor-grab active:cursor-grabbing border-b border-white/5"
-        style={{ background: "var(--titlebar-bg)" }}
-      >
-        <div className="flex items-center gap-1.5 z-10">
-          <button
-            onClick={onClose}
-            className="w-2.5 h-2.5 rounded-full flex-none hover:opacity-80 transition-opacity border-none cursor-pointer"
-            style={{ background: "rgb(255, 95, 87)" }}
-          />
-          <div className="w-2.5 h-2.5 rounded-full" style={{ background: "rgba(255, 255, 255, 0.08)" }} />
-          <div className="w-2.5 h-2.5 rounded-full" style={{ background: "rgba(255, 255, 255, 0.08)" }} />
-        </div>
-        <span
-          className="absolute left-1/2 -translate-x-1/2 font-mono text-[10px] uppercase tracking-[0.1em] pointer-events-none"
-          style={{ color: "rgba(255, 255, 255, 0.45)" }}
-        >
-          About
-        </span>
-      </div>
-
-      {/* Content */}
-      <div className="flex-1 overflow-y-auto overflow-x-hidden scrollbar-hide">
-        {content}
-      </div>
-    </motion.div>
+      {content}
+    </StudioWindow>
   );
 }

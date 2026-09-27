@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { WidgetFrame } from "./desktop/StudioChrome";
 
 export default function Links() {
   const links = [
@@ -11,39 +11,26 @@ export default function Links() {
   ];
 
   return (
-    <motion.div
-      drag
-      dragMomentum={false}
-      className="select-none overflow-hidden rounded-xl border border-white/10 cursor-grab active:cursor-grabbing"
-      style={{
-        width: "240px",
-        background: "var(--window-bg)",
-        boxShadow: "rgba(0, 0, 0, 0.4) 0px 8px 32px"
-      }}
-    >
-      <div className="px-3 py-2 border-b border-white/5 flex items-center">
-        <div style={{ width: "24px", height: "2px", borderRadius: "1px", background: "rgba(255, 255, 255, 0.12)" }} />
-      </div>
-      <div className="px-3 pt-2.5 pb-1" style={{ borderBottom: "1px solid var(--separator)" }}>
-        <p className="font-mono text-[9px] uppercase tracking-[0.1em]" style={{ color: "var(--text-faint)" }}>Links · worth reading</p>
-      </div>
+    <WidgetFrame label="READING" meta="04" width={280}>
       <div>
-        {links.map((link, i) => (
+        {links.map((link) => (
           <a
             key={link.url}
             href={link.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-between px-3 py-2 group hover:bg-white/5 transition-colors"
-            style={{ borderBottom: i === links.length - 1 ? "none" : "1px solid var(--item-separator)" }}
+            className="block px-4 py-2.5 transition-colors hover:bg-black/[0.04] dark:hover:bg-white/[0.06]"
+            style={{ borderTop: "1px solid var(--studio-line)" }}
           >
-            <div className="min-w-0">
-              <p className="text-[11px] leading-tight truncate text-white/80 group-hover:text-white transition-colors">{link.title}</p>
-              <p className="font-mono text-[9px] mt-0.5" style={{ color: "var(--text-faint)" }}>{link.site}</p>
-            </div>
+            <p className="text-[13px] leading-tight" style={{ color: "var(--studio-ink)" }}>
+              {link.title}
+            </p>
+            <p className="studio-index mt-1" style={{ textAlign: "left" }}>
+              {link.site}
+            </p>
           </a>
         ))}
       </div>
-    </motion.div>
+    </WidgetFrame>
   );
 }

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Inter } from "next/font/google";
 import { MotionConfig } from "framer-motion";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { desktopLayoutBootScript } from "@/config/desktopLayout";
@@ -15,6 +15,12 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const studioSans = Inter({
+  variable: "--font-studio",
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+});
+
 export const metadata: Metadata = {
   title: "Samarth S Rao",
   description: "Backend Developer | Engineer | Building Systems",
@@ -28,7 +34,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased selection:bg-black/10 dark:selection:bg-white/10 selection:text-black dark:selection:text-white bg-[var(--background)] text-[var(--foreground)] overflow-hidden h-screen w-screen`}
+        className={`${geistSans.variable} ${geistMono.variable} ${studioSans.variable} antialiased selection:bg-black/10 dark:selection:bg-white/10 selection:text-black dark:selection:text-white bg-[var(--background)] text-[var(--foreground)] overflow-hidden h-screen w-screen`}
       >
         <script
           id="desktop-layout-boot"

@@ -90,54 +90,55 @@ export default function Home() {
          <div className="absolute inset-0 desktop-bg opacity-40 pointer-events-none" />
 
          {/* DESKTOP LAYOUT */}
-         <div className="desktop-classic hidden md:block absolute inset-0">
+         <div className="desktop-classic studio-stage hidden md:block absolute inset-0">
+            <div className="studio-corner" aria-hidden="true" />
             <Header />
-            <div className="absolute inset-0 pointer-events-none pt-7 pb-4">
+            <div className="absolute inset-0 pointer-events-none pt-16 pb-16">
                <AnimatePresence>
                   {showQuote && (
-                     <div key="quote-layer" className="absolute" style={{ top: "48px", left: "24px", pointerEvents: "auto" }}>
+                     <div key="quote-layer" className="absolute" style={{ top: "72px", left: "36px", pointerEvents: "auto" }}>
                         <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }} className="z-10">
                            <Quote />
                         </motion.div>
                      </div>
                   )}
                   {showOpenToWork && (
-                     <div key="work-layer" className="absolute" style={{ top: "48px", right: "24px", pointerEvents: "auto" }}>
+                     <div key="work-layer" className="absolute" style={{ top: "72px", right: "28px", pointerEvents: "auto" }}>
                         <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} className="z-10">
                            <OpenToWork />
                         </motion.div>
                      </div>
                   )}
                   {showLinks && (
-                     <div key="links-layer" className="absolute" style={{ top: "228px", left: "24px", pointerEvents: "auto" }}>
+                     <div key="links-layer" className="absolute" style={{ top: "280px", left: "36px", pointerEvents: "auto" }}>
                         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }} className="z-20">
                            <Links />
                         </motion.div>
                      </div>
                   )}
                   {showCalendar && (
-                     <div key="calendar-layer" className="absolute" style={{ top: "228px", right: "24px", pointerEvents: "auto" }}>
+                     <div key="calendar-layer" className="absolute" style={{ top: "310px", right: "28px", pointerEvents: "auto" }}>
                         <motion.div initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 50 }} className="z-20">
                            <Calendar />
                         </motion.div>
                      </div>
                   )}
                   {showSpotify && (
-                     <div key="spotify-layer" className="absolute" style={{ bottom: "72px", left: "20px", pointerEvents: "auto" }}>
+                     <div key="spotify-layer" className="absolute" style={{ bottom: "84px", left: "36px", pointerEvents: "auto" }}>
                         <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 50 }} className="z-30">
                            <Spotify />
                         </motion.div>
                      </div>
                   )}
                   {showGraph && (
-                     <div key="github-layer" className="absolute" style={{ bottom: "80px", right: "24px", pointerEvents: "auto" }}>
+                     <div key="github-layer" className="absolute" style={{ bottom: "84px", right: "28px", pointerEvents: "auto" }}>
                         <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 50 }} className="z-30">
                            <GitHubGraph />
                         </motion.div>
                      </div>
                   )}
                   {showVisitors && (
-                     <div key="visitors-layer" className="absolute" style={{ bottom: "80px", left: "320px", pointerEvents: "auto" }}>
+                     <div key="visitors-layer" className="absolute" style={{ bottom: "84px", left: "360px", pointerEvents: "auto" }}>
                         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="z-40">
                            <VisitorCount />
                         </motion.div>

@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { Github, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
+import { WidgetFrame } from "./desktop/StudioChrome";
 
 interface ContributionDay {
   color: string;
@@ -41,40 +41,28 @@ export default function GitHubGraph() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center p-8 bg-black/20 rounded-xl border border-white/5 min-w-[300px]">
-        <Loader2 className="w-5 h-5 text-white/20 animate-spin" />
-      </div>
+      <WidgetFrame label="GITHUB" meta="…">
+        <div className="flex items-center justify-center p-8 min-w-[300px]">
+          <Loader2 className="w-5 h-5 animate-spin" style={{ color: "var(--studio-faint)" }} />
+        </div>
+      </WidgetFrame>
     );
   }
 
   if (error || !data) {
     return (
-      <div className="flex items-center justify-center p-8 bg-black/20 rounded-xl border border-white/5 min-w-[300px]">
-        <span className="text-[10px] font-mono text-white/20 uppercase tracking-widest">Failed to load GitHub activity</span>
-      </div>
+      <WidgetFrame label="GITHUB" meta="ERR">
+        <div className="px-4 py-6 studio-index">Activity unavailable</div>
+      </WidgetFrame>
     );
   }
 
   return (
-    <motion.div
-      drag
-      dragMomentum={false}
-      className="select-none overflow-hidden rounded-xl border border-white/10 cursor-grab active:cursor-grabbing"
-      style={{
-        background: "var(--window-bg)",
-        boxShadow: "rgba(0, 0, 0, 0.4) 0px 8px 32px"
-      }}
-    >
-      <div className="px-3 py-2 border-b border-white/5 flex items-center">
-        <div style={{ width: "24px", height: "2px", borderRadius: "1px", background: "rgba(255, 255, 255, 0.12)" }} />
-      </div>
+    <WidgetFrame label="GITHUB" meta={data.totalContributions.toLocaleString()}>
       <div className="px-4 pt-3 pb-3">
         <div className="flex items-center justify-between mb-2.5 gap-8">
-          <div className="flex items-center gap-1.5 text-white/30">
-            <Github size={11} />
-            <span className="text-[10px] font-medium text-white/60">SamarthSRao</span>
-          </div>
-          <span className="text-[10px] text-white/40">{data.totalContributions.toLocaleString()} contributions this year</span>
+          <span className="text-[12px] font-medium" style={{ color: "var(--studio-ink)" }}>SamarthSRao</span>
+          <span className="studio-index">This year</span>
         </div>
 
         <div>
@@ -90,7 +78,7 @@ export default function GitHubGraph() {
                   <div
                     key={j}
                     title={`${day.contributionCount} contributions on ${day.date}`}
-                    className="w-[10px] h-[10px] rounded-[2px] transition-colors hover:scale-110"
+                    className="w-[10px] h-[10px]"
                     style={{
                       background: day.contributionCount === 0 ? "var(--heatmap-empty)" : day.color,
                       opacity: day.contributionCount === 0 ? 0.3 : 0.9
@@ -102,6 +90,6 @@ export default function GitHubGraph() {
           </div>
         </div>
       </div>
-    </motion.div>
+    </WidgetFrame>
   );
 }
