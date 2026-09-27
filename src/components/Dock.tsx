@@ -1,8 +1,29 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useTheme } from "next-themes";
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  useTransform,
+  AnimatePresence
+} from "framer-motion";
 import { X_URL } from "@/config/site";
+import {
+  User,
+  Briefcase,
+  CodeXml,
+  BookOpen,
+  Mail,
+  ScrollText,
+  SquareTerminal,
+  Cpu,
+  NotebookPen,
+  Github,
+  Sun,
+  Moon
+} from "lucide-react";
 
 interface DockProps {
   onToggleAbout: () => void;
@@ -19,6 +40,71 @@ interface DockProps {
   onToggleBooks?: () => void;
 }
 
+function DockIcon({
+  icon: Icon,
+  label,
+  action,
+  active,
+  mouseX
+}: {
+  icon: any,
+  label: string,
+  action?: () => void,
+  active?: boolean,
+  mouseX: any
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const distance = useTransform(mouseX, (val: number) => {
+    const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
+    return val - bounds.x - bounds.width / 2;
+  });
+
+  const widthTransform = useTransform(distance, [-150, 0, 150], [40, 60, 40]);
+  const heightTransform = useTransform(distance, [-150, 0, 150], [40, 60, 40]);
+
+  const width = useSpring(widthTransform, { mass: 0.1, stiffness: 150, damping: 12 });
+  const height = useSpring(heightTransform, { mass: 0.1, stiffness: 150, damping: 12 });
+
+  return (
+    <div className="relative flex flex-col items-center gap-1">
+      <AnimatePresence>
+        {isHovered && (
+          <motion.div
+            initial={{ opacity: 0, y: 10, x: "-50%" }}
+            animate={{ opacity: 1, y: 0, x: "-50%" }}
+            exit={{ opacity: 0, y: 10, x: "-50%" }}
+            className="absolute -top-10 left-1/2 px-2 py-1 rounded-md bg-[var(--tooltip-bg)] border border-[var(--widget-border)] text-[var(--foreground)] font-mono text-[9px] uppercase tracking-wider whitespace-nowrap pointer-events-none z-[110]"
+          >
+            {label}
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <motion.div
+        ref={ref}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        onClick={action}
+        style={{ width, height }}
+        className="rounded-xl flex items-center justify-center cursor-pointer transition-colors duration-200 active:scale-95"
+        tabIndex={0}
+        initial={false}
+        animate={{
+          background: active ? "var(--accent-subtle)" : "var(--heatmap-empty)",
+          color: active ? "var(--foreground)" : "var(--text-secondary)"
+        }}
+      >
+        <Icon size={24} strokeWidth={1.5} />
+      </motion.div>
+      <div
+        className="w-1 h-1 rounded-full transition-all duration-200"
+        style={{ background: active ? "var(--foreground)" : "transparent" }}
+      />
+    </div>
+  );
+}
+
 export default function Dock({
   onToggleAbout,
   onToggleExperience,
@@ -31,8 +117,9 @@ export default function Dock({
   isResumeOpen,
   isContactOpen,
   isBooksOpen,
-  onToggleBooks,
+  onToggleBooks
 }: DockProps) {
+  const mouseX = useMotionValue(Infinity);
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -41,39 +128,70 @@ export default function Dock({
   }, []);
 
   const items = [
-    { label: "About", action: onToggleAbout, active: isAboutOpen },
-    { label: "Experience", action: onToggleExperience, active: isExperienceOpen },
-    { label: "Projects", action: onToggleProjects, active: isProjectsOpen },
-    { label: "Books", action: onToggleBooks, active: isBooksOpen },
-    { label: "Contact", action: onToggleContact, active: isContactOpen },
-    { label: "Résumé", action: onToggleResume, active: isResumeOpen },
-    { label: "GitHub", action: () => window.open("https://github.com/SamarthSRao", "_blank") },
-    { label: "X", action: () => window.open(X_URL, "_blank") },
+    { icon: User, label: "About", action: onToggleAbout, active: isAboutOpen },
+    { icon: Briefcase, label: "Experience", action: onToggleExperience, active: isExperienceOpen },
+    { icon: CodeXml, label: "Projects", action: onToggleProjects, active: isProjectsOpen },
+    { icon: BookOpen, label: "Books", action: onToggleBooks, active: isBooksOpen },
+    { icon: Mail, label: "Contact", action: onToggleContact, active: isContactOpen },
+    { icon: ScrollText, label: "Résumé", action: onToggleResume, active: isResumeOpen },
+    { icon: SquareTerminal, label: "Terminal" },
+    { icon: Cpu, label: "Hardware" },
+    { icon: NotebookPen, label: "Notes" },
   ];
 
   return (
-    <nav className="studio-dock" aria-label="Sections">
-      {items.map((item) => (
-        <button
-          key={item.label}
-          type="button"
-          className="studio-dock-btn"
-          onClick={item.action}
-          aria-pressed={item.active ?? false}
-        >
-          &quot;{item.label}&quot;
-        </button>
-      ))}
-      {mounted && (
-        <button
-          type="button"
-          className="studio-dock-btn"
-          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-          aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
-        >
-          &quot;{theme === "dark" ? "Light" : "Dark"}&quot;
-        </button>
-      )}
-    </nav>
+    <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-[100]">
+      <motion.div
+        onMouseMove={(e) => mouseX.set(e.pageX)}
+        onMouseLeave={() => mouseX.set(Infinity)}
+        className="flex items-end gap-2 px-3 pb-2 pt-2.5 rounded-2xl backdrop-blur-xl border border-[var(--widget-border)]"
+        style={{
+          background: "var(--dock-bg)",
+          boxShadow: "rgba(0, 0, 0, 0.2) 0px 8px 32px"
+        }}
+      >
+        {items.map((item, i) => (
+          <DockIcon
+            key={i}
+            icon={item.icon}
+            label={item.label}
+            action={item.action}
+            active={item.active}
+            mouseX={mouseX}
+          />
+        ))}
+
+        <div className="h-8 self-center mx-1 rounded-full border-r border-white/10" style={{ width: "1px" }} />
+
+        <DockIcon
+          icon={Github}
+          label="GitHub"
+          action={() => window.open("https://github.com/SamarthSRao", "_blank")}
+          mouseX={mouseX}
+        />
+
+        <DockIcon
+          icon={() => (
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+            </svg>
+          )}
+          label="X"
+          action={() => window.open(X_URL, "_blank")}
+          mouseX={mouseX}
+        />
+
+        <div className="h-8 self-center mx-1 rounded-full border-r border-white/10" style={{ width: "1px", borderColor: "var(--separator)" }} />
+
+        {mounted && (
+          <DockIcon
+            icon={theme === "dark" ? Sun : Moon}
+            label={theme === "dark" ? "Light Mode" : "Dark Mode"}
+            action={() => setTheme(theme === "dark" ? "light" : "dark")}
+            mouseX={mouseX}
+          />
+        )}
+      </motion.div>
+    </div>
   );
 }

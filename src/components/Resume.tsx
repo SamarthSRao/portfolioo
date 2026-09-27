@@ -1,8 +1,7 @@
 "use client";
 
-import { useDragControls } from "framer-motion";
-import { ExternalLink, Mail, Github, MapPin } from "lucide-react";
-import { StudioWindow } from "./desktop/StudioChrome";
+import { motion, useDragControls } from "framer-motion";
+import { ExternalLink, Mail, Github, Twitter, MapPin } from "lucide-react";
 
 export default function Resume({ onClose, isMobile }: { onClose?: () => void, isMobile?: boolean }) {
   const dragControls = useDragControls();
@@ -12,9 +11,7 @@ export default function Resume({ onClose, isMobile }: { onClose?: () => void, is
       {/* Header */}
       <div className={`flex ${isMobile ? 'flex-col gap-4' : 'justify-between items-start'} mb-8`}>
         <div>
-          <h1 className={isMobile ? "text-[32px] font-bold text-white tracking-tight" : "studio-display"} style={isMobile ? undefined : { fontSize: "36px", marginBottom: "8px" }}>
-            {isMobile ? "Samarth S Rao" : "\"SAMARTH S RAO\""}
-          </h1>
+          <h1 className={`${isMobile ? 'text-[32px]' : 'text-[20px]'} font-bold text-white tracking-tight`}>Samarth S Rao</h1>
           <p className={`${isMobile ? 'text-[14px]' : 'text-[12px]'} text-white/70 mb-4`}>Backend Developer | Engineer | Distributed Systems</p>
           <div className="flex flex-col gap-2 text-[11px] font-mono" style={{ color: "var(--text-faint)" }}>
             <div className="flex items-center gap-1.5">
@@ -47,7 +44,7 @@ export default function Resume({ onClose, isMobile }: { onClose?: () => void, is
 
       {/* Skills */}
       <section className="mb-10">
-        <h2 className={isMobile ? "font-mono text-[10px] uppercase tracking-[0.2em] mb-6" : "studio-kicker"} style={isMobile ? { color: "var(--text-faint)" } : undefined}>{isMobile ? "Skills" : "\"SKILLS\""}</h2>
+        <h2 className="font-mono text-[10px] uppercase tracking-[0.2em] mb-6" style={{ color: "var(--text-faint)" }}>Skills</h2>
         <div className="space-y-6">
           {[
             { label: "Backend", items: ["RESTful APIs", "Microservices", "gRPC", "JWT", "OAuth2", "WebSockets"] },
@@ -68,7 +65,7 @@ export default function Resume({ onClose, isMobile }: { onClose?: () => void, is
 
       {/* Projects as Experience */}
       <section className="mb-10">
-        <h2 className={isMobile ? "font-mono text-[10px] uppercase tracking-[0.2em] mb-6" : "studio-kicker"} style={isMobile ? { color: "var(--text-faint)" } : undefined}>{isMobile ? "Featured Projects" : "\"PROJECTS\""}</h2>
+        <h2 className="font-mono text-[10px] uppercase tracking-[0.2em] mb-6" style={{ color: "var(--text-faint)" }}>Featured Projects</h2>
         <div className="space-y-8">
           <div>
             <div className="flex justify-between items-baseline mb-2">
@@ -132,8 +129,50 @@ export default function Resume({ onClose, isMobile }: { onClose?: () => void, is
   }
 
   return (
-    <StudioWindow title="RÉSUMÉ" index="06" onClose={onClose} dragControls={dragControls} width="min(640px, calc(100vw - 48px))" height="min(680px, calc(100vh - 120px))">
-      {content}
-    </StudioWindow>
+    <motion.div
+      drag
+      dragControls={dragControls}
+      dragListener={false}
+      dragMomentum={false}
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      className="flex flex-col overflow-hidden z-[50] pointer-events-auto"
+      style={{
+        width: "min(600px, -32px + 100vw)",
+        height: "min(700px, -72px + 100vh)",
+        borderRadius: "8px",
+        border: "1px solid var(--window-border-focused)",
+        boxShadow: "rgba(0, 0, 0, 0.9) 0px 40px 80px, rgb(0, 0, 0) 0px 0px 0px 0.5px",
+        background: "var(--window-bg)",
+        backdropFilter: "blur(20px)",
+      }}
+    >
+      {/* Title Bar */}
+      <div
+        onPointerDown={(e) => dragControls.start(e)}
+        className="flex-none flex items-center h-7 px-3 relative select-none cursor-grab active:cursor-grabbing border-b border-white/5"
+      >
+        <div className="flex items-center gap-1.5 z-10">
+          <button
+            onClick={onClose}
+            className="w-2.5 h-2.5 rounded-full flex-none hover:opacity-80 transition-opacity border-none cursor-pointer"
+            style={{ background: "rgb(255, 95, 87)" }}
+          />
+          <div className="w-2.5 h-2.5 rounded-full" style={{ background: "rgba(255, 255, 255, 0.08)" }} />
+          <div className="w-2.5 h-2.5 rounded-full" style={{ background: "rgba(255, 255, 255, 0.08)" }} />
+        </div>
+        <span
+          className="absolute left-1/2 -translate-x-1/2 font-mono text-[10px] uppercase tracking-[0.1em] pointer-events-none"
+          style={{ color: "rgba(255, 255, 255, 0.45)" }}
+        >
+          Résumé — Samarth S Rao
+        </span>
+      </div>
+
+      {/* Content */}
+      <div className="flex-1 overflow-y-auto overflow-x-hidden scrollbar-hide">
+        {content}
+      </div>
+    </motion.div>
   );
 }

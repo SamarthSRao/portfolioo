@@ -1,7 +1,6 @@
 "use client";
 
-import { useDragControls } from "framer-motion";
-import { StudioWindow } from "./desktop/StudioChrome";
+import { motion, useDragControls } from "framer-motion";
 import { Mail, Calendar } from "lucide-react";
 import { X_URL } from "@/config/site";
 
@@ -36,8 +35,8 @@ export default function Contact({ onClose, isMobile }: { onClose?: () => void, i
   const content = (
     <div className={`flex flex-col h-full ${isMobile ? 'py-6 px-4' : 'px-6 py-6'}`}>
       <div className="mb-8">
-        <p className={isMobile ? "font-mono text-[10px] uppercase tracking-[0.14em] mb-2" : "studio-kicker"} style={isMobile ? { color: "var(--text-muted)" } : undefined}>
-          {isMobile ? "Contact" : "\"CONTACT\""}
+        <p className="font-mono text-[10px] uppercase tracking-[0.14em] mb-2" style={{ color: "var(--text-muted)" }}>
+          Contact
         </p>
         <h2 className="text-[22px] font-semibold text-white mb-1">
           Let&apos;s Connect
@@ -84,8 +83,50 @@ export default function Contact({ onClose, isMobile }: { onClose?: () => void, i
   }
 
   return (
-    <StudioWindow title="CONTACT" index="05" onClose={onClose} dragControls={dragControls} width="min(480px, calc(100vw - 48px))">
-      {content}
-    </StudioWindow>
+    <motion.div
+      drag
+      dragControls={dragControls}
+      dragListener={false}
+      dragMomentum={false}
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      className="flex flex-col overflow-hidden z-[50] pointer-events-auto"
+      style={{
+        width: "min(460px, -32px + 100vw)",
+        borderRadius: "8px",
+        border: "1px solid var(--window-border-focused)",
+        boxShadow: "rgba(0, 0, 0, 0.9) 0px 40px 80px, rgb(0, 0, 0) 0px 0px 0px 0.5px",
+        background: "var(--window-bg)",
+        backdropFilter: "blur(20px)",
+      }}
+    >
+      {/* Title Bar */}
+      <div
+        onPointerDown={(e) => dragControls.start(e)}
+        className="flex-none flex items-center h-10 px-4 relative select-none cursor-grab active:cursor-grabbing border-b border-white/5"
+        style={{ background: "var(--titlebar-bg)" }}
+      >
+        <div className="flex items-center gap-1.5 z-10">
+          <button
+            onClick={onClose}
+            className="w-2.5 h-2.5 rounded-full flex-none hover:opacity-80 transition-opacity border-none cursor-pointer"
+            style={{ background: "rgb(255, 95, 87)" }}
+          />
+          <div className="w-2.5 h-2.5 rounded-full" style={{ background: "rgba(255, 255, 255, 0.08)" }} />
+          <div className="w-2.5 h-2.5 rounded-full" style={{ background: "rgba(255, 255, 255, 0.08)" }} />
+        </div>
+        <span
+          className="absolute left-1/2 -translate-x-1/2 font-mono text-[10px] uppercase tracking-[0.15em] pointer-events-none"
+          style={{ color: "rgba(255, 255, 255, 0.45)" }}
+        >
+          Contact
+        </span>
+      </div>
+
+      {/* Content */}
+      <div className="flex-1 overflow-y-auto overflow-x-hidden scrollbar-hide">
+        {content}
+      </div>
+    </motion.div>
   );
 }
