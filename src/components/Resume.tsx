@@ -20,7 +20,7 @@ export default function Resume({ onClose, isMobile }: { onClose?: () => void, is
             </div>
             <div className="flex items-center gap-1.5 underline">
               <Mail size={12} />
-              <span>Samarthz0901@gmail.com</span>
+              <span>samarthhsrao@gmail.com</span>
             </div>
             <div className="flex items-center gap-1.5">
               <Github size={12} />

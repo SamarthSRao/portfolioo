@@ -9,7 +9,7 @@ import {
   useTransform,
   AnimatePresence
 } from "framer-motion";
-import { X_URL } from "@/config/site";
+import { LINKEDIN_URL, X_URL } from "@/config/site";
 import {
   User,
   Briefcase,
@@ -21,6 +21,7 @@ import {
   Cpu,
   NotebookPen,
   Github,
+  Linkedin,
   Sun,
   Moon
 } from "lucide-react";
@@ -167,6 +168,13 @@ export default function Dock({
           icon={Github}
           label="GitHub"
           action={() => window.open("https://github.com/SamarthSRao", "_blank")}
+          mouseX={mouseX}
+        />
+
+        <DockIcon
+          icon={Linkedin}
+          label="LinkedIn"
+          action={() => window.open(LINKEDIN_URL, "_blank")}
           mouseX={mouseX}
         />
 

@@ -1,7 +1,7 @@
 import LayoutToggle from "./LayoutToggle";
 import { experiences } from "./Experience";
 import { projects } from "./Projects";
-import { X_URL } from "@/config/site";
+import { EMAIL, LINKEDIN_URL, X_URL } from "@/config/site";
 
 const skillLine = [
   "RESTful APIs",
@@ -50,8 +50,8 @@ export default function PlainHtmlPage() {
             currently learning how distributed systems work, exploring backend systems and database internals in depth. and sometimes vibecoding uis just for fun.
           </p>
           <p className="plain-quicklinks">
-            Links: <a href="mailto:hello@samarth.dev">Email</a> <a href="https://github.com/SamarthSRao">GitHub</a>{" "}
-            <a href={X_URL}>X</a>
+            Links: <a href={`mailto:${EMAIL}`}>Email</a> <a href="https://github.com/SamarthSRao">GitHub</a>{" "}
+            <a href={LINKEDIN_URL}>LinkedIn</a> <a href={X_URL}>X</a>
           </p>
           <img className="plain-portrait" src="https://github.com/SamarthSRao.png" alt="Samarth S Rao" width={154} height={154} />
         </header>
@@ -80,7 +80,9 @@ export default function PlainHtmlPage() {
                   </h3>
                   <p className="plain-muted">{exp.skills.join(", ")}</p>
                   <ul>
-                    <li>{exp.description}</li>
+                    {(exp.points ?? [exp.description]).map((point) => (
+                      <li key={point}>{point}</li>
+                    ))}
                   </ul>
                 </div>
               </div>
@@ -123,8 +125,9 @@ export default function PlainHtmlPage() {
         <section>
           <h2>Links</h2>
           <div className="plain-links">
-            <a href="mailto:hello@samarth.dev">hello@samarth.dev</a>
+            <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
             <a href="https://github.com/SamarthSRao">GitHub</a>
+            <a href={LINKEDIN_URL}>LinkedIn</a>
             <a href={X_URL}>X</a>
           </div>
         </section>

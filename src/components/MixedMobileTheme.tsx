@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { List, X, Github, Linkedin, Twitter, FileText } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import ProjectsComponent, { projects } from "./Projects";
-import { X_URL } from "@/config/site";
+import { LINKEDIN_URL, X_URL } from "@/config/site";
 import ExperienceComponent, { experiences } from "./Experience";
 import BooksComponent from "./Books";
 
@@ -117,6 +117,7 @@ export default function MixedMobileTheme() {
             <div className="flex flex-wrap gap-5 mt-4 font-sans text-base text-neutral-200">
               <a href="/resume.docx" download className="hover:text-white transition-colors underline decoration-white/30 underline-offset-4">resume</a>
               <a href="https://github.com/SamarthSRao" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors underline decoration-white/30 underline-offset-4">github</a>
+              <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors underline decoration-white/30 underline-offset-4">linkedin</a>
               <a href={X_URL} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors underline decoration-white/30 underline-offset-4">x </a>
               <button onClick={() => setActivePage('books')} className="hover:text-white transition-colors underline decoration-white/30 underline-offset-4 text-left">books</button>
             </div>
@@ -191,7 +192,7 @@ export default function MixedMobileTheme() {
             <div className="flex justify-between items-end">
               <div className="flex gap-4 text-gray-500">
                 <a href={X_URL} target="_blank" rel="noopener noreferrer" aria-label="Samarth on X" className="hover:text-white transition-colors"><Twitter size={18} /></a>
-                <a href="#" className="hover:text-white transition-colors"><Linkedin size={18} /></a>
+                <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" aria-label="Samarth on LinkedIn" className="hover:text-white transition-colors"><Linkedin size={18} /></a>
                 <a href="https://github.com/SamarthSRao" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors"><Github size={18} /></a>
               </div>
               <div className="text-[10px] text-gray-600 font-mono uppercase text-right">
