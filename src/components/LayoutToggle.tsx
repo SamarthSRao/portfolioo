@@ -29,6 +29,13 @@ export default function LayoutToggle({ tone = "theme" }: { tone?: "theme" | "pla
   const [mode, setMode] = useState<DesktopLayoutMode>("classic");
 
   useLayoutEffect(() => {
+    try {
+      const stored = localStorage.getItem(DESKTOP_LAYOUT_STORAGE_KEY);
+      if (stored !== "classic") document.documentElement.classList.add(DESKTOP_LAYOUT_CLASS);
+      else document.documentElement.classList.remove(DESKTOP_LAYOUT_CLASS);
+    } catch {
+      document.documentElement.classList.add(DESKTOP_LAYOUT_CLASS);
+    }
     setMode(readDesktopLayout());
   }, []);
 
