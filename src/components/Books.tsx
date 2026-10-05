@@ -1,125 +1,142 @@
-"use client";
+export type Book = {
+  title: string;
+  author: string;
+  label?: string;
+  status: string;
+  description: string;
+  isbn: string;
+  spine: string;
+  cover: string;
+  lightSpine?: boolean;
+};
 
-import { motion, useDragControls } from "framer-motion";
-import { BookOpen } from "lucide-react";
-
-export const books = [
+export const books: Book[] = [
   {
     title: "Designing Data-Intensive Applications",
     author: "Martin Kleppmann",
     status: "Reading",
     description: "The big ideas behind reliable, scalable, and maintainable systems.",
+    isbn: "9781449373320",
+    spine: "#b42318",
+    cover: "#7f1d1d",
   },
   {
     title: "Database Internals",
     author: "Alex Petrov",
     status: "Reading",
     description: "A deep dive into how distributed data systems work under the hood.",
+    isbn: "9781492040347",
+    spine: "#e7e2d6",
+    cover: "#1c1917",
+    lightSpine: true,
   },
   {
     title: "Clean Architecture",
     author: "Robert C. Martin",
     status: "Completed",
     description: "A craftsman's guide to software structure and design.",
-  }
+    isbn: "9780134494166",
+    spine: "#1e3a5f",
+    cover: "#0f172a",
+  },
+  {
+    title: "Readings in Database Systems",
+    author: "Joseph M. Hellerstein & Michael Stonebraker",
+    label: "Hellerstein",
+    status: "On the shelf",
+    description: "The red book: classic papers on how database systems are actually built.",
+    isbn: "9780262693141",
+    spine: "#9f1239",
+    cover: "#4c0519",
+  },
+  {
+    title: "Computer Systems: A Programmer's Perspective",
+    author: "Randal E. Bryant & David R. O'Hallaron",
+    label: "Bryant",
+    status: "On the shelf",
+    description: "How programs run, from bits and caches down to the operating system.",
+    isbn: "9780134092669",
+    spine: "#c2410c",
+    cover: "#7c2d12",
+  },
+  {
+    title: "Elon Musk",
+    author: "Walter Isaacson",
+    status: "On the shelf",
+    description: "Isaacson's biography of Elon Musk.",
+    isbn: "9781982181284",
+    spine: "#171717",
+    cover: "#0a0a0a",
+  },
+  {
+    title: "Mastery",
+    author: "Robert Greene",
+    status: "On the shelf",
+    description: "How apprenticeship, practice, and attention turn into mastery.",
+    isbn: "9780670024964",
+    spine: "#1c1917",
+    cover: "#292524",
+  },
+  {
+    title: "Hackers & Painters",
+    author: "Paul Graham",
+    status: "On the shelf",
+    description: "Essays on making things, from programming to painting.",
+    isbn: "9780596006624",
+    spine: "#f4efe4",
+    cover: "#e7e5e4",
+    lightSpine: true,
+  },
+  {
+    title: "The Art of Doing Science and Engineering",
+    author: "Richard Hamming",
+    label: "Hamming",
+    status: "On the shelf",
+    description: "Hamming on how to do the work that matters.",
+    isbn: "9781732265172",
+    spine: "#1e293b",
+    cover: "#0f172a",
+  },
+  {
+    title: "Writing A Compiler In Go",
+    author: "Thorsten Ball",
+    label: "Ball",
+    status: "On the shelf",
+    description: "A walk through building a compiler, written in Go.",
+    isbn: "9783982016108",
+    spine: "#eab308",
+    cover: "#171717",
+    lightSpine: true,
+  },
+  {
+    title: "How to Solve It",
+    author: "George Pólya",
+    label: "Pólya",
+    status: "On the shelf",
+    description: "A short, practical guide to attacking problems you don't yet know how to solve.",
+    isbn: "9780691164076",
+    spine: "#f5d76e",
+    cover: "#a16207",
+    lightSpine: true,
+  },
+  {
+    title: "How to Prove It",
+    author: "Daniel J. Velleman",
+    label: "Velleman",
+    status: "On the shelf",
+    description: "A structured introduction to mathematical proof.",
+    isbn: "9781108439534",
+    spine: "#1d4ed8",
+    cover: "#1e3a8a",
+  },
+  {
+    title: "Concurrency in Go",
+    author: "Katherine Cox-Buday",
+    label: "Cox-Buday",
+    status: "On the shelf",
+    description: "Tools and patterns for writing concurrent programs in Go.",
+    isbn: "9781491941195",
+    spine: "#1e3a4c",
+    cover: "#0c4a6e",
+  },
 ];
-
-export default function Books({ onClose, isMobile }: { onClose?: () => void, isMobile?: boolean }) {
-  const dragControls = useDragControls();
-
-  const content = (
-    <div className={`${isMobile ? 'px-4 py-6' : 'px-6 py-6'}`}>
-      <p className="font-mono text-[10px] uppercase tracking-[0.14em] mb-5" style={{ color: "var(--text-muted)" }}>
-        Books
-      </p>
-
-      <div className="flex flex-col gap-5">
-        {books.map((book, i) => (
-          <div
-            key={i}
-            className="group py-4"
-            style={{
-              borderTop: i === 0 ? "1px solid var(--separator)" : undefined,
-              borderBottom: "1px solid var(--separator)",
-            }}
-          >
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-2 mb-1.5">
-                <span className="text-[14px] font-semibold text-white group-hover:text-white/75 transition-colors">
-                  {book.title}
-                </span>
-                <span
-                  className="px-2 py-0.5 rounded bg-white/[0.03] border border-white/[0.05] text-[10px] font-mono"
-                  style={{ color: book.status === 'Reading' ? 'var(--accent)' : 'var(--text-faint)' }}
-                >
-                  {book.status}
-                </span>
-              </div>
-              
-              <p className="font-mono text-[11px] mb-2" style={{ color: "var(--text-faint)" }}>
-                by {book.author}
-              </p>
-
-              <p className="text-[12px] leading-relaxed mb-2" style={{ color: "var(--text-secondary)" }}>
-                {book.description}
-              </p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-
-  if (isMobile) {
-    return <div className="w-full text-left">{content}</div>;
-  }
-
-  return (
-    <motion.div
-      drag
-      dragControls={dragControls}
-      dragListener={false}
-      dragMomentum={false}
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      className="flex flex-col overflow-hidden z-[50] pointer-events-auto"
-      style={{
-        width: "min(600px, -32px + 100vw)",
-        height: "min(500px, -72px + 100vh)",
-        borderRadius: "8px",
-        border: "1px solid var(--window-border-focused)",
-        boxShadow: "rgba(0, 0, 0, 0.9) 0px 40px 80px, rgb(0, 0, 0) 0px 0px 0px 0.5px",
-        background: "var(--window-bg)",
-        backdropFilter: "blur(20px)",
-      }}
-    >
-      {/* Title Bar */}
-      <div
-        onPointerDown={(e) => dragControls.start(e)}
-        className="flex-none flex items-center h-7 px-4 relative select-none cursor-grab active:cursor-grabbing border-b border-white/5"
-        style={{ background: "var(--titlebar-bg)" }}
-      >
-        <div className="flex items-center gap-1.5 z-10">
-          <button
-            onClick={onClose}
-            className="w-2.5 h-2.5 rounded-full flex-none hover:opacity-80 transition-opacity border-none cursor-pointer"
-            style={{ background: "rgb(255, 95, 87)" }}
-          />
-          <div className="w-2.5 h-2.5 rounded-full" style={{ background: "rgba(255, 255, 255, 0.08)" }} />
-          <div className="w-2.5 h-2.5 rounded-full" style={{ background: "rgba(255, 255, 255, 0.08)" }} />
-        </div>
-        <span
-          className="absolute left-1/2 -translate-x-1/2 font-mono text-[9px] uppercase tracking-[0.1em] pointer-events-none"
-          style={{ color: "rgba(255, 255, 255, 0.45)" }}
-        >
-          Books
-        </span>
-      </div>
-
-      {/* Content */}
-      <div className="flex-1 overflow-y-auto overflow-x-hidden scrollbar-hide">
-        {content}
-      </div>
-    </motion.div>
-  );
-}

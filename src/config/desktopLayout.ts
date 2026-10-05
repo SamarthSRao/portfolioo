@@ -4,7 +4,7 @@ export const DESKTOP_LAYOUT_CLASS = "desktop-layout-plain";
 
 export type DesktopLayoutMode = "classic" | "plain";
 
-/** Runs before paint so a saved plain-HTML choice does not flash the classic desktop. */
+/** Runs before paint. The HTML page is the default; only an explicit desktop choice skips it. */
 export function desktopLayoutBootScript(): string {
-  return `(function(){try{var v=localStorage.getItem(${JSON.stringify(DESKTOP_LAYOUT_STORAGE_KEY)});if(v==="plain"||v==="mobile"){document.documentElement.classList.add(${JSON.stringify(DESKTOP_LAYOUT_CLASS)});}}catch(e){}})();`;
+  return `(function(){try{var v=localStorage.getItem(${JSON.stringify(DESKTOP_LAYOUT_STORAGE_KEY)});if(v!=="classic"){document.documentElement.classList.add(${JSON.stringify(DESKTOP_LAYOUT_CLASS)});}}catch(e){document.documentElement.classList.add(${JSON.stringify(DESKTOP_LAYOUT_CLASS)});}})();`;
 }

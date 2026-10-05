@@ -51,7 +51,7 @@ export default function PlainHtmlPage() {
           </p>
           <p className="plain-quicklinks">
             Links: <a href={`mailto:${EMAIL}`}>Email</a> <a href="https://github.com/SamarthSRao">GitHub</a>{" "}
-            <a href={LINKEDIN_URL}>LinkedIn</a> <a href={X_URL}>X</a>
+            <a href={LINKEDIN_URL}>LinkedIn</a> <a href={X_URL}>X</a> <a href="/shelf">Books</a>
           </p>
           <img className="plain-portrait" src="https://github.com/SamarthSRao.png" alt="Samarth S Rao" width={154} height={154} />
         </header>
@@ -128,7 +128,7 @@ export default function PlainHtmlPage() {
             <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
             <a href="https://github.com/SamarthSRao">GitHub</a>
             <a href={LINKEDIN_URL}>LinkedIn</a>
-            <a href={X_URL}>X</a>
+            <a href={X_URL}>X</a> <a href="/shelf">Books</a>
           </div>
         </section>
       </article>
